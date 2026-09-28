@@ -1,507 +1,404 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>Login - TourGo Premium Car Rental Service</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../public/assets/css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
+    <script>
+        (function () {
+            try {
+                const saved = localStorage.getItem('theme');
+                const theme = saved === 'dark' || saved === 'light'
+                    ? saved
+                    : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
     <style>
         :root {
-            --primary: #4D94FF;
-            --primary-dark: #3a7ace;
-            --primary-rgb: 77, 148, 255;
-            --primary-dark-rgb: 58, 122, 206;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --white: #ffffff;
-            --light-bg: #f8f9fa;
-            --border-color: #e6e6e6;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --success: #28a745;
-            --danger: #dc3545;
-            --border-radius: 12px;
+            --auth-bg: #f4f7fc;
+            --auth-bg-soft: #eef3fb;
+            --auth-card: #ffffff;
+            --auth-card-2: #f8faff;
+            --auth-text: #172033;
+            --auth-muted: #667085;
+            --auth-border: #dfe5ef;
+            --auth-input: #fbfcfe;
+            --auth-primary: #4d94ff;
+            --auth-primary-dark: #3978d4;
+            --auth-danger: #dc3545;
+            --auth-success: #198754;
+            --auth-shadow: 0 24px 60px rgba(27, 43, 72, 0.14);
+            --auth-shadow-soft: 0 10px 30px rgba(27, 43, 72, 0.08);
+            --auth-overlay: rgba(13, 25, 49, 0.70);
         }
+
+        [data-theme="dark"] {
+            --auth-bg: #0f1420;
+            --auth-bg-soft: #151c2b;
+            --auth-card: #182133;
+            --auth-card-2: #1d2940;
+            --auth-text: #eef3fb;
+            --auth-muted: #aeb9c9;
+            --auth-border: #334158;
+            --auth-input: #111827;
+            --auth-primary: #5aa0ff;
+            --auth-primary-dark: #3f84e8;
+            --auth-danger: #ff6b78;
+            --auth-success: #43c98b;
+            --auth-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+            --auth-shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.26);
+            --auth-overlay: rgba(7, 15, 30, 0.58);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body { min-height: 100%; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--auth-text);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(77, 148, 255, 0.13), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(77, 148, 255, 0.10), transparent 32%),
+                var(--auth-bg);
+            transition: background-color .3s ease, color .3s ease;
         }
 
+        [data-theme="dark"] body {
+            background:
+                radial-gradient(circle at 10% 10%, rgba(77, 148, 255, 0.10), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(77, 148, 255, 0.08), transparent 32%),
+                var(--auth-bg);
+        }
+
+        .auth-theme-toggle {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 50;
+            width: 46px;
+            height: 46px;
+            border: 1px solid var(--auth-border);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--auth-card) 92%, transparent);
+            color: var(--auth-text);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--auth-shadow-soft);
+            cursor: pointer;
+            transition: transform .2s ease, background-color .25s ease, border-color .25s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .auth-theme-toggle:hover { transform: translateY(-2px); border-color: var(--auth-primary); color: var(--auth-primary); }
+        .auth-theme-toggle:focus-visible { outline: 3px solid rgba(77, 148, 255, .24); outline-offset: 2px; }
+        .auth-theme-toggle i { font-size: 17px; pointer-events: none; }
+
         .login-section {
-            padding: 40px 0;
             min-height: 100vh;
+            padding: 56px 20px 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .auth-shell {
+            width: min(1100px, 100%);
         }
 
         .login-container {
-            display: flex;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-radius: var(--border-radius);
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
             overflow: hidden;
-            max-width: 1100px;
-            width: 100%;
-            margin: 20px;
-            background-color: var(--white);
-            transition: transform 0.3s ease;
-        }
-
-        .login-container:hover {
-            transform: translateY(-5px);
+            border: 1px solid rgba(77, 148, 255, .10);
+            border-radius: 24px;
+            background: var(--auth-card);
+            box-shadow: var(--auth-shadow);
+            transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
         }
 
         .login-image {
-            flex: 1.2;
-            background-image: url('/api/placeholder/600/800');
-            background-size: cover;
-            background-position: center;
+            min-height: 680px;
+            padding: 46px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
-            color: white;
-            text-align: center;
             overflow: hidden;
+            text-align: center;
+            color: #fff;
+            background-image: url('../public/assets/images/car.png');
+            background-size: cover;
+            background-position: center;
+            isolation: isolate;
         }
 
         .login-image::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(77, 148, 255, 0.85), rgba(58, 122, 206, 0.9));
-            z-index: 1;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(145deg, rgba(19, 47, 97, .96), rgba(31, 84, 167, .84)),
+                var(--auth-overlay);
         }
 
-        .image-content {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            max-width: 450px;
+        .login-image::after {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            right: -180px;
+            bottom: -210px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.07);
+            z-index: -1;
         }
+
+        .image-content { max-width: 470px; position: relative; z-index: 2; }
 
         .image-logo {
-            font-size: 36px;
-            margin-bottom: 30px;
-            font-weight: 700;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -.4px;
         }
 
-        .image-logo i {
-            margin-right: 15px;
-            font-size: 40px;
-        }
+        .image-logo i { font-size: 36px; color: #8fc1ff; }
 
         .image-title {
-            font-size: 38px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0 0 20px;
+            font-size: clamp(34px, 4vw, 46px);
+            line-height: 1.13;
+            font-weight: 800;
+            letter-spacing: -.7px;
+            text-shadow: 0 4px 18px rgba(0,0,0,.22);
         }
 
         .image-text {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 40px;
-            opacity: 0.95;
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.75;
+            color: rgba(255,255,255,.88);
         }
 
         .image-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
-            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 16px;
+            margin-top: 38px;
         }
 
         .image-stat {
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            transition: transform 0.3s ease;
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,.14);
+            border-radius: 16px;
+            background: rgba(255,255,255,.08);
+            backdrop-filter: blur(10px);
         }
 
-        .image-stat:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-value {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-label {
-            font-size: 16px;
-            opacity: 0.9;
-            font-weight: 500;
-        }
+        .stat-value { display:block; font-size: 32px; font-weight: 800; line-height: 1; }
+        .stat-label { display:block; margin-top: 8px; font-size: 13px; color: rgba(255,255,255,.78); }
 
         .login-form-container {
-            flex: 1;
-            padding: 60px 50px;
+            padding: 54px 48px 44px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: var(--auth-card);
         }
 
-        .login-header {
-            margin-bottom: 40px;
+        .login-header { margin-bottom: 28px; }
+        .login-title { margin: 0 0 10px; font-size: clamp(30px, 3.3vw, 38px); line-height: 1.1; color: var(--auth-text); font-weight: 800; letter-spacing: -.5px; }
+        .login-title::after { content: ''; display:block; width: 58px; height: 4px; margin-top: 12px; border-radius: 999px; background: linear-gradient(90deg, var(--auth-primary), var(--auth-primary-dark)); }
+        .login-subtitle { margin:0; font-size: 15px; line-height:1.65; color: var(--auth-muted); }
+
+        .demo-message {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin: 0 0 22px;
+            padding: 13px 14px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 500;
+            animation: authMessageIn .25s ease;
         }
 
-        .login-title {
-            font-size: 36px;
-            color: var(--text-dark);
-            font-weight: 700;
-            margin-bottom: 15px;
-            position: relative;
-        }
+        .demo-message[hidden] { display:none; }
+        .demo-message i { margin-top: 2px; font-size: 15px; flex: 0 0 auto; }
+        .demo-message.success { color: var(--auth-success); background: rgba(25,135,84,.10); border-color: rgba(25,135,84,.26); }
+        .demo-message.error { color: var(--auth-danger); background: rgba(220,53,69,.10); border-color: rgba(220,53,69,.27); }
+        .demo-message.info { color: var(--auth-primary); background: rgba(77,148,255,.10); border-color: rgba(77,148,255,.25); }
 
-        .login-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-            margin-top: 12px;
-            border-radius: 2px;
-        }
+        @keyframes authMessageIn { from { opacity:0; transform: translateY(-4px); } to { opacity:1; transform: translateY(0); } }
 
-        .login-subtitle {
-            color: var(--text-light);
-            font-size: 18px;
-        }
-
-        .form-group {
-            margin-bottom: 28px;
-            position: relative;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 15px;
-        }
+        .form-group { margin-bottom: 21px; }
+        .form-label { display:block; margin: 0 0 8px; color: var(--auth-text); font-size: 14px; font-weight: 650; }
 
         .form-control {
             width: 100%;
-            padding: 16px 18px;
-            border: 2px solid var(--border-color);
+            min-height: 51px;
+            padding: 13px 15px;
+            border: 1.5px solid var(--auth-border);
             border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background-color: #fbfbfb;
+            background: var(--auth-input);
+            color: var(--auth-text);
+            font: inherit;
+            font-size: 15px;
+            transition: border-color .22s ease, box-shadow .22s ease, background-color .25s ease;
         }
 
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(77, 148, 255, 0.15);
-            background-color: var(--white);
-        }
+        .form-control::placeholder { color: color-mix(in srgb, var(--auth-muted) 76%, transparent); }
+        .form-control:hover { border-color: color-mix(in srgb, var(--auth-primary) 45%, var(--auth-border)); }
+        .form-control:focus { outline:none; border-color: var(--auth-primary); box-shadow: 0 0 0 4px rgba(77,148,255,.14); background: var(--auth-card); }
+        .form-control.is-invalid { border-color: var(--auth-danger); box-shadow: 0 0 0 3px rgba(220,53,69,.10); }
+        .form-control.is-invalid:focus { box-shadow: 0 0 0 4px rgba(220,53,69,.12); }
 
-        .password-wrapper {
-            position: relative;
-        }
-
+        .password-wrapper { position: relative; }
+        .password-wrapper .form-control { padding-right: 48px; }
         .toggle-password {
-            position: absolute;
-            right: 18px;
-            top: 50%;
+            position:absolute;
+            top:50%;
+            right: 12px;
             transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 5px;
-            font-size: 18px;
-            transition: color 0.3s ease;
+            width: 36px;
+            height: 36px;
+            padding:0;
+            border:0;
+            border-radius:10px;
+            background:transparent;
+            color: var(--auth-muted);
+            cursor:pointer;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
         }
+        .toggle-password:hover { color: var(--auth-primary); background: rgba(77,148,255,.08); }
+        .toggle-password:focus-visible { outline: 2px solid var(--auth-primary); outline-offset: 1px; }
 
-        .toggle-password:hover {
-            color: var(--primary);
+        .field-error {
+            min-height: 18px;
+            margin-top: 6px;
+            color: var(--auth-danger);
+            font-size: 12.5px;
+            line-height: 1.4;
         }
 
         .form-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:16px;
+            margin: 4px 0 24px;
         }
 
         .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-light);
-            position: relative;
-            cursor: pointer;
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            color: var(--auth-muted);
+            font-size: 13.5px;
+            cursor:pointer;
+            user-select:none;
         }
+        .remember-me input { position:absolute; opacity:0; pointer-events:none; }
+        .checkmark { width:20px; height:20px; position:relative; flex:0 0 20px; border-radius:6px; border:1.5px solid var(--auth-border); background:var(--auth-input); transition:.2s ease; }
+        .remember-me input:checked + .checkmark { border-color:var(--auth-primary); background:var(--auth-primary); }
+        .remember-me input:checked + .checkmark::after { content:''; position:absolute; left:6px; top:2px; width:5px; height:10px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
 
-        /* Custom checkbox */
-        .remember-me input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-
-        .checkmark {
-            display: inline-block;
-            position: relative;
-            height: 22px;
-            width: 22px;
-            background-color: #f1f1f1;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-        }
-
-        .remember-me:hover input ~ .checkmark {
-            background-color: #e9e9e9;
-        }
-
-        .remember-me input:checked ~ .checkmark {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 7px;
-            top: 3px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-
-        .remember-me input:checked ~ .checkmark:after {
-            display: block;
-        }
-
-        .remember-me span {
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .forgot-password {
-            color: var(--primary);
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            font-size: 15px;
-            position: relative;
-        }
-
-        .forgot-password:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .forgot-password:hover:after {
-            width: 100%;
-        }
+        .forgot-password, .register-link a { color: var(--auth-primary); font-weight: 650; }
+        .forgot-password { font-size: 13.5px; }
+        .forgot-password:hover, .register-link a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
         .btn-login {
             width: 100%;
-            padding: 16px 25px;
-            margin: 5px 0 30px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            border: none;
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            min-height: 52px;
+            padding: 14px 18px;
+            border: 0;
             border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 10px 20px rgba(77, 148, 255, 0.2);
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--auth-primary), var(--auth-primary-dark));
+            color: #fff;
+            font-size: 15.5px;
+            font-weight: 700;
+            letter-spacing: .15px;
+            box-shadow: 0 12px 24px rgba(77,148,255,.22);
+            cursor:pointer;
+            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
         }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 15px 28px rgba(77,148,255,.28); filter: brightness(1.02); }
+        .btn-login:active { transform: translateY(0); }
+        .btn-login:disabled { opacity:.7; cursor:not-allowed; transform:none; box-shadow:none; }
 
-        .btn-login:hover {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(77, 148, 255, 0.3);
-        }
-
-        .btn-login:active {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(77, 148, 255, 0.2);
-        }
-
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .btn-login:hover::before {
-            left: 100%;
-        }
-
-        .register-link {
-            text-align: center;
-            margin-top: 25px;
-            color: var(--text-light);
-            font-size: 15px;
-        }
-
-        .register-link a {
-            color: var(--primary);
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            position: relative;
-        }
-
-        .register-link a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .register-link a:hover:after {
-            width: 100%;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1100px) {
-            .login-container {
-                max-width: 900px;
-            }
-            .login-form-container {
-                padding: 50px 40px;
-            }
-        }
-
-        .demo-message {
-            display: block;
-            padding: 12px 14px;
-            margin: 0 0 22px;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.45;
-            border: 1px solid transparent;
-        }
-        .demo-message.success {
-            background: #eefaf1;
-            color: #176b2c;
-            border-color: #b9e6c4;
-        }
-        .demo-message.error {
-            background: #fff1f1;
-            color: #a61b1b;
-            border-color: #f3b7b7;
-        }
-        .demo-message.info {
-            background: #eef5ff;
-            color: #245a9b;
-            border-color: #bfd7f7;
-        }
+        .register-link { margin: 24px 0 0; text-align:center; color:var(--auth-muted); font-size:13.5px; }
 
         @media (max-width: 900px) {
-            .login-container {
-                flex-direction: column;
-                max-width: 600px;
-            }
-            .login-image {
-                min-height: 300px;
-            }
-            .image-stats {
-                display:none;
-            }
+            .login-section { padding-top: 46px; }
+            .login-container { grid-template-columns: 1fr; max-width: 650px; }
+            .login-image { min-height: 270px; padding: 30px 28px; }
+            .image-title { font-size: 32px; }
+            .image-text { font-size: 15px; max-width: 520px; margin:0 auto; }
+            .image-stats { margin-top:24px; }
+            .login-form-container { padding: 42px 34px; }
         }
 
         @media (max-width: 576px) {
-            .login-section {
-                padding: 20px 0;
-            }
-            .login-form-container {
-                padding: 40px 25px;
-            }
-            .login-title {
-                font-size: 28px;
-            }
-            .login-subtitle {
-                font-size: 16px;
-            }
-            .form-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .image-logo {
-                font-size: 28px;
-            }
-            .image-title {
-                font-size: 30px;
-            }
-            .image-text {
-                font-size: 16px;
-                margin-bottom: 25px;
-            }
-            .btn-login {
-                padding: 14px 20px;
-            }
-                        .image-stats {
-                display:none;
-            }
+            .auth-theme-toggle { top: 10px; right:10px; width:42px; height:42px; border-radius:12px; }
+            .login-section { padding: 62px 12px 18px; }
+            .login-container { border-radius: 20px; }
+            .login-image { min-height: 225px; padding: 26px 20px; }
+            .image-logo { font-size:24px; margin-bottom:16px; }
+            .image-logo i { font-size:28px; }
+            .image-title { font-size: 27px; margin-bottom: 12px; }
+            .image-text { font-size:13.5px; line-height:1.6; }
+            .image-stats { display:none; }
+            .login-form-container { padding: 30px 20px 26px; }
+            .login-title { font-size:28px; }
+            .login-subtitle { font-size:14px; }
+            .form-footer { align-items:flex-start; flex-direction:column; gap:12px; }
+            .forgot-password { align-self:flex-end; }
+        }
+
+        @media (max-width: 360px) {
+            .login-section { padding-left:8px; padding-right:8px; }
+            .login-form-container { padding-left:16px; padding-right:16px; }
+            .login-image { min-height:205px; }
+            .login-title { font-size:25px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
         }
     </style>
 </head>
 <body>
-    <section class="login-section">
-        <div class="container">
+    <button type="button" class="auth-theme-toggle" id="authThemeToggle" aria-label="Switch to dark mode" title="Dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <main class="login-section">
+        <div class="auth-shell">
             <div class="login-container animate__animated animate__fadeIn">
-                <div class="login-image">
+                <section class="login-image" aria-label="TourGo information">
                     <div class="image-content">
-                        <div class="image-logo">
-                            <i class="fas fa-car-side"></i>
-                            TourGo
-                        </div>
+                        <div class="image-logo"><i class="fas fa-car-side"></i><span>TourGo</span></div>
                         <h2 class="image-title">Your Premium Car Rental Experience</h2>
                         <p class="image-text">Join thousands of satisfied customers who choose TourGo for their travel needs. Premium cars, exceptional service.</p>
                         <div class="image-stats">
@@ -515,166 +412,220 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="login-form-container">
+                <section class="login-form-container">
                     <div class="login-header">
                         <h1 class="login-title">Welcome Back</h1>
-                        <p class="login-subtitle">Please enter your credentials to continue</p>
+                        <p class="login-subtitle">Please enter your credentials to continue.</p>
                     </div>
-<form id="login-form" novalidate>
+
+                    <div id="demo-message" class="demo-message" role="alert" aria-live="assertive" hidden></div>
+
+                    <form id="login-form" novalidate>
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required value="">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" autocomplete="email" required>
+                            <div class="field-error" id="email-error" aria-live="polite"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="password" class="form-label">Password</label>
                             <div class="password-wrapper">
-                                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
-                                <button type="button" class="toggle-password" aria-label="Show password">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" autocomplete="current-password" required>
+                                <button type="button" class="toggle-password" aria-label="Show password" title="Show password">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
+                            <div class="field-error" id="password-error" aria-live="polite"></div>
                         </div>
 
                         <div class="form-footer">
                             <label class="remember-me">
-                                <input type="checkbox" id="remember" name="remember" >
-                                <span class="checkmark"></span>
+                                <input type="checkbox" id="remember" name="remember">
+                                <span class="checkmark" aria-hidden="true"></span>
                                 <span>Remember me</span>
                             </label>
                             <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
                         </div>
 
-                        <button type="submit" class="btn-login">
-                            Sign In <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                        <button type="submit" class="btn-login" id="login-submit">
+                            <span>Sign In</span><i class="fas fa-arrow-right" style="margin-left:8px"></i>
                         </button>
 
-                        <div class="register-link">
-                            Don't have an account? <a href="register.html">Register Now</a>
-                        </div>
+                        <p class="register-link">Don't have an account? <a href="register.html">Register Now</a></p>
                     </form>
-                </div>
+                </section>
             </div>
         </div>
-    </section>
+    </main>
 
-    <script src="../public/assets/js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('authThemeToggle');
+            const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
             const form = document.getElementById('login-form');
             const message = document.getElementById('demo-message');
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
             const rememberInput = document.getElementById('remember');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            const submitButton = document.getElementById('login-submit');
+            const passwordToggle = document.querySelector('.toggle-password');
 
-            function showMessage(text, type) {
-                if (!message) return;
-                message.hidden = false;
-                message.className = 'demo-message ' + type;
-                message.textContent = text;
-            }
-
-            // Menu toggle functionality (kept for consistency with the original page).
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
-                    }
-                });
-            }
-
-            // Password visibility toggle.
-            const togglePassword = document.querySelector('.toggle-password');
-            if (togglePassword && passwordInput) {
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    const icon = togglePassword.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-eye');
-                        icon.classList.toggle('fa-eye-slash');
-                    }
-                });
-            }
-
-            // Static GitHub Pages demo authentication using localStorage.
-            // No real account or password is sent anywhere.
             const demoAccounts = {
                 'admin@tourgo.demo': { password: 'TourGOAdmin@2026!', role: 'admin', name: 'TourGO Administrator' },
-                'agency@tourgo.demo': { password: localStorage.getItem('tourgo_agency_password') || 'Demo1234!', role: 'agency', name: 'DriveHub Rentals' },
+                'agency@tourgo.demo': { password: 'Demo1234!', role: 'agency', name: 'DriveHub Rentals' },
                 'customer@tourgo.demo': { password: 'Demo1234!', role: 'customer', name: 'Guest' }
             };
 
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const email = emailInput.value.trim().toLowerCase();
-                    const password = passwordInput.value;
+            function currentTheme() {
+                return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            }
 
-                    if (!email || !emailInput.checkValidity()) {
-                        showMessage('Please enter a valid email address.', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-                    if (!password) {
-                        showMessage('Please enter your password.', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
+            function applyTheme(theme) {
+                const next = theme === 'dark' ? 'dark' : 'light';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+                if (themeIcon) {
+                    themeIcon.classList.toggle('fa-sun', next === 'dark');
+                    themeIcon.classList.toggle('fa-moon', next !== 'dark');
+                }
+                if (themeToggle) {
+                    const nextLabel = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+                    themeToggle.setAttribute('aria-label', nextLabel);
+                    themeToggle.setAttribute('title', nextLabel.replace('Switch to ', '').replace(' mode', ''));
+                }
+            }
 
-                    let account = demoAccounts[email];
-                    const stored = JSON.parse(localStorage.getItem('tourgo_demo_accounts') || '{}');
-                    if (!account && stored[email]) account = stored[email];
+            applyTheme(currentTheme());
 
-                    if (!account || account.password !== password) {
-                        showMessage('Invalid demo credentials. Register a new account first, or use one of the demo accounts.', 'error');
-                        return;
-                    }
-
-                    const session = {
-                        email: email,
-                        role: account.role || 'customer',
-                        name: account.name || email.split('@')[0],
-                        signedInAt: new Date().toISOString()
-                    };
-                    localStorage.setItem('tourgo_demo_session', JSON.stringify(session));
-                    if (rememberInput && rememberInput.checked) {
-                        localStorage.setItem('tourgo_demo_remember', '1');
-                    } else {
-                        localStorage.removeItem('tourgo_demo_remember');
-                    }
-
-                    showMessage('Sign in successful. Opening your dashboard…', 'success');
-                    const destinations = {
-                        admin: '../admin/admin_dashboard.html',
-                        agency: '../agency/agency_dashboard.html',
-                        customer: '../customer/customer_dashboard.html'
-                    };
-                    setTimeout(function() {
-                        window.location.href = destinations[session.role] || destinations.customer;
-                    }, 650);
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function () {
+                    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
                 });
             }
 
-            // Footer year update.
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan && !yearSpan.textContent) yearSpan.textContent = new Date().getFullYear();
+            function showMessage(text, type, iconClass) {
+                if (!message) return;
+                message.hidden = false;
+                message.className = 'demo-message ' + type;
+                message.innerHTML = '<i class="fas ' + iconClass + '" aria-hidden="true"></i><span></span>';
+                message.querySelector('span').textContent = text;
+            }
 
-            // Add focus effect for form fields.
-            document.querySelectorAll('.form-control').forEach(function(input) {
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('focused');
+            function clearMessage() {
+                if (message) {
+                    message.hidden = true;
+                    message.textContent = '';
+                    message.className = 'demo-message';
+                }
+            }
+
+            function setFieldError(input, errorEl, text) {
+                if (!input || !errorEl) return;
+                input.classList.toggle('is-invalid', Boolean(text));
+                input.setAttribute('aria-invalid', text ? 'true' : 'false');
+                errorEl.textContent = text || '';
+            }
+
+            function clearFieldErrors() {
+                setFieldError(emailInput, emailError, '');
+                setFieldError(passwordInput, passwordError, '');
+            }
+
+            if (passwordToggle && passwordInput) {
+                passwordToggle.addEventListener('click', function () {
+                    const showing = passwordInput.type === 'text';
+                    passwordInput.type = showing ? 'password' : 'text';
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-eye', showing);
+                        icon.classList.toggle('fa-eye-slash', !showing);
+                    }
+                    this.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+                    this.setAttribute('title', showing ? 'Show password' : 'Hide password');
                 });
-                input.addEventListener('blur', function() {
-                    this.parentElement.classList.remove('focused');
+            }
+
+            [emailInput, passwordInput].forEach(function (input) {
+                if (!input) return;
+                input.addEventListener('input', function () {
+                    if (this === emailInput && this.value.trim()) setFieldError(emailInput, emailError, '');
+                    if (this === passwordInput && this.value) setFieldError(passwordInput, passwordError, '');
+                    if (message && !message.hidden) clearMessage();
                 });
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                clearMessage();
+                clearFieldErrors();
+
+                const email = emailInput.value.trim().toLowerCase();
+                const password = passwordInput.value;
+                let valid = true;
+
+                if (!email) {
+                    setFieldError(emailInput, emailError, 'Email address is required.');
+                    valid = false;
+                } else if (!emailInput.checkValidity()) {
+                    setFieldError(emailInput, emailError, 'Please enter a valid email address.');
+                    valid = false;
+                }
+
+                if (!password) {
+                    setFieldError(passwordInput, passwordError, 'Password is required.');
+                    valid = false;
+                }
+
+                if (!valid) {
+                    showMessage('Please correct the highlighted fields and try again.', 'error', 'fa-circle-exclamation');
+                    if (emailInput.classList.contains('is-invalid')) emailInput.focus(); else passwordInput.focus();
+                    return;
+                }
+
+                let account = demoAccounts[email];
+                try {
+                    const stored = JSON.parse(localStorage.getItem('tourgo_demo_accounts') || '{}');
+                    if (!account && stored && stored[email]) account = stored[email];
+                } catch (e) {}
+
+                if (!account || account.password !== password) {
+                    setFieldError(passwordInput, passwordError, 'The password or account details do not match.');
+                    showMessage('Sign in failed. Check your email and password, then try again.', 'error', 'fa-circle-exclamation');
+                    passwordInput.focus();
+                    return;
+                }
+
+                const session = {
+                    email: email,
+                    role: account.role || 'customer',
+                    name: account.name || email.split('@')[0],
+                    signedInAt: new Date().toISOString()
+                };
+                localStorage.setItem('tourgo_demo_session', JSON.stringify(session));
+
+                if (rememberInput && rememberInput.checked) {
+                    localStorage.setItem('tourgo_demo_remember', '1');
+                } else {
+                    localStorage.removeItem('tourgo_demo_remember');
+                }
+
+                showMessage('Sign in successful. Opening your dashboard…', 'success', 'fa-circle-check');
+                submitButton.disabled = true;
+
+                const destinations = {
+                    admin: '../admin/admin_dashboard.html',
+                    agency: '../agency/agency_dashboard.html',
+                    customer: '../customer/customer_dashboard.html'
+                };
+
+                setTimeout(function () {
+                    window.location.href = destinations[session.role] || destinations.customer;
+                }, 650);
             });
         });
     </script>

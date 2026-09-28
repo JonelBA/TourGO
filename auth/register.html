@@ -1,227 +1,494 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>Register - TourGo Premium Car Rental Service</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../public/assets/css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
+    <script>
+        (function () {
+            try {
+                const saved = localStorage.getItem('theme');
+                const theme = saved === 'dark' || saved === 'light'
+                    ? saved
+                    : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
     <style>
-        /* Additional styles specific to registration page from your register.html */
-        .register-section { padding: 60px 0; min-height: calc(100vh - 200px); display: flex; align-items: center; }
-        .register-container { background-color: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); overflow: hidden; display: flex; max-width: 1000px; margin: 0 auto; }
-        .register-image { flex: 1; background-color: var(--accent-light); padding: 40px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
-        .register-image img { width: 100%; height: auto; position: relative; z-index: 2; max-width: 400px; margin: 0 auto; }
-        .register-image-text { color: var(--text-dark); z-index: 2; margin-bottom: 30px; text-align: center;}
-        .register-image-title { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
-        .register-image-description { font-size: 15px; line-height: 1.6; color: var(--text-light); }
-        .register-decoration { position: absolute; background-color: rgba(var(--primary-rgb, 77, 148, 255), 0.1); border-radius: 50%; z-index: 1; }
-        .register-circle-1 { width: 300px; height: 300px; bottom: -100px; right: -100px; }
-        .register-circle-2 { width: 200px; height: 200px; top: -50px; left: -50px; }
-        .register-form-container { flex: 1.2; padding: 40px; } /* Give a bit more space to form */
-        .register-form-title { font-size: 28px; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
-        .register-subtitle { color: var(--text-light); margin-bottom: 20px; font-size: 15px; }
-        .account-type-tabs { display: flex; margin-bottom: 25px; border-radius: 10px; overflow: hidden; border: 1px solid #eee; }
-        .account-tab { flex: 1; padding: 15px; background-color: #f8f8f8; border: none; cursor: pointer; font-weight: 500; color: var(--text-light); transition: all 0.3s ease; font-size: 14px; text-align: center; }
-        .account-tab.active { background-color: var(--primary); color: white; }
-        .account-tab:first-child { border-right: 1px solid #eee; } /* Only if side-by-side */
-        .account-tab:hover:not(.active) { background-color: #eee; }
-        
-        /* Styles for form sections (customer/agency) */
-        .form-fields-section { display: none; }
-        .form-fields-section.active { display: block; }
+        :root {
+            --auth-bg: #f4f7fc;
+            --auth-card: #ffffff;
+            --auth-panel: #f5f8fe;
+            --auth-text: #172033;
+            --auth-muted: #667085;
+            --auth-border: #dfe5ef;
+            --auth-input: #fbfcfe;
+            --auth-primary: #4d94ff;
+            --auth-primary-dark: #3978d4;
+            --auth-danger: #dc3545;
+            --auth-success: #198754;
+            --auth-shadow: 0 24px 60px rgba(27, 43, 72, .14);
+            --auth-shadow-soft: 0 10px 30px rgba(27, 43, 72, .08);
+        }
 
-        .input-group { display: flex; gap: 15px; margin-bottom: 15px; } /* Adjusted margin */
-        .input-group .form-group { flex: 1; margin-bottom: 0;} /* Remove bottom margin from grouped items */
-        .form-group { margin-bottom: 15px; } /* Standard margin for single form groups */
-        .form-label { display: block; margin-bottom: 6px; font-weight: 500; color: var(--text-dark); font-size: 14px; }
-        .form-control { width: 100%; padding: 12px 15px; border: 1.5px solid #eee; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; box-sizing: border-box; }
-        .form-control:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 77, 148, 255), 0.2); }
-        .form-control.is-invalid { border-color: #dc3545; }
-        .error-message { color: #dc3545; font-size: 0.875em; margin-top: .25rem; display: block; }
+        [data-theme="dark"] {
+            --auth-bg: #0f1420;
+            --auth-card: #182133;
+            --auth-panel: #1d2940;
+            --auth-text: #eef3fb;
+            --auth-muted: #aeb9c9;
+            --auth-border: #334158;
+            --auth-input: #111827;
+            --auth-primary: #5aa0ff;
+            --auth-primary-dark: #3f84e8;
+            --auth-danger: #ff6b78;
+            --auth-success: #43c98b;
+            --auth-shadow: 0 28px 70px rgba(0,0,0,.42);
+            --auth-shadow-soft: 0 12px 34px rgba(0,0,0,.26);
+        }
+
+        * { box-sizing: border-box; }
+        html, body { min-height:100%; }
+
+        body {
+            margin:0;
+            min-height:100vh;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:var(--auth-text);
+            background:
+                radial-gradient(circle at 10% 12%, rgba(77,148,255,.12), transparent 28%),
+                radial-gradient(circle at 92% 88%, rgba(77,148,255,.09), transparent 28%),
+                var(--auth-bg);
+            transition:background-color .3s ease, color .3s ease;
+        }
+
+        .auth-theme-toggle {
+            position:fixed;
+            top:18px;
+            right:18px;
+            z-index:50;
+            width:46px;
+            height:46px;
+            border:1px solid var(--auth-border);
+            border-radius:14px;
+            background:color-mix(in srgb, var(--auth-card) 92%, transparent);
+            color:var(--auth-text);
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:var(--auth-shadow-soft);
+            cursor:pointer;
+            transition:transform .2s ease, border-color .25s ease, color .25s ease, background-color .25s ease;
+            backdrop-filter:blur(12px);
+        }
+        .auth-theme-toggle:hover { transform:translateY(-2px); border-color:var(--auth-primary); color:var(--auth-primary); }
+        .auth-theme-toggle:focus-visible { outline:3px solid rgba(77,148,255,.24); outline-offset:2px; }
+        .auth-theme-toggle i { pointer-events:none; }
+
+        .register-section {
+            min-height:100vh;
+            padding:58px 20px 30px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .register-shell { width:min(1050px, 100%); }
+
+        .register-container {
+            display:grid;
+            grid-template-columns:minmax(300px,.86fr) minmax(0,1.14fr);
+            overflow:hidden;
+            border:1px solid rgba(77,148,255,.11);
+            border-radius:24px;
+            background:var(--auth-card);
+            box-shadow:var(--auth-shadow);
+            transition:background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .register-image {
+            position:relative;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            min-height:650px;
+            padding:42px 34px;
+            overflow:hidden;
+            text-align:center;
+            color:#fff;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(105,170,255,.22), transparent 34%),
+                linear-gradient(150deg, #162d58 0%, #0d1b37 100%);
+            isolation:isolate;
+        }
+        [data-theme="dark"] .register-image {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(105,170,255,.15), transparent 34%),
+                linear-gradient(150deg, #13284b 0%, #091226 100%);
+        }
+
+        .register-image::before,
+        .register-image::after {
+            content:'';
+            position:absolute;
+            border-radius:50%;
+            background:rgba(77,148,255,.12);
+            z-index:-1;
+        }
+        .register-image::before { width:360px; height:360px; right:-150px; bottom:-170px; }
+        .register-image::after { width:230px; height:230px; left:-120px; top:-120px; }
+
+        .register-image-text { position:relative; z-index:2; max-width:380px; }
+        .register-image-title { margin:0 0 12px; font-size:32px; font-weight:800; letter-spacing:-.3px; }
+        .register-image-description { margin:0; font-size:15px; line-height:1.7; color:rgba(255,255,255,.82); }
+
+        .register-car-art {
+            width:min(100%, 400px);
+            margin:30px auto 0;
+            position:relative;
+            z-index:2;
+            filter:drop-shadow(0 20px 24px rgba(0,0,0,.24));
+        }
+        .register-car-art img { width:100%; height:auto; display:block; object-fit:contain; }
+
+        .register-form-container {
+            padding:40px 42px 34px;
+            background:var(--auth-card);
+        }
+
+        .register-form-title { margin:0 0 8px; color:var(--auth-text); font-size:30px; font-weight:800; letter-spacing:-.4px; }
+        .register-subtitle { margin:0 0 22px; color:var(--auth-muted); font-size:14px; line-height:1.6; }
 
         .demo-message {
-            display: block;
-            padding: 12px 14px;
-            margin: 0 0 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.45;
-            border: 1px solid transparent;
+            display:flex;
+            align-items:flex-start;
+            gap:11px;
+            width:100%;
+            margin:0 0 20px;
+            padding:13px 14px;
+            border:1px solid transparent;
+            border-radius:12px;
+            font-size:13.5px;
+            line-height:1.5;
+            font-weight:500;
+            animation:authMessageIn .25s ease;
         }
-        .demo-message.success {
-            background: #eefaf1;
-            color: #176b2c;
-            border-color: #b9e6c4;
+        .demo-message[hidden] { display:none; }
+        .demo-message i { margin-top:2px; flex:0 0 auto; }
+        .demo-message.success { background:rgba(25,135,84,.10); color:var(--auth-success); border-color:rgba(25,135,84,.26); }
+        .demo-message.error { background:rgba(220,53,69,.10); color:var(--auth-danger); border-color:rgba(220,53,69,.27); }
+        .demo-message.info { background:rgba(77,148,255,.10); color:var(--auth-primary); border-color:rgba(77,148,255,.25); }
+        @keyframes authMessageIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+
+        .account-type-tabs {
+            display:grid;
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:8px;
+            padding:6px;
+            margin-bottom:22px;
+            border:1px solid var(--auth-border);
+            border-radius:14px;
+            background:var(--auth-panel);
         }
-        .demo-message.error {
-            background: #fff1f1;
-            color: #a61b1b;
-            border-color: #f3b7b7;
+        .account-tab {
+            min-height:44px;
+            padding:10px 12px;
+            border:0;
+            border-radius:10px;
+            background:transparent;
+            color:var(--auth-muted);
+            font:inherit;
+            font-size:13px;
+            font-weight:700;
+            cursor:pointer;
+            transition:background-color .2s ease, color .2s ease, box-shadow .2s ease;
         }
-        .demo-message.info {
-            background: #eef5ff;
-            color: #245a9b;
-            border-color: #bfd7f7;
+        .account-tab:hover:not(.active) { color:var(--auth-text); background:rgba(77,148,255,.07); }
+        .account-tab.active { color:#fff; background:linear-gradient(135deg,var(--auth-primary),var(--auth-primary-dark)); box-shadow:0 8px 18px rgba(77,148,255,.20); }
+        .account-tab:focus-visible { outline:2px solid var(--auth-primary); outline-offset:1px; }
+
+        .form-fields-section { display:none; }
+        .form-fields-section.active { display:block; }
+
+        .input-group { display:flex; gap:14px; margin-bottom:0; }
+        .input-group .form-group { flex:1; min-width:0; }
+        .form-group { margin-bottom:14px; }
+        .form-label { display:block; margin-bottom:7px; color:var(--auth-text); font-size:13px; font-weight:650; }
+
+        .form-control {
+            width:100%;
+            min-height:47px;
+            padding:11px 13px;
+            border:1.5px solid var(--auth-border);
+            border-radius:11px;
+            background:var(--auth-input);
+            color:var(--auth-text);
+            font:inherit;
+            font-size:13.5px;
+            transition:border-color .22s ease, box-shadow .22s ease, background-color .25s ease;
+        }
+        .form-control::placeholder { color:color-mix(in srgb,var(--auth-muted) 76%,transparent); }
+        .form-control:hover { border-color:color-mix(in srgb,var(--auth-primary) 45%,var(--auth-border)); }
+        .form-control:focus { outline:none; border-color:var(--auth-primary); box-shadow:0 0 0 4px rgba(77,148,255,.13); background:var(--auth-card); }
+        .form-control.is-invalid { border-color:var(--auth-danger); box-shadow:0 0 0 3px rgba(220,53,69,.10); }
+
+        .password-wrapper { position:relative; }
+        .password-wrapper .form-control { padding-right:46px; }
+        .toggle-password {
+            position:absolute;
+            top:50%;
+            right:9px;
+            transform:translateY(-50%);
+            width:34px;
+            height:34px;
+            border:0;
+            border-radius:9px;
+            background:transparent;
+            color:var(--auth-muted);
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+        }
+        .toggle-password:hover { background:rgba(77,148,255,.08); color:var(--auth-primary); }
+        .toggle-password:focus-visible { outline:2px solid var(--auth-primary); outline-offset:1px; }
+
+        .error-message {
+            min-height:17px;
+            margin-top:5px;
+            color:var(--auth-danger);
+            font-size:11.5px;
+            line-height:1.35;
         }
 
-        .form-check { display: flex; align-items: center; gap: 10px; margin: 20px 0; }
-        .form-check input { width: 16px; height: 16px; accent-color: var(--primary); }
-        .form-check label { color: var(--text-light); font-size: 13px; }
-        .form-check label a { color: var(--primary); font-weight: 500; text-decoration: none; }
-        .form-check label a:hover { text-decoration: underline; }
-        .register-btn { width: 100%; padding: 14px; font-size: 15px; margin-bottom: 20px; background-color: var(--primary); color:var(--white); border:none; border-radius:8px; cursor:pointer; transition: background-color 0.3s ease;}
-        .register-btn:hover { background-color: var(--primary-dark); }
-        .login-link { text-align: center; color: var(--text-light); font-size: 14px; }
-        .login-link a { color: var(--primary); font-weight: 500; text-decoration: none; }
-        .login-link a:hover { text-decoration: underline; }
+        .form-check {
+            display:grid;
+            grid-template-columns:18px 1fr;
+            gap:9px;
+            align-items:start;
+            margin:8px 0 18px;
+        }
+        .form-check input { width:17px; height:17px; margin-top:2px; accent-color:var(--auth-primary); }
+        .form-check label { color:var(--auth-muted); font-size:12px; line-height:1.5; }
+        .form-check label a { color:var(--auth-primary); font-weight:650; text-decoration:none; }
+        .form-check label a:hover { text-decoration:underline; text-underline-offset:3px; }
 
-        .password-wrapper { position: relative; }
-        .toggle-password { position: absolute; right: 15px; top: 50%; transform: translateY(calc(-50% + 7px)); /* Adjust for label presence */ background: none; border: none; color: var(--text-light); cursor: pointer; }
+        .register-btn {
+            width:100%;
+            min-height:49px;
+            padding:12px 15px;
+            margin-bottom:17px;
+            border:0;
+            border-radius:11px;
+            background:linear-gradient(135deg,var(--auth-primary),var(--auth-primary-dark));
+            color:#fff;
+            font-size:14px;
+            font-weight:700;
+            cursor:pointer;
+            box-shadow:0 11px 22px rgba(77,148,255,.20);
+            transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+        }
+        .register-btn:hover { transform:translateY(-2px); box-shadow:0 14px 26px rgba(77,148,255,.26); }
+        .register-btn:active { transform:translateY(0); }
+        .register-btn:disabled { opacity:.7; cursor:not-allowed; transform:none; box-shadow:none; }
 
+        .login-link { margin:0; text-align:center; color:var(--auth-muted); font-size:12.5px; }
+        .login-link a { color:var(--auth-primary); font-weight:650; }
+        .login-link a:hover { text-decoration:underline; text-underline-offset:3px; }
 
-        @media (max-width: 992px) { .register-container { flex-direction: column; } .register-image { display: none;} } /* Hide image on smaller screens or adjust as needed */
-        @media (max-width: 576px) { 
-            .input-group { flex-direction: column; gap: 0; margin-bottom:0; } 
-            .input-group .form-group { margin-bottom: 15px; } 
-            .account-type-tabs { flex-direction: column; } 
-            .account-tab:first-child { border-right: none; border-bottom: 1px solid #eee;} 
-            .register-form-container { padding: 30px 20px; }
+        @media (max-width: 940px) {
+            .register-container { grid-template-columns:1fr; max-width:650px; }
+            .register-image { min-height:250px; padding:28px 30px 20px; }
+            .register-image-title { font-size:28px; }
+            .register-car-art { width:min(88%, 360px); margin-top:18px; }
+            .register-form-container { padding:34px 30px 30px; }
+        }
+
+        @media (max-width: 576px) {
+            .auth-theme-toggle { top:10px; right:10px; width:42px; height:42px; border-radius:12px; }
+            .register-section { padding:62px 10px 18px; }
+            .register-container { border-radius:20px; }
+            .register-image { min-height:205px; padding:24px 18px 12px; }
+            .register-image-title { font-size:24px; }
+            .register-image-description { font-size:12.5px; line-height:1.55; }
+            .register-car-art { width:min(94%, 300px); margin-top:12px; }
+            .register-form-container { padding:26px 18px 22px; }
+            .register-form-title { font-size:26px; }
+            .register-subtitle { font-size:13px; }
+            .account-type-tabs { grid-template-columns:1fr; }
+            .input-group { flex-direction:column; gap:0; }
+            .input-group .form-group { margin-bottom:14px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
         }
     </style>
 </head>
 <body>
+    <button type="button" class="auth-theme-toggle" id="authThemeToggle" aria-label="Switch to dark mode" title="Dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
 
-    <section class="register-section">
-        <div class="container">
+    <main class="register-section">
+        <div class="register-shell">
             <div class="register-container animate__animated animate__fadeInUp">
-                <div class="register-image">
+                <section class="register-image" aria-label="TourGo registration information">
                     <div class="register-image-text">
                         <h2 class="register-image-title" id="js-image-title">Join Our Community</h2>
                         <p class="register-image-description" id="js-image-description">Register now for a seamless booking experience.</p>
                     </div>
-                    <img src="https://placehold.co/450x350/E0F7FA/007BFF?text=TourGo+Register" alt="Registration Illustration">
-                    <div class="register-decoration register-circle-1"></div>
-                    <div class="register-decoration register-circle-2"></div>
-                </div>
-                <div class="register-form-container">
-                    <h2 class="register-form-title">Create an Account</h2>
-                    <p class="register-subtitle">Get started with your free account today</p>
-                    <div id="demo-message" class="demo-message" role="alert" aria-live="polite" hidden></div>
-<div class="account-type-tabs">
-                        <button value="customer" id="customer-tab" class="account-tab " onclick="switchTab('customer')">Customer Account</button>
-                        <button value="agency" id="agency-tab" class="account-tab " onclick="switchTab('agency')">Agency Account</button>
+                    <div class="register-car-art">
+                        <img src="../public/assets/images/car.png" alt="TourGo car illustration">
                     </div>
-                    
-                    <form id="customer-form" action="#" method="post" class="form-fields-section" novalidate>
+                </section>
+
+                <section class="register-form-container">
+                    <h1 class="register-form-title">Create an Account</h1>
+                    <p class="register-subtitle">Choose an account type and complete the form below.</p>
+
+                    <div id="demo-message" class="demo-message" role="alert" aria-live="assertive" hidden></div>
+
+                    <div class="account-type-tabs" role="tablist" aria-label="Account type">
+                        <button type="button" id="customer-tab" class="account-tab active" role="tab" aria-selected="true">Customer Account</button>
+                        <button type="button" id="agency-tab" class="account-tab" role="tab" aria-selected="false">Agency Account</button>
+                    </div>
+
+                    <form id="customer-form" class="form-fields-section active" novalidate>
                         <input type="hidden" name="user_type" value="customer">
+
                         <div class="input-group">
-                            <div class="form-group" style="flex: 1;">
+                            <div class="form-group">
                                 <label for="customer_first_name" class="form-label">First Name</label>
-                                <input type="text" id="customer_first_name" name="customer_first_name" class="form-control " placeholder="Juan" required value="">
-                                <span class="error-message"></span>
+                                <input type="text" id="customer_first_name" name="customer_first_name" class="form-control" placeholder="Juan" autocomplete="given-name" required>
+                                <div class="error-message"></div>
                             </div>
-                            <div class="form-group" style="flex: 1;">
+                            <div class="form-group">
                                 <label for="customer_last_name" class="form-label">Last Name</label>
-                                <input type="text" id="customer_last_name" name="customer_last_name" class="form-control " placeholder="Dela Cruz" required value="">
-                                <span class="error-message"></span>
+                                <input type="text" id="customer_last_name" name="customer_last_name" class="form-control" placeholder="Dela Cruz" autocomplete="family-name" required>
+                                <div class="error-message"></div>
                             </div>
                         </div>
+
                         <div class="form-group">
-                             <label for="customer_email_field" class="form-label">Email Address</label> <input type="email" id="customer_email_field" name="email" class="form-control " placeholder="juan.delacruz@example.com" required value="">
-                            <span class="error-message"></span>
+                            <label for="customer_email_field" class="form-label">Email Address</label>
+                            <input type="email" id="customer_email_field" name="email" class="form-control" placeholder="juan.delacruz@example.com" autocomplete="email" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
-                            <label for="customer_phone" class="form-label">Phone Number (Optional)</label>
-                            <input type="tel" id="customer_phone" name="customer_phone" class="form-control" placeholder="+639171234567" value="">
+                            <label for="customer_phone" class="form-label">Phone Number <span style="font-weight:500;color:var(--auth-muted)">(Optional)</span></label>
+                            <input type="tel" id="customer_phone" name="customer_phone" class="form-control" placeholder="+639171234567" autocomplete="tel">
                         </div>
+
                         <div class="form-group">
-                            <label for="customer_password_field" class="form-label">Password</label> <div class="password-wrapper">
-                                <input type="password" id="customer_password_field" name="password" class="form-control " placeholder="Minimum 8 characters" required>
-                                <button type="button" class="toggle-password" aria-label="Show password"><i class="fas fa-eye"></i></button>
+                            <label for="customer_password_field" class="form-label">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="customer_password_field" name="password" class="form-control" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+                                <button type="button" class="toggle-password" aria-label="Show password" title="Show password"><i class="fas fa-eye"></i></button>
                             </div>
-                            <span class="error-message"></span>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
                             <label for="customer_password_confirm" class="form-label">Confirm Password</label>
-                            <input type="password" id="customer_password_confirm" name="password_confirm" class="form-control " placeholder="Re-enter your password" required>
-                            <span class="error-message"></span>
+                            <input type="password" id="customer_password_confirm" name="password_confirm" class="form-control" placeholder="Re-enter your password" autocomplete="new-password" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-check">
-                            <input type="checkbox" id="terms-customer" name="terms" required >
-                            <label for="terms-customer">I agree to the <a href="../terms.html" target="_blank">Terms of Service</a> and <a href="../privacy.html" target="_blank">Privacy Policy</a></label>
-                            <span class="error-message"></span>
+                            <input type="checkbox" id="terms-customer" name="terms" required>
+                            <label for="terms-customer">I agree to the <a href="../terms.html" target="_blank" rel="noopener">Terms of Service</a> and <a href="../privacy.html" target="_blank" rel="noopener">Privacy Policy</a></label>
+                            <div class="error-message"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary register-btn">Create Customer Account</button>
+
+                        <button type="submit" class="register-btn" id="customer-submit">Create Customer Account</button>
                         <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
                     </form>
-                    
-                    <form id="agency-form" action="#" method="post" class="form-fields-section" novalidate>
+
+                    <form id="agency-form" class="form-fields-section" novalidate>
                         <input type="hidden" name="user_type" value="agency">
+
                         <div class="form-group">
                             <label for="agency_company_name" class="form-label">Agency/Company Name</label>
-                            <input type="text" id="agency_company_name" name="agency_company_name" class="form-control " placeholder="TourGo Rentals Inc." required value="">
-                            <span class="error-message"></span>
+                            <input type="text" id="agency_company_name" name="agency_company_name" class="form-control" placeholder="TourGo Rentals Inc." required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="input-group">
-                            <div class="form-group" style="flex: 1;">
+                            <div class="form-group">
                                 <label for="agency_contact_first_name" class="form-label">Contact Person First Name</label>
-                                <input type="text" id="agency_contact_first_name" name="agency_contact_first_name" class="form-control " placeholder="Maria" required value="">
-                                <span class="error-message"></span>
+                                <input type="text" id="agency_contact_first_name" name="agency_contact_first_name" class="form-control" placeholder="Maria" required>
+                                <div class="error-message"></div>
                             </div>
-                            <div class="form-group" style="flex: 1;">
+                            <div class="form-group">
                                 <label for="agency_contact_last_name" class="form-label">Contact Person Last Name</label>
-                                <input type="text" id="agency_contact_last_name" name="agency_contact_last_name" class="form-control " placeholder="Santos" required value="">
-                                <span class="error-message"></span>
+                                <input type="text" id="agency_contact_last_name" name="agency_contact_last_name" class="form-control" placeholder="Santos" required>
+                                <div class="error-message"></div>
                             </div>
                         </div>
-                         <div class="form-group">
-                            <label for="agency_email_field" class="form-label">Business Email Address (for login)</label> <input type="email" id="agency_email_field" name="email" class="form-control " placeholder="contact@tourgorentals.com" required value="">
-                            <span class="error-message"></span>
+
+                        <div class="form-group">
+                            <label for="agency_email_field" class="form-label">Business Email Address (for login)</label>
+                            <input type="email" id="agency_email_field" name="email" class="form-control" placeholder="contact@tourgorentals.com" autocomplete="email" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
                             <label for="agency_business_phone" class="form-label">Business Phone Number</label>
-                            <input type="tel" id="agency_business_phone" name="agency_business_phone" class="form-control " placeholder="+63287654321" required value="">
-                            <span class="error-message"></span>
+                            <input type="tel" id="agency_business_phone" name="agency_business_phone" class="form-control" placeholder="+63287654321" autocomplete="tel" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
                             <label for="agency_business_address" class="form-label">Business Address</label>
-                            <input type="text" id="agency_business_address" name="agency_business_address" class="form-control " placeholder="123 Main St, Makati City" required value="">
-                            <span class="error-message"></span>
+                            <input type="text" id="agency_business_address" name="agency_business_address" class="form-control" placeholder="123 Main St, Makati City" autocomplete="street-address" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
                             <label for="agency_biz_reg_number" class="form-label">Business Registration Number</label>
-                            <input type="text" id="agency_biz_reg_number" name="agency_biz_reg_number" class="form-control " placeholder="e.g., DTI/SEC Reg No." required value="">
-                            <span class="error-message"></span>
+                            <input type="text" id="agency_biz_reg_number" name="agency_biz_reg_number" class="form-control" placeholder="e.g., DTI/SEC Reg No." required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
-                            <label for="agency_password_field" class="form-label">Password</label> <div class="password-wrapper">
-                                <input type="password" id="agency_password_field" name="password" class="form-control " placeholder="Minimum 8 characters" required>
-                                <button type="button" class="toggle-password" aria-label="Show password"><i class="fas fa-eye"></i></button>
+                            <label for="agency_password_field" class="form-label">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="agency_password_field" name="password" class="form-control" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+                                <button type="button" class="toggle-password" aria-label="Show password" title="Show password"><i class="fas fa-eye"></i></button>
                             </div>
-                            <span class="error-message"></span>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-group">
                             <label for="agency_password_confirm" class="form-label">Confirm Password</label>
-                            <input type="password" id="agency_password_confirm" name="password_confirm" class="form-control " placeholder="Re-enter your password" required>
-                            <span class="error-message"></span>
+                            <input type="password" id="agency_password_confirm" name="password_confirm" class="form-control" placeholder="Re-enter your password" autocomplete="new-password" required>
+                            <div class="error-message"></div>
                         </div>
+
                         <div class="form-check">
-                            <input type="checkbox" id="terms-agency" name="terms" required >
-                            <label for="terms-agency">I agree to the <a href="../terms.html" target="_blank">Terms of Service</a>, <a href="../privacy.html" target="_blank">Privacy Policy</a>, and <a href="../agency_agreement.html" target="_blank">Agency Agreement</a></label>
-                            <span class="error-message"></span>
+                            <input type="checkbox" id="terms-agency" name="terms" required>
+                            <label for="terms-agency">I agree to the <a href="../terms.html" target="_blank" rel="noopener">Terms of Service</a>, <a href="../privacy.html" target="_blank" rel="noopener">Privacy Policy</a>, and <a href="../agency_agreement.html" target="_blank" rel="noopener">Agency Agreement</a></label>
+                            <div class="error-message"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary register-btn">Create Agency Account</button>
+
+                        <button type="submit" class="register-btn" id="agency-submit">Create Agency Account</button>
                         <p class="login-link">Already have an agency account? <a href="login.html">Sign In</a></p>
                     </form>
-                </div>
+                </section>
             </div>
         </div>
-    </section>
+    </main>
 
-    <script src="../public/assets/js/script.js"></script>
     <script>
         function switchTab(tabType) {
             const customerTab = document.getElementById('customer-tab');
@@ -231,64 +498,154 @@
             const imageTitle = document.getElementById('js-image-title');
             const imageDescription = document.getElementById('js-image-description');
 
-            if (tabType === 'agency') {
-                customerTab.classList.remove('active');
-                agencyTab.classList.add('active');
-                customerForm.classList.remove('active');
-                agencyForm.classList.add('active');
-                if (imageTitle) imageTitle.textContent = 'Partner With TourGo';
-                if (imageDescription) imageDescription.textContent = 'List your fleet on our platform and reach thousands of customers. Grow your car rental business with TourGo.';
+            const agency = tabType === 'agency';
+            customerTab.classList.toggle('active', !agency);
+            agencyTab.classList.toggle('active', agency);
+            customerTab.setAttribute('aria-selected', String(!agency));
+            agencyTab.setAttribute('aria-selected', String(agency));
+            customerForm.classList.toggle('active', !agency);
+            agencyForm.classList.toggle('active', agency);
+
+            if (agency) {
+                imageTitle.textContent = 'Partner With TourGo';
+                imageDescription.textContent = 'List your fleet on our platform and reach customers looking for reliable rental vehicles.';
             } else {
-                customerTab.classList.add('active');
-                agencyTab.classList.remove('active');
-                customerForm.classList.add('active');
-                agencyForm.classList.remove('active');
-                if (imageTitle) imageTitle.textContent = 'Join Our Community';
-                if (imageDescription) imageDescription.textContent = 'Register now for a seamless booking experience.';
+                imageTitle.textContent = 'Join Our Community';
+                imageDescription.textContent = 'Register now for a seamless booking experience.';
+            }
+
+            const activeForm = agency ? agencyForm : customerForm;
+            if (activeForm) {
+                clearFormErrors(activeForm);
+                clearMessage();
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function clearFormErrors(form) {
+            if (!form) return;
+            form.querySelectorAll('.is-invalid').forEach(function (input) {
+                input.classList.remove('is-invalid');
+                input.setAttribute('aria-invalid', 'false');
+            });
+            form.querySelectorAll('.error-message').forEach(function (el) { el.textContent = ''; });
+        }
+
+        function showFieldError(input, messageText) {
+            if (!input) return;
+            input.classList.add('is-invalid');
+            input.setAttribute('aria-invalid', 'true');
+            const group = input.closest('.form-group') || input.closest('.form-check');
+            const error = group ? group.querySelector('.error-message') : null;
+            if (error) error.textContent = messageText;
+        }
+
+        function getTheme() {
+            return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        }
+
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            const next = theme === 'dark' ? 'dark' : 'light';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            const button = document.getElementById('authThemeToggle');
+            const icon = button ? button.querySelector('i') : null;
+            if (icon) {
+                icon.classList.toggle('fa-sun', next === 'dark');
+                icon.classList.toggle('fa-moon', next !== 'dark');
+            }
+            if (button) {
+                const label = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+                button.setAttribute('aria-label', label);
+                button.setAttribute('title', next === 'dark' ? 'Light mode' : 'Dark mode');
+            }
+        }
+
+        function clearMessage() {
             const message = document.getElementById('demo-message');
-            const customerForm = document.getElementById('customer-form');
-            const agencyForm = document.getElementById('agency-form');
+            if (!message) return;
+            message.hidden = true;
+            message.className = 'demo-message';
+            message.textContent = '';
+        }
 
-            function showMessage(text, type) {
-                if (!message) return;
-                message.hidden = false;
-                message.className = 'demo-message ' + type;
-                message.textContent = text;
-                message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+        function showMessage(text, type, iconClass) {
+            const message = document.getElementById('demo-message');
+            if (!message) return;
+            message.hidden = false;
+            message.className = 'demo-message ' + type;
+            message.innerHTML = '<i class="fas ' + iconClass + '" aria-hidden="true"></i><span></span>';
+            message.querySelector('span').textContent = text;
+        }
 
-            function clearFieldErrors(form) {
-                form.querySelectorAll('.is-invalid').forEach(function(input) {
-                    input.classList.remove('is-invalid');
+        document.addEventListener('DOMContentLoaded', function () {
+            applyTheme(getTheme());
+
+            const themeButton = document.getElementById('authThemeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', function () {
+                    applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
                 });
-                form.querySelectorAll('.error-message').forEach(function(el) {
-                    el.textContent = '';
+            }
+
+            document.getElementById('customer-tab').addEventListener('click', function () { switchTab('customer'); });
+            document.getElementById('agency-tab').addEventListener('click', function () { switchTab('agency'); });
+            switchTab('customer');
+
+            document.querySelectorAll('.toggle-password').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const wrapper = this.closest('.password-wrapper');
+                    const passwordInput = wrapper ? wrapper.querySelector('input') : null;
+                    const icon = this.querySelector('i');
+                    if (!passwordInput) return;
+                    const showing = passwordInput.type === 'text';
+                    passwordInput.type = showing ? 'password' : 'text';
+                    if (icon) {
+                        icon.classList.toggle('fa-eye', showing);
+                        icon.classList.toggle('fa-eye-slash', !showing);
+                    }
+                    this.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+                    this.setAttribute('title', showing ? 'Show password' : 'Hide password');
                 });
-            }
+            });
 
-            function setFieldError(input, text) {
-                if (!input) return;
-                input.classList.add('is-invalid');
-                const group = input.closest('.form-group');
-                const error = group ? group.querySelector('.error-message') : null;
-                if (error) error.textContent = text;
-            }
+            document.querySelectorAll('.form-control, .form-check input').forEach(function (input) {
+                input.addEventListener('input', function () {
+                    if (this.classList.contains('is-invalid')) {
+                        this.classList.remove('is-invalid');
+                        this.setAttribute('aria-invalid', 'false');
+                        const group = this.closest('.form-group') || this.closest('.form-check');
+                        const error = group ? group.querySelector('.error-message') : null;
+                        if (error) error.textContent = '';
+                    }
+                    if (document.getElementById('demo-message') && !document.getElementById('demo-message').hidden) clearMessage();
+                });
+                input.addEventListener('change', function () {
+                    if (this.type === 'checkbox' && this.checked) {
+                        const group = this.closest('.form-check');
+                        const error = group ? group.querySelector('.error-message') : null;
+                        if (error) error.textContent = '';
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            });
 
-            function saveAccount(form, role, name) {
+            function saveAccount(form, role, name, submitButton) {
                 const emailInput = form.querySelector('input[name="email"]');
                 const passwordInput = form.querySelector('input[name="password"]');
                 const email = emailInput.value.trim().toLowerCase();
                 const password = passwordInput.value;
-                const accounts = JSON.parse(localStorage.getItem('tourgo_demo_accounts') || '{}');
+                let accounts = {};
+
+                try {
+                    accounts = JSON.parse(localStorage.getItem('tourgo_demo_accounts') || '{}') || {};
+                } catch (e) { accounts = {}; }
 
                 const builtIn = ['admin@tourgo.demo', 'agency@tourgo.demo', 'customer@tourgo.demo'];
                 if (builtIn.includes(email) || accounts[email]) {
-                    setFieldError(emailInput, 'An account with this email already exists.');
-                    showMessage('That email is already registered in this demo. Please use another email.', 'error');
+                    showFieldError(emailInput, 'This email is already registered. Use another email address.');
+                    showMessage('That email is already registered in this demo. Please use another email.', 'error', 'fa-circle-exclamation');
+                    emailInput.focus();
                     return false;
                 }
 
@@ -298,93 +655,89 @@
                     name: name,
                     createdAt: new Date().toISOString()
                 };
-                localStorage.setItem('tourgo_demo_accounts', JSON.stringify(accounts));
-                showMessage('Account created successfully. Redirecting to Sign In…', 'success');
+
+                try {
+                    localStorage.setItem('tourgo_demo_accounts', JSON.stringify(accounts));
+                } catch (e) {
+                    showMessage('Your browser did not allow the demo account to be saved. Please enable site storage and try again.', 'error', 'fa-triangle-exclamation');
+                    return false;
+                }
+
+                showMessage('Account created successfully. Redirecting to Sign In…', 'success', 'fa-circle-check');
+                if (submitButton) submitButton.disabled = true;
                 form.reset();
-                setTimeout(function() {
-                    window.location.href = 'login.html';
-                }, 900);
+                setTimeout(function () { window.location.href = 'login.html'; }, 900);
                 return true;
             }
 
-            function validateForm(form, role) {
-                clearFieldErrors(form);
+            function validateForm(form) {
+                clearFormErrors(form);
+                clearMessage();
                 let valid = true;
-                const required = form.querySelectorAll('input[required]');
-                required.forEach(function(input) {
-                    if (input.type === 'checkbox' && !input.checked) {
-                        setFieldError(input, 'Please accept the required agreement.');
+                let firstInvalid = null;
+
+                form.querySelectorAll('input[required]').forEach(function (input) {
+                    if (input.type === 'checkbox') {
+                        if (!input.checked) {
+                            showFieldError(input, 'Please accept the required agreement.');
+                            valid = false;
+                            firstInvalid = firstInvalid || input;
+                        }
+                    } else if (!input.value.trim()) {
+                        showFieldError(input, 'This field is required.');
                         valid = false;
-                    } else if (input.type !== 'checkbox' && !input.value.trim()) {
-                        setFieldError(input, 'This field is required.');
-                        valid = false;
+                        firstInvalid = firstInvalid || input;
                     }
                 });
 
                 const email = form.querySelector('input[type="email"]');
-                if (email && email.value && !email.checkValidity()) {
-                    setFieldError(email, 'Please enter a valid email address.');
+                if (email && email.value.trim() && !email.checkValidity()) {
+                    showFieldError(email, 'Please enter a valid email address.');
                     valid = false;
+                    firstInvalid = firstInvalid || email;
                 }
 
                 const password = form.querySelector('input[name="password"]');
                 const confirm = form.querySelector('input[name="password_confirm"]');
-                if (password && password.value.length < 8) {
-                    setFieldError(password, 'Password must be at least 8 characters.');
+                if (password && password.value && password.value.length < 8) {
+                    showFieldError(password, 'Password must be at least 8 characters.');
                     valid = false;
+                    firstInvalid = firstInvalid || password;
                 }
-                if (password && confirm && password.value !== confirm.value) {
-                    setFieldError(confirm, 'Passwords do not match.');
+                if (password && confirm && (password.value || confirm.value) && password.value !== confirm.value) {
+                    showFieldError(confirm, 'Passwords do not match.');
                     valid = false;
+                    firstInvalid = firstInvalid || confirm;
                 }
 
-                if (!valid) showMessage('Please correct the highlighted fields and try again.', 'error');
+                if (!valid) {
+                    showMessage('Please correct the highlighted fields and try again.', 'error', 'fa-circle-exclamation');
+                    if (firstInvalid) firstInvalid.focus();
+                }
                 return valid;
             }
 
-            // Password visibility toggle for all password fields.
-            document.querySelectorAll('.toggle-password').forEach(function(button) {
-                button.addEventListener('click', function() {
-                    const wrapper = this.closest('.password-wrapper') || this.closest('.form-group');
-                    const passwordInput = wrapper ? wrapper.querySelector('input[type="password"], input[type="text"]') : null;
-                    if (passwordInput) {
-                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                        passwordInput.setAttribute('type', type);
-                        const icon = this.querySelector('i');
-                        if (icon) {
-                            icon.classList.toggle('fa-eye');
-                            icon.classList.toggle('fa-eye-slash');
-                        }
-                    }
-                });
+            const customerForm = document.getElementById('customer-form');
+            const agencyForm = document.getElementById('agency-form');
+            const customerSubmit = document.getElementById('customer-submit');
+            const agencySubmit = document.getElementById('agency-submit');
+
+            customerForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (!validateForm(customerForm)) return;
+                const first = customerForm.querySelector('[name="customer_first_name"]').value.trim();
+                const last = customerForm.querySelector('[name="customer_last_name"]').value.trim();
+                saveAccount(customerForm, 'customer', (first + ' ' + last).trim() || 'Demo Customer', customerSubmit);
             });
 
-            // Start on the customer tab.
-            switchTab('customer');
-
-            if (customerForm) {
-                customerForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    if (!validateForm(customerForm, 'customer')) return;
-                    const first = customerForm.querySelector('[name="customer_first_name"]').value.trim();
-                    const last = customerForm.querySelector('[name="customer_last_name"]').value.trim();
-                    saveAccount(customerForm, 'customer', (first + ' ' + last).trim() || 'Demo Customer');
-                });
-            }
-
-            if (agencyForm) {
-                agencyForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    if (!validateForm(agencyForm, 'agency')) return;
-                    const company = agencyForm.querySelector('[name="agency_company_name"]').value.trim();
-                    const first = agencyForm.querySelector('[name="agency_contact_first_name"]').value.trim();
-                    const last = agencyForm.querySelector('[name="agency_contact_last_name"]').value.trim();
-                    saveAccount(agencyForm, 'agency', company || (first + ' ' + last).trim() || 'Demo Agency');
-                });
-            }
-
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan && !yearSpan.textContent) yearSpan.textContent = new Date().getFullYear();
+            agencyForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (!validateForm(agencyForm)) return;
+                const company = agencyForm.querySelector('[name="agency_company_name"]').value.trim();
+                const first = agencyForm.querySelector('[name="agency_contact_first_name"]').value.trim();
+                const last = agencyForm.querySelector('[name="agency_contact_last_name"]').value.trim();
+                saveAccount(agencyForm, 'agency', company || (first + ' ' + last).trim() || 'Demo Agency', agencySubmit);
+            });
         });
     </script>
 </body>
