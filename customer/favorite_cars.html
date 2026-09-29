@@ -132,53 +132,43 @@
         }
     </style>
 </head>
-<body data-theme="light" data-tourgo-section="customer">
-<header>
+<body data-theme="light">
+<header id="header" class="tourgo-standard-header">
     <div class="container">
         <div class="header-content">
             <div class="logo">
-                <a href="../index.html" aria-label="TourGo Home">
+                <a href="customer_dashboard.html" aria-label="TourGo Customer Dashboard">
                     <i class="fas fa-car-side" aria-hidden="true"></i>
-                    <span><span>Tour</span><span>Go</span></span>
+                    <span class="logo-text"><span>Tour</span><span>Go</span></span>
                 </a>
             </div>
-
-            <ul class="nav-menu" id="mainNavMenuFavorites">
+            <nav class="tourgo-main-nav" aria-label="Customer navigation">
+                <ul class="nav-menu" id="mainNavMenu">
                 <li><a href="customer_dashboard.html" class="nav-link">Home</a></li>
-                <li><a href="cars.html" class="nav-link">Our Fleet</a></li>
+                <li><a href="cars.html" class="nav-link active" aria-current="page">Our Fleet</a></li>
                 <li><a href="my_bookings.html" class="nav-link">My Bookings</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-
+                </ul>
+            </nav>
             <div class="header-actions">
-                <button type="button" class="theme-toggle" aria-label="Toggle dark mode" id="themeToggleBtnFavorites">
+                <button type="button" class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark mode" aria-pressed="false">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
-
                 <div class="profile-dropdown">
-                    <button class="profile-toggle" id="profileToggleBtnFavorites" type="button" aria-expanded="false" aria-controls="profileMenuFavorites">
+                    <button class="profile-toggle" id="profileToggleBtn" type="button" aria-expanded="false" aria-controls="profileMenu">
                         <img src="../public/assets/images/guest-avatar.svg" alt="Guest Profile">
                         <span>Guest</span>
                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </button>
-                    <div class="profile-menu" id="profileMenuFavorites">
-                    <div class="tourgo-profile-nav" role="group" aria-label="Site navigation">
-                        <a href="../index.html" class="profile-menu-item"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a>
-                        <a href="cars.html" class="profile-menu-item"><i class="fas fa-car-side" aria-hidden="true"></i><span>Our Fleet</span></a>
-                        <a href="about.html" class="profile-menu-item"><i class="fas fa-info-circle" aria-hidden="true"></i><span>About Us</span></a>
-                        <a href="contact.html" class="profile-menu-item"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a>
-                        <hr>
-                    </div>
-                    
+                    <div class="profile-menu" id="profileMenu">
                         <a href="profile.html" class="profile-menu-item"><i class="fas fa-user" aria-hidden="true"></i><span>My Profile</span></a>
-                        <a href="favorite_cars.html" class="profile-menu-item active"><i class="fas fa-heart" aria-hidden="true"></i><span>Favorites</span></a>
+                        <a href="favorite_cars.html" class="profile-menu-item"><i class="fas fa-heart" aria-hidden="true"></i><span>Favorites</span></a>
                         <a href="about.html" class="profile-menu-item"><i class="fas fa-info-circle" aria-hidden="true"></i><span>About Us</span></a>
                         <hr>
                         <a href="../auth/logout.html" class="profile-menu-item"><i class="fas fa-sign-out-alt" aria-hidden="true"></i><span>Logout</span></a>
                     </div>
                 </div>
-
-                <button type="button" class="menu-toggle" aria-expanded="false" aria-label="Open navigation menu" id="mainMenuToggleBtnFavorites">
+                <button type="button" class="menu-toggle" id="menuToggleBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNavMenu">
                     <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
