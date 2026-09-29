@@ -263,3 +263,82 @@
         padding: 22px 17px;
     }
 }
+
+
+/* =========================================================
+   TourGo Phase 7 — Booking History Visual Polish
+   ========================================================= */
+
+.no-bookings,
+.booking-card {
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.booking-header,
+.booking-footer {
+    background: var(--surface-2);
+}
+
+.booking-header {
+    border-bottom-color: var(--border-subtle);
+}
+
+.booking-footer {
+    border-top-color: var(--border-subtle);
+}
+
+.booking-details h3,
+.meta-value,
+.modal-title,
+.no-bookings h3 {
+    color: var(--text-strong);
+}
+
+.meta-label,
+.daily-rate,
+.no-bookings p,
+.close-modal {
+    color: var(--text-muted);
+}
+
+.booking-image {
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .no-bookings,
+[data-theme="dark"] .booking-card,
+[data-theme="dark"] .modal-content {
+    background: var(--surface-1);
+    color: var(--text-strong);
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .booking-header,
+[data-theme="dark"] .booking-footer {
+    background: var(--surface-2);
+}
+
+[data-theme="dark"] .booking-image {
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .no-bookings h3,
+[data-theme="dark"] .booking-details h3,
+[data-theme="dark"] .meta-value {
+    color: var(--text-strong);
+}
+
+.booking-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 767px) {
+    .booking-card,
+    .no-bookings,
+    .modal-content {
+        box-shadow: var(--shadow-sm);
+    }
+}

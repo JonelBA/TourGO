@@ -1064,3 +1064,103 @@
         padding-right: 14px;
     }
 }
+
+
+/* =========================================================
+   TourGo Phase 7 — Profile Visual Polish
+   ========================================================= */
+
+.profile-sidebar,
+.profile-content {
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.profile-sidebar {
+    color: var(--text-strong);
+}
+
+.profile-content {
+    color: var(--text-strong);
+}
+
+.profile-name,
+.section-title,
+.form-heading {
+    color: var(--text-strong);
+}
+
+.profile-email,
+.section-description,
+.form-help,
+.profile-content .text-muted {
+    color: var(--text-muted);
+}
+
+.profile-tabs {
+    border-bottom-color: var(--border-subtle);
+}
+
+.profile-tab {
+    color: var(--text-muted);
+}
+
+.profile-tab.active,
+.profile-tab:hover {
+    color: var(--primary);
+}
+
+.readonly input,
+.readonly select,
+.readonly textarea {
+    background: var(--surface-3) !important;
+    border-color: var(--border-subtle) !important;
+    color: var(--text-muted);
+}
+
+.license-preview-single,
+.verification-checklist,
+.verification-status-card {
+    border-color: var(--border-subtle);
+    background: var(--surface-2);
+}
+
+.verification-status-details p {
+    color: var(--text-muted);
+}
+
+.dashboard-header {
+    background: var(--surface-1);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .profile-sidebar,
+[data-theme="dark"] .profile-content,
+[data-theme="dark"] .license-preview-single,
+[data-theme="dark"] .verification-checklist,
+[data-theme="dark"] .verification-status-card,
+[data-theme="dark"] .dashboard-header {
+    background: var(--surface-1);
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .profile-name,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .form-heading {
+    color: var(--text-strong);
+}
+
+[data-theme="dark"] .profile-email,
+[data-theme="dark"] .section-description,
+[data-theme="dark"] .form-help,
+[data-theme="dark"] .verification-status-details p {
+    color: var(--text-muted);
+}
+
+@media (max-width: 767px) {
+    .profile-sidebar,
+    .profile-content {
+        box-shadow: var(--shadow-sm);
+    }
+}

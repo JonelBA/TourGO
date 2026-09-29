@@ -449,3 +449,118 @@
         font-size: 16px;
     }
 }
+
+
+/* =========================================================
+   TourGO Phase 7 — Admin User Management Visual Polish
+   Theme-aware finishing layer for user detail/edit views.
+   ========================================================= */
+
+.user-management-container,
+.stat-card,
+.details-section,
+.form-section {
+    background: var(--admin-surface-1, #fff);
+    border: 1px solid var(--admin-border, #e2e8f0);
+    color: var(--admin-text-strong, #1f2937);
+}
+
+.profile-header,
+.form-actions,
+.details-section .section-title {
+    border-color: var(--admin-border, #e2e8f0);
+}
+
+.profile-title h1,
+.stat-value,
+.section-title,
+.detail-value,
+.form-group label,
+.checkbox-label {
+    color: var(--admin-text-strong, #1f2937);
+}
+
+.stat-label,
+.detail-label {
+    color: var(--admin-text-muted, #6b7280);
+}
+
+.form-control,
+.form-select {
+    background: var(--admin-surface-1, #fff);
+    color: var(--admin-text-strong, #1f2937);
+    border-color: var(--admin-border, #e2e8f0);
+}
+
+[data-theme="dark"] .user-management-container,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .details-section,
+[data-theme="dark"] .form-section,
+.dark-theme .user-management-container,
+.dark-theme .stat-card,
+.dark-theme .details-section,
+.dark-theme .form-section {
+    background: var(--admin-surface-1, #202838);
+    border-color: var(--admin-border, #384458);
+    color: var(--admin-text-strong, #f3f6fb);
+}
+
+[data-theme="dark"] .profile-title h1,
+[data-theme="dark"] .stat-value,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .detail-value,
+[data-theme="dark"] .form-group label,
+[data-theme="dark"] .checkbox-label,
+.dark-theme .profile-title h1,
+.dark-theme .stat-value,
+.dark-theme .section-title,
+.dark-theme .detail-value,
+.dark-theme .form-group label,
+.dark-theme .checkbox-label {
+    color: var(--admin-text-strong, #f3f6fb);
+}
+
+[data-theme="dark"] .stat-label,
+[data-theme="dark"] .detail-label,
+.dark-theme .stat-label,
+.dark-theme .detail-label {
+    color: var(--admin-text-muted, #aab4c4);
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background: var(--admin-surface-2, #2b3447);
+    color: var(--admin-text-strong, #f3f6fb);
+    border-color: var(--admin-border, #384458);
+}
+
+@media (max-width: 600px) {
+    .user-management-container {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .profile-header {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .profile-avatar {
+        width: 76px;
+        height: 76px;
+        margin-right: 0;
+    }
+
+    .profile-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .details-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+}

@@ -25,6 +25,12 @@
             --card-shadow: 0 8px 26px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.05);
             --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             --gradient-light: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            --admin-surface-0: #f7f9fc;
+            --admin-surface-1: #ffffff;
+            --admin-surface-2: #f1f5fa;
+            --admin-border: #e2e8f0;
+            --admin-text-strong: #1f2937;
+            --admin-text-muted: #6b7280;
         }
 
         /* Dark Mode Variables */
@@ -38,6 +44,12 @@
             --accent-light: #2c3344;
             --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
             --gradient-light: linear-gradient(135deg, #283046 0%, #1e1e2d 100%);
+            --admin-surface-0: #141b27;
+            --admin-surface-1: #202838;
+            --admin-surface-2: #2b3447;
+            --admin-border: #384458;
+            --admin-text-strong: #f3f6fb;
+            --admin-text-muted: #aab4c4;
         }
 
         * {
@@ -1972,5 +1984,138 @@ footer::before {
     .form-select {
         min-height: 44px;
         font-size: 16px;
+    }
+}
+
+
+/* =========================================================
+   TourGO Phase 7 — Admin Visual Polish
+   Adds theme-consistent surfaces without changing the
+   established sidebar/menu layout.
+   ========================================================= */
+
+.admin-header,
+.admin-sidebar,
+.stat-card,
+.dashboard-section,
+.chart-container,
+.card,
+.modal-content,
+.data-table-wrap,
+.table-container {
+    border-color: var(--admin-border);
+}
+
+.admin-header,
+.admin-sidebar,
+.stat-card,
+.dashboard-section,
+.chart-container,
+.modal-content,
+.card {
+    background: var(--admin-surface-1);
+}
+
+.stat-card,
+.dashboard-section,
+.chart-container,
+.card,
+.modal-content {
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+.stat-card-title,
+.section-subtitle,
+.sidebar-header,
+.stat-label {
+    color: var(--admin-text-muted);
+}
+
+.stat-card-value,
+.section-title,
+.card-title,
+.admin-sidebar .sidebar-item,
+.profile-title h1,
+.detail-value {
+    color: var(--admin-text-strong);
+}
+
+.data-table {
+    background: var(--admin-surface-1);
+}
+
+.data-table th {
+    background: var(--admin-surface-2);
+    color: var(--admin-text-strong);
+    border-bottom-color: var(--admin-border);
+}
+
+.data-table td {
+    color: var(--admin-text-strong);
+    border-bottom-color: var(--admin-border);
+}
+
+.data-table tbody tr:hover {
+    background: color-mix(in srgb, var(--admin-surface-2) 70%, var(--primary) 30%);
+}
+
+.admin-header .theme-toggle,
+.admin-header .menu-toggle {
+    border-radius: 10px;
+}
+
+.admin-header .theme-toggle:hover,
+.admin-header .menu-toggle:hover,
+.admin-header .theme-toggle:focus-visible,
+.admin-header .menu-toggle:focus-visible {
+    background: var(--accent-light);
+    color: var(--primary);
+}
+
+[data-theme="dark"] .admin-header,
+[data-theme="dark"] .admin-sidebar,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .dashboard-section,
+[data-theme="dark"] .chart-container,
+[data-theme="dark"] .card,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .data-table {
+    background: var(--admin-surface-1);
+    border-color: var(--admin-border);
+}
+
+[data-theme="dark"] .data-table th {
+    background: var(--admin-surface-2);
+    color: var(--admin-text-strong);
+}
+
+[data-theme="dark"] .data-table td {
+    color: var(--admin-text-strong);
+    border-bottom-color: var(--admin-border);
+}
+
+[data-theme="dark"] .stat-card-title,
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] .sidebar-header,
+[data-theme="dark"] .stat-label {
+    color: var(--admin-text-muted);
+}
+
+[data-theme="dark"] .stat-card-value,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .admin-sidebar .sidebar-item,
+[data-theme="dark"] .profile-title h1,
+[data-theme="dark"] .detail-value {
+    color: var(--admin-text-strong);
+}
+
+@media (max-width: 767px) {
+    .stat-card,
+    .dashboard-section,
+    .chart-container,
+    .card,
+    .modal-content {
+        box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
     }
 }

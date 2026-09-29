@@ -138,3 +138,69 @@
         min-height: 46px;
     }
 }
+
+
+/* =========================================================
+   TourGo Phase 7 — Agency Visual Polish
+   ========================================================= */
+
+.agency-card,
+.agency-stat-card {
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.agency-table th,
+.agency-table td {
+    color: var(--text-strong);
+    border-bottom-color: var(--border-subtle);
+}
+
+.agency-table th {
+    background: var(--surface-2);
+}
+
+.agency-input,
+.agency-select,
+.agency-field input,
+.agency-field select,
+.agency-field textarea {
+    background: var(--surface-1);
+    color: var(--text-strong);
+    border-color: var(--border-subtle);
+}
+
+.agency-car-image {
+    background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
+}
+
+.agency-actions .btn {
+    min-height: 44px;
+}
+
+[data-theme="dark"] .agency-card,
+[data-theme="dark"] .agency-stat-card,
+[data-theme="dark"] .agency-input,
+[data-theme="dark"] .agency-select,
+[data-theme="dark"] .agency-field input,
+[data-theme="dark"] .agency-field select,
+[data-theme="dark"] .agency-field textarea {
+    background: var(--surface-1);
+    border-color: var(--border-subtle);
+    color: var(--text-strong);
+}
+
+[data-theme="dark"] .agency-table th {
+    background: var(--surface-2);
+}
+
+[data-theme="dark"] .agency-car-image {
+    background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
+}
+
+@media (max-width: 767px) {
+    .agency-card,
+    .agency-stat-card {
+        box-shadow: var(--shadow-sm);
+    }
+}

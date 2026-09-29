@@ -27,6 +27,38 @@
             --card-shadow: 0 8px 26px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.05);
             --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             --gradient-light: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+
+            /* Phase 7 visual design tokens */
+            --surface-0: #f8fbff;
+            --surface-1: #ffffff;
+            --surface-2: #f0f7ff;
+            --surface-3: #eef3f9;
+            --text-strong: #1f2937;
+            --text-muted: #667085;
+            --border-subtle: #e4e9f1;
+            --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --transition-fast: 150ms ease;
+            --transition-normal: 220ms ease;
+            --primary-light: #82b7ff;
+            --gray-100: #f3f5f8;
+            --gray-200: #e7ebf1;
+            --gray-300: #d6dce5;
+            --gray-400: #b8c1ce;
+            --gray-500: #8a96a6;
+            --gray-600: #697586;
+            --gray-700: #4b5565;
+            --gray-800: #2f3744;
+            --gray-900: #1f2937;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 20px;
+            --border-radius-full: 999px;
         }
 
                 /* Dark Mode Variables */
@@ -45,6 +77,26 @@
             --danger-rgb: 245, 87, 108;
             --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
             --gradient-light: linear-gradient(135deg, #283046 0%, #1e1e2d 100%);
+            --surface-0: #151a24;
+            --surface-1: #202838;
+            --surface-2: #2b3447;
+            --surface-3: #313b4f;
+            --text-strong: #f3f6fb;
+            --text-muted: #aab4c4;
+            --border-subtle: #394458;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.20);
+            --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.24);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.32);
+            --primary-light: #7eb3ff;
+            --gray-100: #1c2432;
+            --gray-200: #263044;
+            --gray-300: #364156;
+            --gray-400: #556279;
+            --gray-500: #8a96a6;
+            --gray-600: #aab4c4;
+            --gray-700: #c3cbd6;
+            --gray-800: #e1e6ee;
+            --gray-900: #f3f6fb;
         }
 
 * {
@@ -2312,5 +2364,226 @@ textarea {
     .btn-container,
     .form-actions {
         gap: 8px;
+    }
+}
+
+
+/* =========================================================
+   TourGo Phase 7 — Final Visual Polish
+   Shared visual system for public / customer / agency pages.
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(var(--primary-rgb), 0.20);
+    color: var(--text-strong);
+}
+
+body {
+    background: var(--surface-0);
+    color: var(--text-strong);
+}
+
+header {
+    background: color-mix(in srgb, var(--surface-1) 94%, transparent);
+    border-bottom-color: var(--border-color-soft);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] header {
+    background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+}
+
+.section-title,
+.hero-title,
+.form-title,
+.car-title,
+.step-title {
+    color: var(--text-strong);
+}
+
+.section-description,
+.hero-description,
+.step-description,
+.contact-text p,
+.car-feature,
+.footer-text,
+.footer-menu a {
+    color: var(--text-muted);
+}
+
+.btn {
+    min-height: 44px;
+    line-height: 1.2;
+    border-radius: var(--radius-md);
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    box-shadow: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal), color var(--transition-normal);
+}
+
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.profile-toggle:focus-visible,
+.social-link:focus-visible,
+.nav-link:focus-visible {
+    outline: 3px solid rgba(var(--primary-rgb), 0.24);
+    outline-offset: 2px;
+}
+
+.btn:disabled,
+button:disabled {
+    opacity: 0.62;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    border-color: var(--primary);
+    box-shadow: 0 6px 18px rgba(var(--primary-rgb), 0.18);
+}
+
+.btn-primary:hover:not(:disabled) {
+    box-shadow: 0 10px 24px rgba(var(--primary-rgb), 0.24);
+}
+
+.btn-outline {
+    border-color: var(--border-color);
+    background: transparent;
+}
+
+.btn-outline:hover:not(:disabled) {
+    background: var(--accent-light);
+}
+
+.form-control,
+.search-input,
+.filter-select,
+.sort-select,
+.newsletter-input {
+    background: var(--surface-1);
+    color: var(--text-strong);
+    border-color: var(--border-subtle);
+}
+
+.form-control::placeholder,
+.search-input::placeholder,
+.newsletter-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+
+.form-control:focus,
+.search-input:focus,
+.filter-select:focus,
+.sort-select:focus,
+.newsletter-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.12);
+}
+
+.car-card,
+.contact-form,
+.testimonial-card,
+.search-filter {
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.car-card {
+    background: var(--surface-1);
+}
+
+.car-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.car-wishlist {
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+}
+
+.car-price-row {
+    border-top-color: var(--border-subtle);
+}
+
+.testimonial-card {
+    background: var(--surface-1);
+}
+
+.contact-form,
+.search-filter {
+    background: var(--surface-1);
+}
+
+.newsletter-input {
+    border: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .newsletter-input {
+    background: var(--surface-2);
+}
+
+footer {
+    background: #161c26;
+}
+
+.footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Fix legacy variables used by older page-specific CSS. */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .filter-select,
+[data-theme="dark"] .sort-select {
+    background: var(--surface-2);
+    color: var(--text-strong);
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .car-wishlist {
+    background: var(--surface-2);
+    color: #ff7c8a;
+}
+
+@media (max-width: 767px) {
+    .section-header {
+        padding-inline: 4px;
+    }
+
+    .btn {
+        min-height: 46px;
+    }
+
+    .contact-form,
+    .search-filter {
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

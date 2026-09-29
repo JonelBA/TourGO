@@ -2224,3 +2224,101 @@ a:focus,
         grid-template-columns: 1fr;
     }
 }
+
+
+/* =========================================================
+   TourGo Phase 7 — Vehicle Details Visual Polish
+   ========================================================= */
+
+.car-gallery,
+.car-info,
+.combined-info-card,
+.booking-form,
+.testimonial-card {
+    border-color: var(--border-subtle);
+}
+
+.car-gallery,
+.car-info,
+.booking-form {
+    box-shadow: var(--shadow-md);
+}
+
+.combined-info-card {
+    box-shadow: var(--shadow-md);
+}
+
+.car-gallery:hover,
+.car-info:hover,
+.combined-info-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .car-gallery,
+[data-theme="dark"] .car-info,
+[data-theme="dark"] .booking-form,
+[data-theme="dark"] .combined-info-card {
+    background: var(--surface-1);
+    border-color: var(--border-subtle);
+}
+
+.car-info .spec-item {
+    border-color: rgba(var(--primary-rgb), 0.10);
+}
+
+[data-theme="dark"] .car-info .spec-item {
+    background: var(--surface-2);
+    border-color: rgba(var(--primary-rgb), 0.16);
+}
+
+.booking-form input[type="date"],
+.booking-form .input-with-icon input[readonly],
+.booking-form .input-with-icon input#vehicle_location {
+    min-height: 48px;
+    background: var(--surface-1);
+    border-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .booking-form input[type="date"],
+[data-theme="dark"] .booking-form .input-with-icon input[readonly],
+[data-theme="dark"] .booking-form .input-with-icon input#vehicle_location {
+    background: var(--surface-2);
+    border-color: var(--border-subtle);
+}
+
+.booking-form .extra-item {
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .booking-form .extra-item {
+    background: linear-gradient(135deg, var(--surface-2), rgba(var(--primary-rgb), 0.08));
+}
+
+.gallery-lightbox .close-lightbox,
+.gallery-lightbox .lightbox-nav {
+    width: 48px;
+    height: 48px;
+}
+
+@media (max-width: 600px) {
+    .car-gallery,
+    .car-info,
+    .booking-form,
+    .combined-info-card {
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .gallery-lightbox .close-lightbox {
+        top: 12px;
+        right: 12px;
+    }
+
+    .gallery-lightbox .lightbox-nav.lightbox-prev {
+        left: 10px;
+    }
+
+    .gallery-lightbox .lightbox-nav.lightbox-next {
+        right: 10px;
+    }
+}
