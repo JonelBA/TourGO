@@ -63,6 +63,141 @@
         [data-theme="dark"] .testimonials-empty .no-reviews p {
             color: #a0a0a0;
         }
+
+        /* Customer dashboard: centered My Bookings empty state */
+        .customer-bookings-section {
+            padding: 92px 0;
+        }
+
+        .customer-bookings-header {
+            margin-bottom: 40px;
+        }
+
+        .customer-bookings-content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .customer-booking-empty {
+            width: min(100%, 760px);
+            min-height: 290px;
+            margin: 0 auto;
+            padding: 42px 44px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--white);
+            border: 1px solid var(--border-color-soft);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .booking-empty-icon {
+            width: 76px;
+            height: 76px;
+            margin-bottom: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(var(--primary-rgb), 0.10);
+            color: var(--primary);
+            font-size: 30px;
+        }
+
+        .booking-empty-copy {
+            max-width: 560px;
+        }
+
+        .booking-empty-label {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .booking-empty-copy h3 {
+            margin: 0 0 10px;
+            color: var(--text-dark);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.2;
+        }
+
+        .booking-empty-copy p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .booking-empty-action {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-width: 165px;
+        }
+
+        [data-theme="dark"] .customer-booking-empty {
+            background: var(--white);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        [data-theme="dark"] .booking-empty-icon {
+            background: rgba(var(--primary-rgb), 0.16);
+        }
+
+        @media (max-width: 768px) {
+            .customer-bookings-section {
+                padding: 70px 0;
+            }
+
+            .customer-bookings-header {
+                margin-bottom: 28px;
+            }
+
+            .customer-booking-empty {
+                min-height: 270px;
+                padding: 34px 24px;
+                border-radius: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .customer-bookings-section {
+                padding: 58px 0;
+            }
+
+            .customer-booking-empty {
+                width: 100%;
+                min-height: 250px;
+                padding: 30px 18px;
+            }
+
+            .booking-empty-icon {
+                width: 68px;
+                height: 68px;
+                font-size: 26px;
+            }
+
+            .booking-empty-copy p {
+                font-size: 0.93rem;
+            }
+
+            .booking-empty-action {
+                width: 100%;
+                max-width: 260px;
+            }
+        }
     </style>
 
     <link rel="icon" type="image/svg+xml" href="/Tour-GO/public/assets/images/tourgo-favicon.svg">
@@ -329,19 +464,27 @@
         <div class="decoration-circle circle-2"></div>
     </section>
 
-    <section id="bookings" class="dashboard-section">
+    <section id="bookings" class="dashboard-section customer-bookings-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header customer-bookings-header">
                 <span class="section-subtitle">Your Rentals</span>
                 <h2 class="section-title">My Bookings</h2>
                 <p class="section-description">View your past, current, and upcoming car rentals.</p>
             </div>
-            <div class="bookings-content">
-                <div class="booking-placeholder">
-                    <i class="fas fa-calendar-alt fa-3x" style="color: #ccc; margin-bottom: 15px;"></i>
-                    <p>Your booking history will appear here.</p>
-                    <p>You currently have no bookings recorded.</p>
-                    <a href="cars.html" class="btn btn-primary" style="margin-top: 20px;">Find a Car</a>
+            <div class="bookings-content customer-bookings-content">
+                <div class="booking-placeholder customer-booking-empty" role="status" aria-live="polite">
+                    <div class="booking-empty-icon" aria-hidden="true">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="booking-empty-copy">
+                        <span class="booking-empty-label">No rentals yet</span>
+                        <h3>Start your next journey</h3>
+                        <p>Your upcoming and completed rentals will appear here once you make your first booking.</p>
+                    </div>
+                    <a href="cars.html" class="btn btn-primary booking-empty-action">
+                        <i class="fas fa-car-side" aria-hidden="true"></i>
+                        Find a Car
+                    </a>
                 </div>
             </div>
         </div>
