@@ -2587,3 +2587,10 @@ footer {
         scroll-behavior: auto !important;
     }
 }
+
+/* Desktop header: use the full navigation/profile controls; hamburger is mobile-only. */
+@media (min-width: 992px) {
+    .menu-toggle {
+        display: none !important;
+    }
+}
