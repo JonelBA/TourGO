@@ -1,15 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Details - TourGo Admin</title>
-    <link rel="icon" type="image/svg+xml" href="/Tour-GO/public/assets/images/tourgo-favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="/Tour-GO/public/assets/images/tourgo-favicon.png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../public/assets/css/admin-dashboard.css">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vehicle Details - TourGo Admin</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
+<style>
+        /* Add to your existing styles */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -28,6 +28,7 @@
             margin-top: 2rem;
         }
 
+        /* Left Column - Car Gallery */
         .car-gallery {
             background: var(--white);
             border-radius: 12px;
@@ -41,21 +42,19 @@
             overflow: hidden;
             aspect-ratio: 16/9;
             margin-bottom: 1rem;
-            background: #eef2f7;
         }
 
         .main-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            display: block;
+            object-fit: cover;
         }
 
         .car-type {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(0, 0, 0, 0.62);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             padding: 5px 12px;
             border-radius: 20px;
@@ -77,37 +76,10 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 3;
         }
 
-        .gallery-nav:hover { background: rgba(0, 0, 0, 0.75); }
         .gallery-prev { left: 15px; }
         .gallery-next { right: 15px; }
-
-        .image-counter {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.58);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            z-index: 3;
-        }
-
-        .view-360-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(42, 110, 219, 0.92);
-            color: #fff;
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            z-index: 2;
-        }
 
         .thumbnail-grid {
             display: grid;
@@ -123,19 +95,19 @@
             cursor: pointer;
             border: 2px solid transparent;
             transition: all 0.3s ease;
-            background: #f4f6f8;
         }
 
         .thumbnail img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            display: block;
+            object-fit: cover;
         }
 
-        .thumbnail.active { border-color: var(--primary); }
-        .thumbnail.empty { cursor: default; opacity: 0.68; }
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
 
+        /* Agency Profile Section */
         .agency-profile-gallery {
             margin-top: 24px;
             padding: 16px;
@@ -158,7 +130,6 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary);
-            flex: 0 0 auto;
         }
 
         .agency-logo.placeholder {
@@ -168,7 +139,10 @@
             justify-content: center;
         }
 
-        .agency-info { flex: 1; min-width: 0; }
+        .agency-info {
+            flex: 1;
+        }
+
         .agency-name {
             margin: 0 0 4px 0;
             font-size: 1.1em;
@@ -183,12 +157,36 @@
             color: var(--text-muted);
             font-size: 0.9em;
             margin-top: 4px;
-            flex-wrap: wrap;
         }
 
-        .agency-meta span { display: flex; align-items: center; gap: 8px; }
-        .agency-meta i { color: var(--primary); width: 16px; }
+        .agency-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
+        .agency-meta i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .agency-profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .agency-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .agency-meta {
+                justify-content: center;
+            }
+        }
+
+        /* Right Column - Car Info */
         .car-info {
             background: var(--white);
             border-radius: 12px;
@@ -216,64 +214,28 @@
             margin-bottom: 1rem;
         }
 
-        .price-period { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-
-        .car-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .meta-item { display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); }
-        .meta-item i { color: var(--primary); }
-
-        .car-specs-features-carousel {
-            background: var(--white);
-            border-radius: 12px;
-            margin-bottom: 18px;
-        }
-
-        .specs-features-tabs {
+        .car-meta {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .tab-btn {
-            padding: 8px 18px;
-            border: none;
-            background: #f8fafc;
-            color: #2a6edb;
-            font-weight: 600;
-            border-radius: 6px 6px 0 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .tab-btn.active { background: #e9f3ff; color: #2a6edb; }
-
-        #featuresTabContent { margin-top: 12px; }
-
-        .car-description-box {
-            padding: 1rem;
-            border-radius: 8px;
-            background: var(--bg-light);
-        }
-
-        .car-description-box h3 {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-        }
-
-        .car-description-box p {
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0;
+        }
+
+        .meta-item i {
+            color: var(--primary);
         }
 
         .car-specs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            padding: 15px 0;
+            padding: 15px;
             margin: 0;
         }
 
@@ -287,13 +249,70 @@
             transition: all 0.2s ease;
         }
 
-        .spec-item:hover { background: #f1f5f9; transform: translateY(-2px); }
-        .spec-item i { color: var(--primary); font-size: 1.1rem; width: 24px; text-align: center; }
-        .spec-item span { color: var(--text-dark); font-weight: 500; }
+        .spec-item:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .spec-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .spec-item span {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .car-specs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .car-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .car-specs-features-carousel {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 18px;
+        }
+
+        .specs-features-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tab-btn {
+            padding: 6px 18px;
+            border: none;
+            background: #f8fafc;
+            color: #2a6edb;
+            font-weight: 600;
+            border-radius: 6px 6px 0 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #e9f3ff;
+        }
+
+        #featuresTabContent {
+            margin-top: 12px;
+        }
 
         .features-list {
             list-style: none;
-            padding: 1rem 0;
+            padding: 1rem;
             margin: 0;
             display: flex;
             flex-wrap: wrap;
@@ -309,19 +328,119 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.2s ease;
         }
 
-        .feature-item i { color: #2a6edb; }
-        .feature-item.no-features { background: #f8f9fa; color: #6c757d; }
-        .feature-item.no-features i { color: #6c757d; }
+        .feature-item:hover {
+            background: #d1e6ff;
+        }
 
-        .admin-actions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        .btn { padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
-        .btn-primary { background: var(--primary); color: white; border: none; }
-        .btn-danger { background: var(--danger); color: white; border: none; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
-        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-dark); }
+        .feature-item i {
+            color: #2a6edb;
+        }
 
+        .feature-item.no-features {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .feature-item.no-features i {
+            color: #6c757d;
+        }
+
+        .car-description {
+            margin-bottom: 1.5rem;
+        }
+
+        .car-description h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .car-description p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 1200px) {
+            .car-details-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .car-specs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .car-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .car-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .admin-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }        /* Booking History Styles */
         .booking-history {
             margin-top: 2rem;
             background: var(--white);
@@ -330,293 +449,616 @@
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-        .stat-card { background: var(--bg-light); padding: 1.5rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; }
-        .stat-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex: 0 0 auto; }
-        .stat-details h4 { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
-        .stat-value { margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--text-dark); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
 
-        .recent-bookings { margin-top: 2rem; }
-        .recent-bookings h3 { color: var(--text-dark); margin-bottom: 1rem; font-size: 1.2rem; }
-        .bookings-table-wrapper { overflow-x: auto; }
-        .bookings-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        .bookings-table th, .bookings-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
-        .bookings-table th { background: var(--bg-light); font-weight: 600; color: var(--text-dark); }
+        .stat-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-        .status-badge, .payment-badge { padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap; }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-details h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .recent-bookings {
+            margin-top: 2rem;
+        }
+
+        .recent-bookings h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .bookings-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .bookings-table th,
+        .bookings-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bookings-table th {
+            background: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .status-badge, .payment-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
         .status-pending { background: #fff3cd; color: #856404; }
         .status-confirmed { background: #cce5ff; color: #004085; }
         .status-completed { background: #d4edda; color: #155724; }
         .status-cancelled { background: #f8d7da; color: #721c24; }
+
+        .customer-info-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .customer-avatar-small {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .booking-dates {
+            font-size: 0.9rem;
+        }
+
+        .date-label {
+            color: var(--text-muted);
+            margin-right: 0.25rem;
+        }
+
+        .btn-view-small {
+            padding: 0.5rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-small:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
         .payment-pending { background: #fff3cd; color: #856404; }
         .payment-paid { background: #d4edda; color: #155724; }
         .payment-refunded { background: #f8d7da; color: #721c24; }
 
-        .customer-info-cell { display: flex; align-items: center; gap: 0.75rem; }
-        .customer-avatar-small { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
-        .booking-dates { font-size: 0.9rem; }
-        .date-label { color: var(--text-muted); margin-right: 0.25rem; }
-        .btn-view-small { padding: 0.5rem; width: 32px; height: 32px; border-radius: 6px; background: var(--primary); color: white; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .btn-view-small:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .no-bookings { text-align: center; color: var(--text-muted); padding: 2rem; background: var(--bg-light); border-radius: 8px; margin-top: 1rem; }
-
-        .view-all-photos { margin-top: 1rem; text-align: center; }
-        .view-all-btn { border: 1px solid var(--border-color); background: var(--bg-light); color: var(--text-dark); border-radius: 8px; padding: 0.65rem 1rem; cursor: pointer; }
-        .view-all-btn:hover { background: var(--accent-light); color: var(--primary); }
-
-        .lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1200; padding: 2rem; }
-        .lightbox.active { display: flex; justify-content: center; align-items: center; }
-        .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
-        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; }
-        .lightbox-close { position: absolute; top: -2rem; right: -2rem; color: white; font-size: 1.5rem; cursor: pointer; background: none; border: none; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; }
-        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; background: rgba(0, 0, 0, 0.5); border: none; width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .lightbox-prev { left: 1rem; }
-        .lightbox-next { right: 1rem; }
-        .lightbox-counter { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 1rem; }
-
-        [data-theme="dark"] .car-gallery,
-        [data-theme="dark"] .car-info,
-        [data-theme="dark"] .booking-history,
-        [data-theme="dark"] .agency-profile-gallery {
-            background: var(--white);
-            color: var(--text-dark);
+        .no-bookings {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-top: 1rem;
         }
 
-        [data-theme="dark"] .main-image,
-        [data-theme="dark"] .thumbnail,
-        [data-theme="dark"] .spec-item,
-        [data-theme="dark"] .car-description-box,
-        [data-theme="dark"] .stat-card,
-        [data-theme="dark"] .no-bookings,
-        [data-theme="dark"] .view-all-btn,
-        [data-theme="dark"] .tab-btn {
-            background: rgba(255,255,255,0.06);
+        /* Lightbox Gallery Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
         }
 
-        [data-theme="dark"] .spec-item:hover { background: rgba(255,255,255,0.1); }
-        [data-theme="dark"] .feature-item { background: rgba(77,148,255,0.18); color: #9ac7ff; }
-        [data-theme="dark"] .feature-item i { color: #9ac7ff; }
-        [data-theme="dark"] .feature-item.no-features { background: rgba(255,255,255,0.06); color: #aeb8c2; }
-        [data-theme="dark"] .feature-item.no-features i { color: #aeb8c2; }
-        [data-theme="dark"] .bookings-table th { background: rgba(255,255,255,0.06); }
-        [data-theme="dark"] .bookings-table td { color: var(--text-dark); }
-        [data-theme="dark"] .thumbnail.empty { opacity: 0.45; }
-
-        @media (max-width: 1200px) {
-            .car-details-grid { grid-template-columns: 1fr; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+        }
+
+        .lightbox-next {
+            right: 1rem;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .main-image {
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            .container { padding: 0 1rem; }
-            .car-title { font-size: 1.75rem; }
-            .car-specs { grid-template-columns: repeat(2, 1fr); }
-            .thumbnail-grid { grid-template-columns: repeat(4, 1fr); }
-            .agency-profile-header { flex-direction: column; text-align: center; }
-            .agency-logo { width: 80px; height: 80px; }
-            .agency-meta { justify-content: center; }
-            .booking-history { padding: 1rem; }
-            .bookings-table { font-size: 0.9rem; }
-            .bookings-table th, .bookings-table td { padding: 0.75rem; }
+            .booking-history {
+                padding: 1rem;
+            }
+
+            .bookings-table {
+                font-size: 0.9rem;
+            }
+
+            .bookings-table th,
+            .bookings-table td {
+                padding: 0.75rem;
+            }
         }
+
         @media (max-width: 576px) {
-            .car-specs { grid-template-columns: 1fr; }
-            .thumbnail-grid { grid-template-columns: repeat(3, 1fr); }
-            .admin-actions { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .car-info { padding: 1.25rem; }
-            .car-meta { gap: 0.75rem 1rem; }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-dates {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="admin-dashboard">
-        <header class="admin-header">
-            <div class="admin-header-content">
-                <div class="logo-area">
-                    <div class="logo">
-                        <i class="fas fa-car-side"></i>
-                        <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle Dark Mode" type="button"><i class="fas fa-moon"></i></button>
-                    <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
-                                                <img alt="Admin" src="../public/assets/images/guest-avatar.svg">
-                                                <span>Admin</span>
-                    </div>
-                    <button class="menu-toggle" type="button" aria-label="Toggle Sidebar"><i class="fas fa-bars"></i></button>
-                </div>
-            </div>
-        </header>
+<div class="admin-dashboard">
+<header class="admin-header">
+<div class="admin-header-content">
+<div class="logo-area">
+<div class="logo">
+<i class="fas fa-car-side"></i>
+<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+</div>
+</div>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<i class="fas"></i>
+</button>
+<div class="profile-dropdown">
+<div class="profile-toggle">
+<img alt="Admin" src="https://avatar.iran.liara.run/public/boy?username=Admin"/>
+<span>Admin</span>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="profile-menu">
+<a class="profile-menu-item" href="admin_dashboard.html">
+<i class="fas fa-user-cog"></i>
+<span>Admin Profile</span>
+</a>
+<a class="profile-menu-item" href="../auth/logout.html">
+<i class="fas fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+</div>
+</div>
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+</div>
+</div>
+</header>
+<div class="dashboard-content">
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+<div class="sidebar-nav">
+<div class="sidebar-header">MAIN MENU</div>
+<a class="sidebar-item" href="admin_dashboard.html">
+<i class="fas fa-tachometer-alt"></i>
+<span>Dashboard</span>
+</a>
+<a class="sidebar-item" href="manage_users.html">
+<i class="fas fa-users"></i>
+<span>Users</span>
+</a>
+<a class="sidebar-item active" href="admin_vehicles.html">
+<i class="fas fa-car"></i>
+<span>Vehicles</span>
+</a>
+<a class="sidebar-item" href="admin_bookings.html">
+<i class="fas fa-calendar-alt"></i>
+<span>Bookings</span>
+</a>
+<a class="sidebar-item" href="reports.html">
+<i class="fas fa-chart-line"></i>
+<span>Reports</span>
+</a>
+<div class="sidebar-header">SYSTEM</div>
+<a class="sidebar-item" href="../auth/logout.html">
+<i class="fas fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="main-content">
+<section class="car-details">
+<div class="container">
+<div class="section-header-wrapper">
+<div class="section-title-wrapper">
+<h1 class="section-title">Vehicle Details</h1>
+<p class="section-description">Viewing details for  </p>
+</div>
+<a class="back-button" href="admin_vehicles.html">
+<i class="fas fa-arrow-left"></i>
+<span>Back to Vehicles</span>
+</a>
+</div>
+<div class="car-details-grid">
+<!-- Car Gallery -->
+<div class="car-gallery animate__animated animate__fadeInLeft">
+<div class="main-image">
+<img alt=" " id="mainCarImage" src="../public/assets/images/car.png"/>
 
-        <div class="dashboard-content">
-            <aside class="admin-sidebar">
-                <div class="sidebar-nav">
-                    <div class="sidebar-header">MAIN MENU</div>
-                    <a href="admin_dashboard.html" class="sidebar-item"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-                    <a href="manage_users.html" class="sidebar-item"><i class="fas fa-users"></i><span>Users</span></a>
-                    <a href="admin_vehicles.html" class="sidebar-item active"><i class="fas fa-car"></i><span>Vehicles</span></a>
-                    <a href="admin_bookings.html" class="sidebar-item"><i class="fas fa-calendar-alt"></i><span>Bookings</span></a>
-                    <a href="reports.html" class="sidebar-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
-                    <div class="sidebar-header">SYSTEM</div>
-                    <a href="../auth/logout.html" class="sidebar-item"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
-                </div>
-            </aside>
 
-            <main class="main-content">
-                <section class="car-details">
-                    <div class="container">
-                        <div class="section-header-wrapper">
-                            <div class="section-title-wrapper">
-                                <h1 class="section-title">Vehicle Details</h1>
-                                <p class="section-description">Viewing details for Toyota Vios</p>
-                            </div>
-                            <a href="admin_vehicles.html" class="back-button"><i class="fas fa-arrow-left"></i><span>Back to Vehicles</span></a>
-                        </div>
-
-                        <div class="car-details-grid">
-                            <div class="car-gallery animate__animated animate__fadeInLeft">
-                                <div class="main-image">
-                                    <span class="car-type">Sedan</span>
-                                    <img id="mainCarImage" src="../public/assets/images/car.png" alt="Toyota Vios">
-                                    <div class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)"><i class="fas fa-chevron-left"></i></div>
-                                    <div class="gallery-nav gallery-next" onclick="changeGalleryImage(1)"><i class="fas fa-chevron-right"></i></div>
-                                    <div class="image-counter"><span id="currentImageIndex">1</span> / <span id="totalImages">1</span></div>
-                                </div>
-
-                                <div class="thumbnail-grid">
-                                    <div class="thumbnail active" data-index="0" onclick="changeMainImage('../public/assets/images/car.png', this)"><img src="../public/assets/images/car.png" alt="Toyota Vios view 1"></div>
-                                    <div class="thumbnail empty"><img src="../public/assets/images/car.png" alt="No image available"></div>
-                                    <div class="thumbnail empty"><img src="../public/assets/images/car.png" alt="No image available"></div>
-                                    <div class="thumbnail empty"><img src="../public/assets/images/car.png" alt="No image available"></div>
-                                    <div class="thumbnail empty"><img src="../public/assets/images/car.png" alt="No image available"></div>
-                                </div>
-
-                                <div class="agency-profile-gallery">
-                                    <div class="agency-profile-header">
-                                        <img alt="DriveHub Rentals Logo" class="agency-logo" src="../public/assets/images/guest-avatar.svg">
-                                        <div class="agency-info">
-                                            <h3 class="agency-name">DriveHub Rentals</h3>
-                                            <div class="agency-meta">
-                                                <span><i class="fas fa-clock"></i><span>Member since September 2026</span></span>
-                                                <span><i class="fas fa-phone"></i><span>+63 900 000 0000</span></span>
-                                            </div>
-                                        </div>
+<!-- Image Navigation Controls -->
+<div class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)">
+<i class="fas fa-chevron-left"></i>
+</div>
+<div class="gallery-nav gallery-next" onclick="changeGalleryImage(1)">
+<i class="fas fa-chevron-right"></i>
+</div>
+<!-- Image Counter Display -->
+<div class="image-counter">
+<span id="currentImageIndex">1</span> / <span id="totalImages"></span>
+</div>
+<div class="view-360-badge">
+<i class="fas fa-sync"></i> 360° View
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="car-info animate__animated animate__fadeInRight">
-                                <div class="car-header">
-                                    <h1 class="car-title">Toyota Vios 2024</h1>
-                                    <div class="car-price">₱2,500.00 <span class="price-period">/ day</span></div>
-                                    <div class="car-meta">
-                                        <div class="meta-item"><i class="fas fa-map-marker-alt"></i><span>Adventure City</span></div>
-                                        <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Added Sep 20, 2026</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="car-specs-features-carousel">
-                                    <div class="specs-features-tabs">
-                                        <button type="button" id="tabDescription" class="tab-btn active">Description</button>
-                                        <button type="button" id="tabSpecs" class="tab-btn">Specs</button>
-                                        <button type="button" id="tabFeatures" class="tab-btn">Features</button>
-                                    </div>
-
-                                    <div id="descriptionTabContent" class="tab-content" style="display:block;">
-                                        <div class="car-description-box">
-                                            <h3>Vehicle Description</h3>
-                                            <p>A practical and comfortable sedan for city trips, business travel, and everyday adventures.</p>
-                                        </div>
-                                    </div>
-
-                                    <div id="specsTabContent" class="tab-content" style="display:none;">
-                                        <div class="car-specs">
-                                            <div class="spec-item"><i class="fas fa-users"></i><span>5 Seats</span></div>
-                                            <div class="spec-item"><i class="fas fa-suitcase"></i><span>2 Luggage</span></div>
-                                            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
-                                            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
-                                            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>Unlimited km</span></div>
-                                            <div class="spec-item"><i class="fas fa-calendar"></i><span>2024</span></div>
-                                        </div>
-                                    </div>
-
-                                    <div id="featuresTabContent" class="tab-content" style="display:none;">
-                                        <div class="features-list">
-                                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Air Conditioning</span></div>
-                                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Bluetooth</span></div>
-                                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>USB Charging</span></div>
-                                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>5 Seats</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="admin-actions">
-                                    <a href="#" class="btn btn-danger" id="deleteVehicleBtn"><i class="fas fa-trash"></i> Delete Vehicle</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="booking-history animate__animated animate__fadeInUp">
-                            <div class="stats-grid">
-                                <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-details"><h4>Total Bookings</h4><p class="stat-value">0</p></div></div>
-                                <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-details"><h4>Completed</h4><p class="stat-value">0</p></div></div>
-                                <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-details"><h4>Pending/Confirmed</h4><p class="stat-value">0</p></div></div>
-                                <div class="stat-card"><div class="stat-icon"><i class="fas fa-peso-sign"></i></div><div class="stat-details"><h4>Total Revenue</h4><p class="stat-value">₱0.00</p></div></div>
-                            </div>
-
-                            <div class="recent-bookings">
-                                <h3>Recent Bookings</h3>
-                                <p class="no-bookings">No bookings found for this vehicle.</p>
-                                <div class="bookings-table-wrapper" style="display:none;">
-                                    <table class="bookings-table">
-                                        <thead><tr><th>Booking ID</th><th>Customer</th><th>Dates</th><th>Status</th><th>Payment</th><th>Amount</th><th>Actions</th></tr></thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-
-    <div class="lightbox" id="galleryLightbox" aria-hidden="true">
-        <button class="lightbox-close" type="button" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-        <button class="lightbox-nav lightbox-prev" type="button" onclick="changeLightboxImage(-1)"><i class="fas fa-chevron-left"></i></button>
-        <div class="lightbox-content">
-            <img src="../public/assets/images/car.png" alt="Vehicle Image" class="lightbox-image" id="lightboxImage">
-            <div class="lightbox-counter"><span id="lightboxCurrentImage">1</span> / <span id="lightboxTotalImages">1</span></div>
-        </div>
-        <button class="lightbox-nav lightbox-next" type="button" onclick="changeLightboxImage(1)"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
-    <script src="../public/assets/js/demo-fleet.js"></script>
-    <script src="../public/assets/js/admin-demo.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabs = [
-                { button: document.getElementById('tabDescription'), content: document.getElementById('descriptionTabContent') },
-                { button: document.getElementById('tabSpecs'), content: document.getElementById('specsTabContent') },
-                { button: document.getElementById('tabFeatures'), content: document.getElementById('featuresTabContent') }
-            ];
-
-            function showTab(index) {
-                tabs.forEach(function (tab, i) {
-                    if (!tab.button || !tab.content) return;
-                    tab.button.classList.toggle('active', i === index);
-                    tab.button.style.background = i === index ? '#e9f3ff' : '#f8fafc';
-                    tab.content.style.display = i === index ? 'block' : 'none';
-                });
-            }
-
-            tabs.forEach(function (tab, index) {
-                if (tab.button) tab.button.addEventListener('click', function () { showTab(index); });
-            });
-            showTab(0);
-
-        });
-    </script>
-</body>
+</div>
+<!-- 5-Image Grid Thumbnail Layout -->
+<div class="thumbnail-grid">
+<div class="thumbnail" data-index="" onclick="changeMainImage('../public/assets/images/car.png', this)">
+<img alt="  view " src="../public/assets/images/car.png"/>
+</div>
+<div class="thumbnail empty">
+<img alt="No image available" src="../public/assets/images/car.png"/>
+</div>
+<img alt="Car Thumbnail" src="../public/assets/images/car.png"/>
+</div>
+</div>
+<div class="view-all-photos">
+<button class="view-all-btn" onclick="openGalleryLightbox()">
+<i class="fas fa-images"></i> View All Photos ()
+                                    </button>
+</div>
+<!-- Agency Profile Section -->
+<div class="agency-profile-gallery">
+<div class="agency-profile-header">
+<img alt=" Logo" class="agency-logo" src="../public/assets/images/guest-avatar.svg"/>
+<div class="agency-logo placeholder">
+<i class="fas fa-building" style="font-size:24px; color: #adb5bd;"></i>
+</div>
+<div class="agency-info">
+<h3 class="agency-name"></h3>
+<div class="agency-meta">
+<span>
+<i class="fas fa-clock"></i>
+<span>Member since </span>
+</span>
+<span>
+<i class="fas fa-phone"></i>
+<span></span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- End Agency Profile Section -->
+</div>
+<!-- Car Information -->
+<div class="car-info animate__animated animate__fadeInRight">
+<div class="car-header">
+<h1 class="car-title">
+</h1>
+<div class="car-price">
+                                        ₱ <span class="price-period">/ day</span>
+</div>
+<div class="car-meta">
+<div class="meta-item">
+<i class="fas fa-map-marker-alt"></i>
+<span></span>
+</div>
+<div class="meta-item">
+<i class="fas fa-calendar-alt"></i>
+<span>Added </span>
+</div>
+</div>
+</div>
+<!-- Vehicle Description -->
+<div class="car-specs-features-carousel">
+<div class="specs-features-tabs">
+<button class="tab-btn active" id="tabDescription" type="button">Description</button>
+<button class="tab-btn" id="tabSpecs" type="button">Specs</button>
+<button class="tab-btn" id="tabFeatures" type="button">Features</button>
+</div>
+<!-- Description Tab Content -->
+<div class="tab-content" id="descriptionTabContent" style="display: block;">
+<div class="car-description-box">
+<h3>Vehicle Description</h3>
+<p></p>
+</div>
+</div>
+<!-- Specs Tab Content -->
+<div class="tab-content" id="specsTabContent" style="display: none;">
+<div class="car-specs">
+<div class="spec-item">
+<i class="fas fa-users"></i>
+<span> Seats</span>
+</div>
+<div class="spec-item">
+<i class="fas fa-suitcase"></i>
+<span> Luggage</span>
+</div>
+<div class="spec-item">
+<i class="fas fa-cog"></i>
+<span></span>
+</div>
+<div class="spec-item">
+<i class="fas fa-gas-pump"></i>
+<span></span>
+</div>
+<div class="spec-item">
+<i class="fas fa-tachometer-alt"></i>
+<span> km</span>
+</div>
+<div class="spec-item">
+<i class="fas fa-calendar"></i>
+<span></span>
+</div>
+</div>
+</div>
+<!-- Features Tab Content -->
+<div class="tab-content" id="featuresTabContent" style="display: none;">
+<div class="features-list">
+<div class="feature-item">
+<i class="fas fa-check-circle"></i>
+<span></span>
+</div>
+<div class="feature-item no-features">
+<i class="fas fa-info-circle"></i>
+<span>No features listed for this vehicle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin Actions -->
+<div class="admin-actions">
+<a class="btn btn-danger" href="#">
+<i class="fas fa-trash"></i> Delete Vehicle
+                                    </a>
+</div>
+</div>
+</div> <!-- Booking History Section -->
+<div class="booking-history animate__animated animate__fadeInUp">
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-calendar-check"></i>
+</div>
+<div class="stat-details">
+<h4>Total Bookings</h4>
+<p class="stat-value"></p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<div class="stat-details">
+<h4>Completed</h4>
+<p class="stat-value"></p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-clock"></i>
+</div>
+<div class="stat-details">
+<h4>Pending/Confirmed</h4>
+<p class="stat-value"></p>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-peso-sign"></i>
+</div>
+<div class="stat-details">
+<h4>Total Revenue</h4>
+<p class="stat-value">₱</p>
+</div>
+</div>
+</div>
+<div class="recent-bookings">
+<h3>Recent Bookings</h3>
+<p class="no-bookings">No bookings found for this vehicle.</p>
+<div class="bookings-table-wrapper">
+<table class="bookings-table">
+<thead>
+<tr>
+<th>Booking ID</th>
+<th>Customer</th>
+<th>Dates</th>
+<th>Status</th>
+<th>Payment</th>
+<th>Amount</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#</td>
+<td class="customer-info-cell">
+<img alt="Customer" class="customer-avatar-small" src="../public/assets/images/guest-avatar.svg"/>
+<img alt="Default Avatar" class="customer-avatar-small" src="../public/assets/images/car.png"/>
+<span></span>
+</td>
+<td>
+<div class="booking-dates">
+<div><span class="date-label">From:</span> </div>
+<div><span class="date-label">To:</span> </div>
+</div>
+</td>
+<td>
+<span class="status-badge status-">
+</span>
+</td>
+<td>
+<span class="payment-badge payment-">
+</span>
+</td>
+<td>₱</td>
+<td>
+<a class="btn-view-small" href="view_booking.html?id=">
+<i class="fas fa-eye"></i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section></main></div>
+</div>
+<!-- Lightbox Gallery -->
+<div class="lightbox" id="galleryLightbox">
+<button class="lightbox-close" onclick="closeLightbox()">
+<i class="fas fa-times"></i>
+</button>
+<button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">
+<i class="fas fa-chevron-left"></i>
+</button>
+<div class="lightbox-content">
+<img alt="Vehicle Image" class="lightbox-image" id="lightboxImage" src="../public/assets/images/guest-avatar.svg"/>
+<div class="lightbox-counter">
+<span id="lightboxCurrentImage">1</span> / <span id="lightboxTotalImages">1</span>
+</div>
+</div>
+<button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">
+<i class="fas fa-chevron-right"></i>
+</button>
+</div>
+<script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
 </html>

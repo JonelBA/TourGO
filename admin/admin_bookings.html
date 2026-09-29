@@ -1,14 +1,13 @@
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Manage Bookings - TourGo Admin</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <link href="../public/assets/css/admin-dashboard.css" rel="stylesheet">
-        <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Bookings - TourGo Admin</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
+<style>
             /* Containers */
             .bookings-container {
                 background: var(--white);
@@ -403,394 +402,173 @@
         }
 
     </style>
-    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
 </head>
-    <body>
-        <div class="admin-dashboard">
-        <header class="admin-header">
-        <div class="admin-header-content">
-            <div class="logo-area">
-                <div class="logo">
-                    <a href="admin_dashboard.html">
-                    <i class="fas fa-car-side"></i>
-                    <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-                    </a>
-                </div>
-            </div>
-            <div class="header-actions">
-                <button class="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
-                                        <img src="" alt="Admin">
-                                        <span>Admin</span>
-                </div>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
-    </header>
-
-        <div class="dashboard-content">
-            <aside class="admin-sidebar">
-                <div class="sidebar-nav">
-                    <div class="sidebar-header">MAIN MENU</div>
-                    <a href="admin_dashboard.html" class="sidebar-item">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="manage_users.html" class="sidebar-item">
-                        <i class="fas fa-users"></i>
-                        <span>Users</span>
-                    </a>
-                    <a href="admin_vehicles.html" class="sidebar-item">
-                        <i class="fas fa-car"></i>
-                        <span>Vehicles</span>
-                    </a>
-                    <a href="admin_bookings.html" class="sidebar-item active">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Bookings</span>
-                    </a>
-                    <a href="reports.html" class="sidebar-item">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Reports</span>
-                    </a>
-                    <div class="sidebar-header">SYSTEM</div>
-                    <a href="../auth/logout.html" class="sidebar-item">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </aside>
-
-                <main class="main-content">
-                    <div class="section-header">
-                        <h1>Manage Bookings</h1>
-                        <p class="section-description">View and manage all bookings across the platform</p>
-                    </div>
-
-                    <div class="filters">
-                        <div class="search-container">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" id="searchInput" placeholder="Search bookings...">
-                        </div>
-                        <div class="filter-group">
-                            <label for="statusFilter">Status:</label>
-                            <select class="filter-select" id="statusFilter">
-                                <option value="">All Status</option>
-                                <option value="pending">Pending</option>
-                                <option value="confirmed">Confirmed</option>
-                                <option value="completed">Completed</option>
-                                <option value="cancelled">Cancelled</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="dateFrom">Date Range:</label>
-                            <input type="date" class="filter-select" id="dateFrom">
-                            <span>to</span>
-                            <input type="date" class="filter-select" id="dateTo">
-                        </div>
-                    </div>
-
-                    <div class="bookings-container">
-                        
-                            <div class="no-results">
-                                <i class="fas fa-calendar-times"></i>
-                                <p>No bookings found</p>
-                            </div>
-                        
-                            
-                                <div class="booking-card" data-status="" data-booking-id="">
-                                    <div class="booking-header">
-                                        <div>
-                                            <span class="booking-id">#</span>
-                                            <span class="booking-date"></span>
-                                        </div>
-                                        <span class="status-badge ">
-                                            
-                                        </span>
-                                    </div>
-
-                                    <div class="booking-content">
-                                        <div class="vehicle-image-container">
-                                            <img src="" 
-                                                 alt=""
-                                                 class="vehicle-image">
-                                        </div>
-
-                                        <div class="booking-details">
-                                            <div class="detail-group">
-                                                <span class="detail-label">Customer</span>
-                                                <div class="customer-info">
-                                                    <img src=""
-                                                         alt="Customer"
-                                                         class="customer-avatar">
-                                                    <span class="detail-value"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="detail-group">
-                                                <span class="detail-label">Vehicle</span>
-                                                <span class="detail-value">
+<body>
+<div class="admin-dashboard">
+<header class="admin-header">
+<div class="admin-header-content">
+<div class="logo-area">
+<div class="logo">
+<a href="admin_dashboard.html">
+<i class="fas fa-car-side"></i>
+<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+</a>
+</div>
+</div>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<i class="fas fa-moon"></i>
+</button>
+<div class="profile-dropdown">
+<div class="profile-toggle">
+<img alt="Admin" src="../public/assets/images/guest-avatar.svg"/>
+<span>Admin</span>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="profile-menu">
+<a class="profile-menu-item" href="../auth/logout.html">
+<i class="fas fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+</div>
+</div>
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+</div>
+</div>
+</header>
+<div class="dashboard-content">
+<aside class="admin-sidebar">
+<div class="sidebar-nav">
+<div class="sidebar-header">MAIN MENU</div>
+<a class="sidebar-item" href="admin_dashboard.html">
+<i class="fas fa-tachometer-alt"></i>
+<span>Dashboard</span>
+</a>
+<a class="sidebar-item" href="manage_users.html">
+<i class="fas fa-users"></i>
+<span>Users</span>
+</a>
+<a class="sidebar-item" href="admin_vehicles.html">
+<i class="fas fa-car"></i>
+<span>Vehicles</span>
+</a>
+<a class="sidebar-item active" href="admin_bookings.html">
+<i class="fas fa-calendar-alt"></i>
+<span>Bookings</span>
+</a>
+<a class="sidebar-item" href="reports.html">
+<i class="fas fa-chart-line"></i>
+<span>Reports</span>
+</a>
+<div class="sidebar-header">SYSTEM</div>
+<a class="sidebar-item" href="../auth/logout.html">
+<i class="fas fa-sign-out-alt"></i>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<main class="main-content">
+<div class="section-header">
+<h1>Manage Bookings</h1>
+<p class="section-description">View and manage all bookings across the platform</p>
+</div>
+<div class="filters">
+<div class="search-container">
+<i class="fas fa-search search-icon"></i>
+<input class="search-input" id="searchInput" placeholder="Search bookings..." type="text"/>
+</div>
+<div class="filter-group">
+<label for="statusFilter">Status:</label>
+<select class="filter-select" id="statusFilter">
+<option value="">All Status</option>
+<option value="pending">Pending</option>
+<option value="confirmed">Confirmed</option>
+<option value="completed">Completed</option>
+<option value="cancelled">Cancelled</option>
+</select>
+</div>
+<div class="filter-group">
+<label for="dateFrom">Date Range:</label>
+<input class="filter-select" id="dateFrom" type="date"/>
+<span>to</span>
+<input class="filter-select" id="dateTo" type="date"/>
+</div>
+</div>
+<div class="bookings-container">
+<div class="no-results">
+<i class="fas fa-calendar-times"></i>
+<p>No bookings found</p>
+</div>
+<div class="booking-card" data-booking-id="" data-status="">
+<div class="booking-header">
+<div>
+<span class="booking-id">#</span>
+<span class="booking-date"></span>
+</div>
+<span class="status-badge">
+</span>
+</div>
+<div class="booking-content">
+<div class="vehicle-image-container">
+<img alt="" class="vehicle-image" src="../public/assets/images/guest-avatar.svg"/>
+</div>
+<div class="booking-details">
+<div class="detail-group">
+<span class="detail-label">Customer</span>
+<div class="customer-info">
+<img alt="Customer" class="customer-avatar" src="../public/assets/images/guest-avatar.svg"/>
+<span class="detail-value"></span>
+</div>
+</div>
+<div class="detail-group">
+<span class="detail-label">Vehicle</span>
+<span class="detail-value">
                                                     
                                                     ()
                                                 </span>
-                                            </div>
-
-                                            <div class="detail-group">
-                                                <span class="detail-label">Agency</span>
-                                                <div class="agency-info">
-                                                    <img src=""
-                                                         alt="Agency"
-                                                         class="agency-logo">
-                                                    <span class="detail-value"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="detail-group">
-                                                <span class="detail-label">Rental Period</span>
-                                                <span class="detail-value">
+</div>
+<div class="detail-group">
+<span class="detail-label">Agency</span>
+<div class="agency-info">
+<img alt="Agency" class="agency-logo" src="../public/assets/images/guest-avatar.svg"/>
+<span class="detail-value"></span>
+</div>
+</div>
+<div class="detail-group">
+<span class="detail-label">Rental Period</span>
+<span class="detail-value">
                                                      - 
                                                     
                                                 </span>
-                                            </div>
-
-                                            <div class="detail-group">
-                                                <span class="detail-label">Payment Status</span>
-                                                <span class="detail-value">
-                                                    
-                                                    
-                                                        <small>()</small>
-                                                    
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="booking-footer">
-                                        <div class="amount">
+</div>
+<div class="detail-group">
+<span class="detail-label">Payment Status</span>
+<span class="detail-value">
+<small>()</small>
+</span>
+</div>
+</div>
+</div>
+<div class="booking-footer">
+<div class="amount">
                                             ₱
                                         </div>
-                                        <div class="booking-actions">                                            
-                                            <a href="/admin/view_booking.html?id=" class="btn-action btn-view">
-                                                <i class="fas fa-eye"></i> View Details
+<div class="booking-actions">
+<a class="btn-action btn-view" href="view_booking.html?id=">
+<i class="fas fa-eye"></i> View Details
                                             </a>
-                                            <button type="button" class="btn-action btn-delete" onclick="deleteBooking()">
-                                                <i class="fas fa-trash"></i> Delete
+<button class="btn-action btn-delete" type="button">
+<i class="fas fa-trash"></i> Delete
                                             </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                        
-                    </div>
-                </main>
-            </div>
-        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
 
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const statusFilter = document.getElementById('statusFilter');
-            const dateFrom = document.getElementById('dateFrom');
-            const dateTo = document.getElementById('dateTo');
-            const searchInput = document.getElementById('searchInput');
-
-            // Ensure all filter elements exist before adding event listeners
-            if (statusFilter) statusFilter.addEventListener('change', filterBookings); // Use 'change' for select
-            if (dateFrom) dateFrom.addEventListener('input', filterBookings);
-            if (dateTo) dateTo.addEventListener('input', filterBookings);
-            if (searchInput) searchInput.addEventListener('input', filterBookings);
-
-
-            function filterBookings() {
-                const status = statusFilter ? statusFilter.value.toLowerCase() : '';
-                const fromDateValue = dateFrom ? dateFrom.value : '';
-                const toDateValue = dateTo ? dateTo.value : '';
-                const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-
-                document.querySelectorAll('.booking-card').forEach(card => {
-                    let show = true;
-                    const cardStatus = card.dataset.status;
-                    const cardBookingDateText = card.querySelector('.booking-date').textContent;
-                    
-                    // Status filter
-                    if (status && cardStatus !== status) {
-                        show = false;
-                    }
-
-                    // Date filter for booking_date
-                    if (show && (fromDateValue || toDateValue)) {
-                        try {
-                            // Ensure bookingDate is parsed correctly. Adjust format if necessary.
-                            // Assuming booking_date in card is 'Month Day, Year' e.g., 'June 1, 2025'
-                            const cardBookingDate = new Date(Date.parse(cardBookingDateText));
-                            
-                            if (fromDateValue) {
-                                const fromDate = new Date(fromDateValue);
-                                fromDate.setHours(0,0,0,0); // Normalize to start of day
-                                if (cardBookingDate < fromDate) show = false;
-                            }
-                            if (toDateValue) {
-                                const toDate = new Date(toDateValue);
-                                toDate.setHours(23,59,59,999); // Normalize to end of day
-                                if (cardBookingDate > toDate) show = false;
-                            }
-                        } catch (e) {
-                            console.error("Error parsing date for filtering:", cardBookingDateText, e);
-                            // Decide how to handle parse errors, e.g., don't filter by date or hide card
-                        }
-                    }
-                    
-
-                    // Search filter
-                    if (show && searchTerm) {
-                        const cardText = card.textContent.toLowerCase();
-                        if (!cardText.includes(searchTerm)) show = false;
-                    }
-
-                    card.style.display = show ? 'block' : 'none';
-                });
-            }    
-            
-            // Booking status update function (remains for potential future use or if other status changes are needed)
-            window.updateBookingStatus = function(bookingId, newStatus) {
-                if (confirm(`Are you sure you want to ${newStatus} this booking?`)) {
-                    fetch('update_booking_status.html', { // Ensure this file exists if you use this function
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            booking_id: bookingId,
-                            status: newStatus
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            location.reload();
-                        } else {
-                            alert('Error updating booking status: ' + (data.message || 'Unknown error'));
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error updating booking status');
-                    });
-                }
-            }
-
-            // Function to handle booking deletion
-            window.deleteBooking = function(bookingId) {
-                if (confirm('Are you sure you want to permanently delete this booking? This action cannot be undone and will also remove associated payment records.')) {
-                    fetch('delete_booking.html', { 
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            booking_id: bookingId
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert(data.message || 'Booking deleted successfully.');
-                            location.reload(); // Reloads the page to show updated list
-                        } else {
-                            alert('Error deleting booking: ' + (data.message || 'Unknown error. See console for details.'));
-                            console.error("Deletion error:", data);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while trying to delete the booking. Please check the console.');
-                    });
-                }
-            }
-        });
-
-        // Sidebar Toggle for Mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const adminSidebar = document.querySelector('.admin-sidebar');
-        let sidebarBackdrop = null; // To manage the backdrop
-
-        if (menuToggle && adminSidebar) {
-            menuToggle.addEventListener('click', function() {
-                document.body.classList.toggle('sidebar-collapsed'); // For desktop view
-                adminSidebar.classList.toggle('active'); // For mobile view slide-in
-
-                // Create or toggle backdrop for mobile
-                if (!sidebarBackdrop) {
-                    sidebarBackdrop = document.createElement('div');
-                    sidebarBackdrop.className = 'sidebar-backdrop';
-                    document.body.appendChild(sidebarBackdrop);
-                    sidebarBackdrop.addEventListener('click', closeSidebar); // Add listener to backdrop
-                }
-                sidebarBackdrop.classList.toggle('active');
-            });
-        }
-        
-        function closeSidebar() {
-            if (adminSidebar && adminSidebar.classList.contains('active')) {
-                adminSidebar.classList.remove('active');
-            }
-            if (sidebarBackdrop && sidebarBackdrop.classList.contains('active')) {
-                sidebarBackdrop.classList.remove('active');
-            }
-             // Ensure body class is also reset if sidebar is collapsed via backdrop
-            if (document.body.classList.contains('sidebar-collapsed')) {
-                 // This class is more for desktop, mobile uses 'active' on sidebar itself
-                 // but ensure consistency if needed.
-            }
-        }
-
-
-        // Close sidebar when clicking outside on mobile (enhancement for the backdrop logic)
-        // The backdrop click already handles this, but this is a more general outside click detector
-        // It might be redundant if backdrop works well.
-        document.addEventListener('click', function(event) {
-            if (adminSidebar && adminSidebar.classList.contains('active') && 
-                !adminSidebar.contains(event.target) && 
-                menuToggle && !menuToggle.contains(event.target)) {
-                // Check if the click was on the backdrop itself
-                if (event.target !== sidebarBackdrop) {
-                     closeSidebar();
-                }
-            }
-        });
-
-        // Theme Toggle (Dark/Light)
-        const themeToggleButton = document.querySelector('.theme-toggle');
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener('click', function() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme === 'dark');
-            });
-        }
-
-        function updateThemeIcon(isDark) {
-            const themeIcon = document.querySelector('.theme-toggle i');
-            if (themeIcon) {
-                themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-
-        // Set initial theme from local storage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            updateThemeIcon(savedTheme === 'dark');
-        } else {
-             // Default to light theme and set icon if no theme saved
-            updateThemeIcon(false);
-        }
-
-    </script>
-</body>
+<script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
 </html>
