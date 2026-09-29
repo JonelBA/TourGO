@@ -103,7 +103,28 @@
         button.setAttribute('aria-pressed', initial === 'dark' ? 'true' : 'false');
     }
 
+    function isCustomerOrAgencyPage() {
+        const path = window.location.pathname.toLowerCase();
+        return /\/(customer|agency)(?:\/|$)/.test(path);
+    }
+
+    function disableCustomerAgencyHamburger() {
+        if (!isCustomerOrAgencyPage()) return false;
+
+        document.documentElement.setAttribute('data-tourgo-no-hamburger', 'true');
+        document.querySelectorAll('.menu-toggle').forEach(function (button) {
+            button.setAttribute('aria-hidden', 'true');
+            button.setAttribute('tabindex', '-1');
+            button.setAttribute('aria-expanded', 'false');
+            button.disabled = true;
+            button.style.setProperty('display', 'none', 'important');
+        });
+        return true;
+    }
+
     function initMenuController() {
+        if (disableCustomerAgencyHamburger()) return;
+
         const button = getMenuToggle();
         const navMenu = getNavMenu();
 
