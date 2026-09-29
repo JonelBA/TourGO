@@ -1,14 +1,14 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>TourGo - Manage User Verifications</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <title>TourGo - Manage User Verifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/assets/css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
         /* Enhanced modal styles */
         .modal { 
             display: none; 
@@ -391,238 +391,659 @@
     }
 
     /* Profile dropdown styles */
-    .profile-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        padding: 8px 0;
-        min-width: 200px;
-        z-index: 1000;
-    }
-    
-    .profile-menu.show {
-        display: block;
-    }
-    
-    .profile-menu-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 16px;
-        color: #374151;
-        text-decoration: none;
-        transition: background 0.2s;
-    }
-    
-    .profile-menu-item:hover {
-        background: #f3f4f6;
-    }
-    
-    .profile-menu-item i {
-        width: 16px;
-        text-align: center;
-    }
+
     </style>
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
 </head>
 <body>
 <div class="admin-dashboard">
-<header class="admin-header">
-<div class="admin-header-content">
-<div class="logo-area">
-<div class="logo">
-<a href="admin_dashboard.html">
-<i class="fas fa-car-side"></i>
-<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-</a>
-</div>
-</div>
-<div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
-<i class="fas fa-moon"></i>
-</button>
-<div class="profile-dropdown">
-<div class="profile-toggle">
-<img alt="Admin" src="https://avatar.iran.liara.run/public/boy?username=Admin"/>
-<span>Admin</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="profile-menu">
-<a class="profile-menu-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</div>
-<div class="menu-toggle">
-<i class="fas fa-bars"></i>
-</div>
-</div>
-</div>
-</header>
-<div class="dashboard-content">
-<!-- Sidebar -->
-<aside class="admin-sidebar">
-<div class="sidebar-nav">
-<div class="sidebar-header">MAIN MENU</div>
-<a class="sidebar-item" href="admin_dashboard.html">
-<i class="fas fa-tachometer-alt"></i>
-<span>Dashboard</span>
-</a>
-<a class="sidebar-item active" href="manage_users.html">
-<i class="fas fa-users"></i>
-<span>Users</span>
-</a>
-<a class="sidebar-item" href="admin_vehicles.html">
-<i class="fas fa-car"></i>
-<span>Vehicles</span>
-</a>
-<a class="sidebar-item" href="admin_bookings.html">
-<i class="fas fa-calendar-alt"></i>
-<span>Bookings</span>
-</a>
-<a class="sidebar-item" href="reports.html">
-<i class="fas fa-chart-line"></i>
-<span>Reports</span>
-</a>
-<div class="sidebar-header">SYSTEM</div>
-<a class="sidebar-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="main-content">
-<div class="section-title-wrapper">
-<span class="section-subtitle">User Management</span>
-<h1 class="section-title">Verification Requests</h1>
-<p class="section-description">Manage and process verification requests from customers and agencies. Review detailed information before approving or rejecting applications.</p>
-</div>
-<div class="dashboard-stats" style="margin-bottom: 24px;">
-<div class="stat-card">
-<div class="stat-card-icon"><i class="fas fa-user-clock"></i></div>
-<div class="stat-card-title">Pending Verifications</div>
-<div class="stat-card-value"></div>
-</div>
-<div class="stat-card">
-<div class="stat-card-icon"><i class="fas fa-users"></i></div>
-<div class="stat-card-title">Customer Requests</div>
-<div class="stat-card-value"></div>
-</div>
-<div class="stat-card">
-<div class="stat-card-icon"><i class="fas fa-building"></i></div>
-<div class="stat-card-title">Agency Requests</div>
-<div class="stat-card-value"></div>
-</div>
-</div>
-<div class="dashboard-section">
-<div class="tabs">
-<button class="tab-btn active" data-tab="customers">
-<i class="fas fa-user"></i> Customer Verifications
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <div class="logo-area">
+                <div class="logo">
+                    <a href="admin_dashboard.html">
+                    <i class="fas fa-car-side"></i>
+                    <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
+                                        <img src="https://avatar.iran.liara.run/public/boy?username=Admin" alt="Admin">
+                                        <span>Admin</span>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-content">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-nav">
+                <div class="sidebar-header">MAIN MENU</div>
+                <a href="admin_dashboard.html" class="sidebar-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manage_users.html" class="sidebar-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="admin_vehicles.html" class="sidebar-item">
+                    <i class="fas fa-car"></i>
+                    <span>Vehicles</span>
+                </a>
+                <a href="admin_bookings.html" class="sidebar-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="reports.html" class="sidebar-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Reports</span>
+                </a>
+                <div class="sidebar-header">SYSTEM</div>
+                <a href="../auth/logout.html" class="sidebar-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="section-title-wrapper">
+                <span class="section-subtitle">User Management</span>
+                <h1 class="section-title">Verification Requests</h1>
+                <p class="section-description">Manage and process verification requests from customers and agencies. Review detailed information before approving or rejecting applications.</p>
+            </div>
+
+            <div class="dashboard-stats" style="margin-bottom: 24px;">
+                <div class="stat-card">
+                    <div class="stat-card-icon"><i class="fas fa-user-clock"></i></div>
+                    <div class="stat-card-title">Pending Verifications</div>
+                    <div class="stat-card-value"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-card-title">Customer Requests</div>
+                    <div class="stat-card-value"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon"><i class="fas fa-building"></i></div>
+                    <div class="stat-card-title">Agency Requests</div>
+                    <div class="stat-card-value"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="customers">
+                        <i class="fas fa-user"></i> Customer Verifications
                     </button>
-<button class="tab-btn" data-tab="agencies">
-<i class="fas fa-building"></i> Agency Verifications
+                    <button class="tab-btn" data-tab="agencies">
+                        <i class="fas fa-building"></i> Agency Verifications
                     </button>
+                </div>
+                
+                <div id="customers" class="tab-content active">
+                    
+                        <div class="no-requests">
+                            <i class="fas fa-user-check"></i>
+                            <p>No pending customer verification requests at this time.</p>
+                        </div>
+                    
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Joined</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-view" onclick="openUserModal('customer', )">
+                                            <i class="fas fa-eye"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+                <div id="agencies" class="tab-content">
+                    
+                        <div class="no-requests">
+                            <i class="fas fa-building"></i>
+                            <p>No pending agency verification requests at this time.</p>
+                        </div>
+                    
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Agency Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Location</th>
+                                    <th>Joined</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>                                    <td></td>
+                                    <td></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-view" onclick="openUserModal('agency', )">
+                                            <i class="fas fa-eye"></i> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-<div class="tab-content active" id="customers">
-<div class="no-requests">
-<i class="fas fa-user-check"></i>
-<p>No pending customer verification requests at this time.</p>
-</div>
-<div class="table-responsive">
-<table class="data-table">
-<thead>
-<tr>
-<th>ID</th>
-<th>Email</th>
-<th>Name</th>
-<th>Location</th>
-<th>Joined</th>
-<th>Status</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><span class="badge badge-warning">Pending</span></td>
-<td>
-<button class="btn btn-sm btn-view" type="button">
-<i class="fas fa-eye"></i>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="tab-content" id="agencies">
-<div class="no-requests">
-<i class="fas fa-building"></i>
-<p>No pending agency verification requests at this time.</p>
-</div>
-<div class="table-responsive">
-<table class="data-table">
-<thead>
-<tr> <th>ID</th>
-<th>Email</th>
-<th>Agency Name</th>
-<th>Contact Person</th>
-<th>Location</th>
-<th>Joined</th>
-<th>Status</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td> <td></td>
-<td></td>
-<td><span class="badge badge-warning">Pending</span></td>
-<td>
-<button class="btn btn-sm btn-view" type="button">
-<i class="fas fa-eye"></i>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</main>
-</div>
-</div>
+
 <!-- User Details Modal -->
-<div class="modal" id="userModal" tabindex="-1">
-<div class="modal-dialog">
-<div class="modal-content">
-<button aria-label="Close" class="modal-close" onclick="closeUserModal()" type="button">
-<i class="fas fa-times"></i>
-</button>
-<div class="modal-header">
-<h2 class="modal-title" id="modalTitle"></h2>
-</div>
-<div class="modal-body" id="modalBody">
-</div>
-<div class="modal-footer" id="modalFooter">
-</div>
-</div>
-</div>
+<div id="userModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Close" onclick="closeUserModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title"></h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+            </div>
+            <div class="modal-footer" id="modalFooter">
+            </div>
+        </div>
+    </div>
 </div>
 
 
+    
 
-<script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
+
+
+    
+
+
+
+<script type="application/json" data-user>
+
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const userType = ;
+    const userData = JSON.parse(document.querySelector('script[data-user]').textContent);
+    showUserModal(userType, userData);
+});
+</script>
+
+
+    
+<script>
+    // Tab Functionality - Fixed
+    function initializeTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                console.log('Tab clicked:', tabId); // Debug log
+                
+                // Remove active class from all tabs and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                const targetContent = document.getElementById(tabId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                } else {
+                    console.error('Tab content not found for:', tabId);
+                }
+            });
+        });
+    }
+
+
+    // Modal functionality
+    function openUserModal(userType, userId) {
+        // Show loading state
+        const modal = document.getElementById('userModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalFooter = document.getElementById('modalFooter');
+        
+        modalTitle.textContent = 'Loading...';
+        modalBody.innerHTML = '<div class="loading" style="margin: 20px auto;"></div>';
+        modalFooter.innerHTML = '';
+        modal.classList.add('show');
+        
+        // Fetch user data via AJAX or use existing data
+        window.location.href = `manage_users.html?view_user=${userId}&type=${userType}`;
+    }
+
+    function showUserModal(userType, userData) {
+        const modal = document.getElementById('userModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalFooter = document.getElementById('modalFooter');
+        
+        if (userType === 'customer') {
+            modalTitle.textContent = `Customer Verification - ${userData.first_name} ${userData.last_name}`;
+            modalBody.innerHTML = `
+                <div class="modal-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <p><strong>Full Name:</strong> ${userData.first_name || 'N/A'} ${userData.last_name || 'N/A'}</p>
+                    <p><strong>Email:</strong> ${userData.email || 'N/A'}</p>
+                    <p><strong>Phone:</strong> ${userData.phone || 'N/A'}</p>
+                    <p><strong>Date of Birth:</strong> ${userData.date_of_birth ? new Date(userData.date_of_birth).toLocaleDateString() : 'N/A'}</p>
+                    <p><strong>Address:</strong> ${userData.address || 'N/A'}</p>
+                    <p><strong>City:</strong> ${userData.city || 'N/A'}</p>
+                    <p><strong>Country:</strong> ${userData.country || 'N/A'}</p>
+                    <p><strong>Registration Date:</strong> ${new Date(userData.created_at).toLocaleDateString()}</p>
+                </div>
+                   <div class="modal-section">
+                <h3><i class="fas fa-id-card"></i> License Documents</h3>
+                ${userData.license_front_image ? 
+                    `<iframe src="../uploads/licenses/${userData.license_front_image}" class="document-frame" title="License Front"></iframe>` :
+                    `<div class="document-placeholder">No front license uploaded</div>`
+                }
+                ${userData.license_back_image ? 
+                    `<iframe src="../uploads/licenses/${userData.license_back_image}" class="document-frame" title="License Back"></iframe>` :
+                    `<div class="document-placeholder">No back license uploaded</div>`
+                }
+            </div>
+        `;
+        } else if (userType === 'agency') {
+            modalTitle.textContent = `Agency: ${userData.company_name || 'N/A'} (ID: ${userData.user_id})`;
+            
+            // MODIFIED: Use new individual document columns from userData
+            const agencyDocSections = [
+                { php_key: 'doc_business_registration', label: 'Business Registration' },
+                { php_key: 'doc_gov_id', label: 'Government ID' },
+                { php_key: 'doc_address_proof', label: 'Address Proof' }
+            ];
+            docsHtml = '';
+            agencyDocSections.forEach(doc => {
+                const documentPath = userData[doc.php_key]; // e.g., userData.doc_business_registration
+                docsHtml += `
+                <div class="document-section" style="margin-bottom: 15px;">
+                    <h4>${doc.label}</h4>
+                    ${documentPath ? 
+                        // Ensure the path is correct relative to the uploads folder.
+                        // Example: if path stored is "business_registration_docs/user_XX/file.pdf"
+                        `<iframe src="../uploads/${documentPath}" class="document-frame" title="${doc.label}"></iframe>` :
+                        `<div class="document-placeholder">No ${doc.label.toLowerCase()} uploaded</div>`
+                    }
+                </div>`;
+            });
+
+            modalBody.innerHTML = `
+                <div class="modal-section">
+                    <h3><i class="fas fa-building"></i> Company Information</h3>
+                    <p><strong>Company Name:</strong> ${userData.company_name || 'N/A'}</p>
+                    <p><strong>Contact Person:</strong> ${userData.contact_name || 'N/A'}</p>
+                    <p><strong>Contact Phone:</strong> ${userData.contact_phone || 'N/A'}</p>
+                    <p><strong>Email:</strong> ${userData.email || 'N/A'}</p>
+                    <p><strong>Business Address:</strong> ${userData.business_address || 'N/A'}, ${userData.city || 'N/A'}, ${userData.country || 'N/A'}</p>
+                    <p><strong>Registration Date:</strong> ${new Date(userData.created_at).toLocaleDateString()}</p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Business Details</h3>
+                    <p><strong>Tax ID:</strong> ${userData.tax_id || 'N/A'}</p>
+                    <p><strong>Website:</strong> ${userData.website ? `<a href="${userData.website.startsWith('http') ? '' : '//'}${userData.website}" target="_blank">${userData.website}</a>` : 'N/A'}</p>
+                    <p><strong>Establishment Year:</strong> ${userData.establishment_year || 'N/A'}</p>
+                    <p><strong>Company Description:</strong> ${userData.company_description || 'N/A'}</p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-file-contract"></i> Verification Documents</h3>
+                    ${docsHtml}
+                </div>
+            `;
+        }
+        
+        modalFooter.innerHTML = `
+            <form method="post" action="process_verification.html" style="display: inline;" onsubmit="return confirmAction('approve')">
+                <input type="hidden" name="user_id" value="${userData.user_id}">
+                <input type="hidden" name="user_type" value="${userType}">
+                <input type="hidden" name="action" value="approve">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i> Approve Verification
+                </button>
+            </form>            <button type="button" class="btn btn-delete" onclick="showRejectionModal(${userData.user_id}, '${userType}')">
+                <i class="fas fa-times"></i> Reject Verification
+            </button>
+        `;
+        
+        modal.classList.add('show');
+    }
+
+    function closeUserModal() {
+        const modal = document.getElementById('userModal');
+        modal.classList.remove('show');
+        
+        // Remove URL parameters
+        const url = new URL(window.location);
+        url.searchParams.delete('view_user');
+        url.searchParams.delete('type');
+        window.history.replaceState({}, document.title, url);
+    }
+
+    // Confirmation dialogs
+    function confirmAction(action) {
+        const actionText = action === 'approve' ? 'approve' : 'reject';
+        const confirmText = action === 'approve' ? 
+            'Are you sure you want to approve this verification request?' :
+            'Are you sure you want to reject this verification request? This action cannot be undone.';
+        
+        return confirm(confirmText);
+    }
+
+    // Notification system
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        
+        const icon = type === 'success' ? 'check-circle' : 'exclamation-circle';
+        const iconColor = type === 'success' ? '#10b981' : '#ef4444';
+        
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-${icon}" style="color: ${iconColor};"></i>
+                <span>${message}</span>
+            </div>
+            <button class="notification-close" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Show notification
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }
+        }, 5000);
+    }
+
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-collapsed');
+            
+            // For mobile view
+            document.querySelector('.admin-sidebar').classList.toggle('active');
+            
+            // Create or toggle backdrop for mobile
+            let backdrop = document.querySelector('.sidebar-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'sidebar-backdrop';
+                document.body.appendChild(backdrop);
+            }
+            backdrop.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.admin-sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const backdrop = document.querySelector('.sidebar-backdrop');
+            
+            if (sidebar && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
+            }
+        });
+      // Toggle Theme (Dark/Light)
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            const themeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', themeMode);
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (themeMode === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            localStorage.setItem('theme', themeMode);
+        });
+
+
+    function updateThemeIcon(isDark) {
+        const themeIcon = document.querySelector('.theme-toggle i');
+        if (themeIcon) {
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+
+    // Set initial theme from local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggleIcon = document.querySelector('.theme-toggle i');
+            if (savedTheme === 'dark') {
+                themeToggleIcon.classList.remove('fa-moon');
+                themeToggleIcon.classList.add('fa-sun');
+            }
+        }
+
+    // Search and filter functionality
+    function initializeSearch() {
+        // Add search input if needed
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const tables = document.querySelectorAll('.data-table tbody tr');
+                
+                tables.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        }
+    }
+
+    // Initialize all functionality when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeTabs();
+        initializeMobileMenu();
+        initializeThemeToggle();
+        initializeSearch();
+        
+        // Handle modal close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('userModal');
+                if (modal && modal.classList.contains('show')) {
+                    closeUserModal();
+                }
+            }
+        });
+        
+        // Handle modal background click
+        const modal = document.getElementById('userModal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeUserModal();
+                }
+            });
+        }
+        
+        // Show notifications from PHP
+        
+        
+        // Auto-refresh data every 30 seconds
+        setInterval(function() {
+            if (!document.getElementById('userModal').classList.contains('show')) {
+                // Only refresh if modal is not open
+                const currentUrl = new URL(window.location);
+                if (!currentUrl.searchParams.has('view_user')) {
+                    // Refresh page silently
+                    window.location.reload();
+                }
+            }
+        }, 30000);
+    });    // Rejection Modal Functionality
+    function showRejectionModal(userId, userType) {
+        const rejectionModal = document.getElementById('rejectionModal');
+        if (!rejectionModal) {
+            // Create the modal if it doesn't exist
+            const modalHtml = `
+                <div id="rejectionModal" class="modal">
+                    <div class="modal-dialog" style="max-width: 500px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Rejection Reason</h2>
+                                <button type="button" class="modal-close" onclick="closeRejectionModal()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <form id="rejectionForm" method="post" action="process_verification.html" onsubmit="return validateRejection()">
+                                <div class="modal-body">
+                                    <p>Please provide a reason for rejecting this verification request:</p>
+                                    <textarea name="rejection_reason" id="rejectionReason" 
+                                        class="form-control" 
+                                        style="width: 100%; min-height: 100px; padding: 8px; margin-top: 10px; border: 1px solid #ddd; border-radius: 4px;"
+                                        required></textarea>
+                                    <input type="hidden" name="user_id" id="rejectionUserId">
+                                    <input type="hidden" name="user_type" id="rejectionUserType">
+                                    <input type="hidden" name="action" value="reject">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" onclick="closeRejectionModal()">Cancel</button>
+                                    <button type="submit" class="btn btn-delete">Confirm Rejection</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        // Set the form values
+        document.getElementById('rejectionUserId').value = userId;
+        document.getElementById('rejectionUserType').value = userType;
+        document.getElementById('rejectionReason').value = '';
+        
+        // Show the modal
+        document.getElementById('rejectionModal').classList.add('show');
+    }
+
+    function closeRejectionModal() {
+        const modal = document.getElementById('rejectionModal');
+        if (modal) {
+            modal.classList.remove('show');
+        }
+    }
+
+    function validateRejection() {
+        const reason = document.getElementById('rejectionReason').value.trim();
+        if (!reason) {
+            alert('Please provide a reason for rejection.');
+            return false;
+        }
+        return true;
+    }
+
+    // Additional utility functions
+    function formatDate(dateString) {
+        const options = { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            showNotification('Copied to clipboard!', 'success');
+        }).catch(function() {
+            showNotification('Failed to copy to clipboard', 'error');
+        });
+    }
+
+    // Export functionality (if needed)
+    function exportVerifications() {
+        const csvContent = generateCSV();
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `verification_requests_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function generateCSV() {
+        // Implementation for CSV generation would go here
+        return 'ID,Email,Name,Type,Status,Date\n'; // Placeholder
+    }
+</script>
+</body>
 </html>

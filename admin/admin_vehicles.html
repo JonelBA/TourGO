@@ -1,14 +1,15 @@
-<!DOCTYPE html>
 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Admin - Vehicle Management | TourGo</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
-<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Vehicle Management | TourGo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="../public/assets/css/admin-dashboard.css" rel="stylesheet">
+    <style>
         /* Vehicle Page Specific Styles */
         .vehicle-page {
             padding: 40px 0;
@@ -639,183 +640,281 @@
     appearance: none;
 }
     </style>
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
 </head>
 <body>
-<div class="admin-dashboard">
-<header class="admin-header">
-<div class="admin-header-content">
-<div class="logo-area">
-<div class="logo">
-<i class="fas fa-car-side"></i>
-<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-</div>
-</div>
-<div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
-<i class="fas fa-moon"></i>
-</button>
-<div class="profile-dropdown">
-<div class="profile-toggle">
-<img alt="Admin" src="https://avatar.iran.liara.run/public/boy?username=Admin"/>
-<span>Admin</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="profile-menu">
-<a class="profile-menu-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</div>
-<div class="menu-toggle">
-<i class="fas fa-bars"></i>
-</div>
-</div>
-</div>
-</header>
-<div class="dashboard-content">
-<!-- Sidebar -->
-<aside class="admin-sidebar">
-<div class="sidebar-nav">
-<div class="sidebar-header">MAIN MENU</div>
-<a class="sidebar-item" href="admin_dashboard.html">
-<i class="fas fa-tachometer-alt"></i>
-<span>Dashboard</span>
-</a>
-<a class="sidebar-item" href="manage_users.html">
-<i class="fas fa-users"></i>
-<span>Users</span>
-</a>
-<a class="sidebar-item active" href="admin_vehicles.html">
-<i class="fas fa-car"></i>
-<span>Vehicles</span>
-</a>
-<a class="sidebar-item" href="admin_bookings.html">
-<i class="fas fa-calendar-alt"></i>
-<span>Bookings</span>
-</a>
-<a class="sidebar-item" href="reports.html">
-<i class="fas fa-chart-line"></i>
-<span>Reports</span>
-</a>
-<div class="sidebar-header">SYSTEM</div>
-<a class="sidebar-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="main-content">
-<!-- Dashboard Header -->
-<div class="section-title-wrapper">
-<span class="section-subtitle">Vehicle Management</span>
-<h1 class="section-title">All Vehicles</h1>
-<p class="section-description">View and manage all vehicles registered on the platform.</p>
-</div>
+    <div class="admin-dashboard">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="logo-area">
+                    <div class="logo">
+                        <i class="fas fa-car-side"></i>
+                        <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
+                                                <img src="https://avatar.iran.liara.run/public/boy?username=Admin" alt="Admin">
+                                                <span>Admin</span>
+                    </div>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
 
+        <div class="dashboard-content">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="sidebar-nav">
+                    <div class="sidebar-header">MAIN MENU</div>
+                    <a href="admin_dashboard.html" class="sidebar-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="manage_users.html" class="sidebar-item">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                    <a href="admin_vehicles.html" class="sidebar-item active">
+                        <i class="fas fa-car"></i>
+                        <span>Vehicles</span>
+                    </a>
+                    <a href="admin_bookings.html" class="sidebar-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Bookings</span>
+                    </a>
+                    <a href="reports.html" class="sidebar-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </a>
+                    <div class="sidebar-header">SYSTEM</div>
+                    <a href="../auth/logout.html" class="sidebar-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </aside>
 
-<div class="content-card">
-<div class="section-header">
-<div class="section-title">
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Header -->
+                <div class="section-title-wrapper">
+                    <span class="section-subtitle">Vehicle Management</span>
+                    <h1 class="section-title">All Vehicles</h1>
+                    <p class="section-description">View and manage all vehicles registered on the platform.</p>
+                </div>
+<div class="alert alert-success">Vehicle has been deleted successfully!</div>
+                    
+                        <div class="alert alert-danger">Error deleting vehicle. It might have active bookings.</div>
+                    
+                
+
+                <div class="content-card">
+                    <div class="section-header">
+                        <div class="section-title">
                              Vehicles Found
                             
                                 <span style="font-size: 14px; color: #666; font-weight: normal;">for ""</span>
-</div>
-<div class="section-controls">
-<form action="admin_vehicles.html" id="searchFilterSortForm" method="GET" style="display: flex; gap: 15px; align-items: center;">
-<div class="search-container">
-<input class="search-input" name="search" placeholder="Search make, model, agency..." type="text" value=""/>
-<i class="fas fa-search search-icon"></i>
-</div>
-<select class="dropdown-button" name="filter" style="min-width:120px;">
-<option value="all">All Vehicles</option>
-<option value="available">Available</option>
-<option value="unavailable">Unavailable</option>
-</select>
-<select class="dropdown-button" name="sort" style="min-width:150px;">
-<option value="newest">Newest First</option>
-<option value="price_low">Price: Low to High</option>
-<option value="price_high">Price: High to Low</option>
-<option value="popular">Most Popular</option>
-</select>
-<button class="btn btn-outline" type="submit">Apply</button>
-</form>
-</div>
-</div>
-<div id="grid-view">
-<div class="vehicles-grid">
-<div class="vehicle-card">
-<div class="vehicle-image">
-<img alt="" src="../public/assets/images/guest-avatar.svg"/>
-<div class="vehicle-status status-">
-</div>
-</div>
-<div class="vehicle-details">
-<h3 class="vehicle-title"></h3>
-<div class="agency-info">
-<i class="fas fa-building"></i>
-</div>
-<div class="vehicle-features">
-<span class="feature"><i class="fas fa-users"></i>  Seats</span>
-<span class="feature"><i class="fas fa-cogs"></i> </span>
-<span class="feature"><i class="fas fa-gas-pump"></i> </span>
-</div>
-<div class="vehicle-meta">
-<span class="vehicle-price">
+                            
+                        </div>
+                        <div class="section-controls">
+                            <form action="admin_vehicles.html" method="GET" id="searchFilterSortForm" style="display: flex; gap: 15px; align-items: center;">
+                                <div class="search-container">
+                                    <input type="text" name="search" class="search-input" placeholder="Search make, model, agency..." value="">
+                                    <i class="fas fa-search search-icon"></i>
+                                </div>
+                                <select name="filter" class="dropdown-button" style="min-width:120px;">
+                                    <option value="all" >All Vehicles</option>
+                                    <option value="available" >Available</option>
+                                    <option value="unavailable" >Unavailable</option>
+                                </select>
+                                <select name="sort" class="dropdown-button" style="min-width:150px;">
+                                    <option value="newest" >Newest First</option>
+                                    <option value="price_low" >Price: Low to High</option>
+                                    <option value="price_high" >Price: High to Low</option>
+                                    <option value="popular" >Most Popular</option>
+                                </select>
+                                <button type="submit" class="btn btn-outline">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="grid-view">
+                        
+                        <div class="vehicles-grid">
+                            
+                            <div class="vehicle-card">
+                                <div class="vehicle-image">
+                                    <img src="" alt="">
+                                    <div class="vehicle-status status-">
+                                        
+                                    </div>
+                                </div>
+                                <div class="vehicle-details">
+                                    <h3 class="vehicle-title"></h3>
+                                    <div class="agency-info">
+                                        <i class="fas fa-building"></i> 
+                                    </div>
+                                    <div class="vehicle-features">
+                                        
+                                            <span class="feature"><i class="fas fa-users"></i>  Seats</span>
+                                        
+                                        
+                                            <span class="feature"><i class="fas fa-cogs"></i> </span>
+                                        
+                                        
+                                            <span class="feature"><i class="fas fa-gas-pump"></i> </span>
+                                        
+                                    </div>
+                                    <div class="vehicle-meta">
+                                        <span class="vehicle-price">
                                             ₱
                                             <span class="price-period">/day</span>
-</span>
-<span class="vehicle-type-badge"></span>
-</div>
-<div class="vehicle-stats">
-<div class="stat">
-<span class="stat-value">%</span>
-<span class="stat-label">Popularity</span>
-</div>
-<div class="stat">
-<span class="stat-value"> <i class="fas fa-star" style="color: #fdcc0d;"></i></span>
-<span class="stat-label">Rating</span>
-</div>
-<div class="stat">
-<span class="stat-value"></span>
-<span class="stat-label">Bookings</span>
-</div>
-</div>
-<div class="vehicle-actions">
-<a class="btn btn-outline btn-icon" href="view_vehicle.html?id=">
-<i class="fas fa-eye"></i>
+                                        </span>
+                                        <span class="vehicle-type-badge"></span>
+                                    </div>
+                                    <div class="vehicle-stats">
+                                        <div class="stat">
+                                            <span class="stat-value">%</span>
+                                            <span class="stat-label">Popularity</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value"> <i class="fas fa-star" style="color: #fdcc0d;"></i></span>
+                                            <span class="stat-label">Rating</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value"></span>
+                                            <span class="stat-label">Bookings</span>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-actions">
+                                        <a href="view_vehicle.html?id=" class="btn btn-outline btn-icon">
+                                            <i class="fas fa-eye"></i>
                                             View
                                         </a>
-<a class="btn btn-danger-outline btn-icon delete-vehicle-btn" href="#">
-<i class="fas fa-trash-alt"></i>
+                                        <a href="delete_vehicle.html?id=" class="btn btn-danger-outline btn-icon delete-vehicle-btn" onclick="return confirm('Are you sure you want to delete this vehicle? This cannot be undone.');">
+                                            <i class="fas fa-trash-alt"></i>
                                             Delete
                                         </a>
-</div>
-</div>
-</div>
-</div>
-<div class="no-data-message">
-<i class="fas fa-car-side"></i>
-<h3>No vehicles found</h3>
-<p>No vehicles match your current filter or search criteria.</p>
-</div>
-</div>
-<div class="pagination">
-<a class="page-link" href="?page=&amp;search=&amp;filter=&amp;sort=">
-<i class="fas fa-chevron-left"></i>
-</a>
-<a class="page-link" href="?page=&amp;search=&amp;filter=&amp;sort=">
-</a>
-<a class="page-link" href="?page=&amp;search=&amp;filter=&amp;sort=">
-<i class="fas fa-chevron-right"></i>
-</a>
-</div>
-</div>
-</main>
-</div>
-</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="no-data-message">
+                            <i class="fas fa-car-side"></i>
+                            <h3>No vehicles found</h3>
+                            <p>No vehicles match your current filter or search criteria.</p>
+                        </div>
+                        
+                    </div>
 
+                    
+                    <div class="pagination">
+                        
+                        <a href="?page=&search=&filter=&sort=" class="page-link">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                        
 
-<script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
+                        
+                        <a href="?page=&search=&filter=&sort=" class="page-link ">
+                            
+                        </a>
+                        
+
+                         
+
+                        
+                        <a href="?page=&search=&filter=&sort=" class="page-link">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        // Toggle Sidebar
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-collapsed');
+            
+            // For mobile view
+            document.querySelector('.admin-sidebar').classList.toggle('active');
+            
+            // Create or toggle backdrop for mobile
+            let backdrop = document.querySelector('.sidebar-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'sidebar-backdrop';
+                document.body.appendChild(backdrop);
+            }
+            backdrop.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.admin-sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const backdrop = document.querySelector('.sidebar-backdrop');
+            
+            if (sidebar && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
+            }
+        });
+
+        // Toggle Theme (Dark/Light)
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            const themeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', themeMode);
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (themeMode === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            localStorage.setItem('theme', themeMode);
+        });
+
+        // Set initial theme from local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggleIcon = document.querySelector('.theme-toggle i');
+            if (savedTheme === 'dark') {
+                themeToggleIcon.classList.remove('fa-moon');
+                themeToggleIcon.classList.add('fa-sun');
+            }
+        }
+
+        // Delete vehicle confirmation
+        document.querySelectorAll('.delete-vehicle-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                if (!confirm('Are you sure you want to delete this vehicle? This cannot be undone.')) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
 </html>

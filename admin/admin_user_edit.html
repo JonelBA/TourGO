@@ -1,14 +1,15 @@
-<!DOCTYPE html>
 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Edit User - TourGo Admin</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
-<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
-<style>        /* Add this to your existing style block */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User - TourGo Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/assets/css/admin-dashboard.css">
+    <style>        /* Add this to your existing style block */
 textarea.form-control {
     resize: none;
     min-height: 100px;
@@ -24,143 +25,152 @@ textarea.form-control:focus {
     outline: none;
 }
     </style>
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
 </head>
 <body>
-<div class="admin-dashboard">
-<header class="admin-header">
-<div class="admin-header-content">
-<div class="logo-area">
-<div class="logo">
-<i class="fas fa-car-side"></i>
-<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-</div>
-</div>
-<div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
-<i class="fas"></i>
-</button>
-<div class="profile-dropdown">
-<div class="profile-toggle">
-<img alt="Admin" src="https://avatar.iran.liara.run/public/boy?username=Admin"/>
-<span>Admin</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="profile-menu">
-<a class="profile-menu-item" href="admin_dashboard.html">
-<i class="fas fa-user-cog"></i>
-<span>Admin Profile</span>
-</a>
-<a class="profile-menu-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</div>
-<div class="menu-toggle">
-<i class="fas fa-bars"></i>
-</div>
-</div>
-</div>
-</header>
-<div class="dashboard-content">
-<aside class="admin-sidebar">
-<div class="sidebar-nav">
-<div class="sidebar-header">MAIN MENU</div>
-<a class="sidebar-item" href="admin_dashboard.html">
-<i class="fas fa-tachometer-alt"></i>
-<span>Dashboard</span>
-</a>
-<a class="sidebar-item active" href="manage_users.html">
-<i class="fas fa-users"></i>
-<span>Users</span>
-</a>
-<a class="sidebar-item" href="admin_vehicles.html">
-<i class="fas fa-car"></i>
-<span>Vehicles</span>
-</a>
-<a class="sidebar-item" href="admin_bookings.html">
-<i class="fas fa-calendar-alt"></i>
-<span>Bookings</span>
-</a>
-<a class="sidebar-item" href="reports.html">
-<i class="fas fa-chart-line"></i>
-<span>Reports</span>
-</a>
-<div class="sidebar-header">SYSTEM</div>
-<a class="sidebar-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</aside>
-<main class="main-content">
-<div class="section-header">
-<div class="section-title">Edit User</div>
-<div class="action-buttons">
-<a class="btn btn-outline" href="admin_user_view.html?id=">
-<i class="fas fa-arrow-left"></i> Back to View
-                    </a>
-</div>
-</div>
-<form class="user-edit-form" method="POST">
-<div class="form-section">
-<h3 class="section-title">Account Status</h3>
-<div class="form-group">
-<label class="checkbox-label">
-<input name="is_active" type="checkbox"/>
-<span class="checkbox-custom"></span>
-<span>Active Account</span>
-</label>
-<p class="form-help">Uncheck to deactivate this user's account</p>
-</div>
-</div>
-<div class="form-section">
-<h3 class="section-title">Verification Status</h3>
-<div class="form-group">
-<div class="radio-group">
-<label class="radio-label">
-<input name="verification_status" type="radio" value="approved"/>
-<span class="radio-custom"></span>
-<span>Approved</span>
-</label> <label class="radio-label">
-<input name="verification_status" type="radio" value="pending"/>
-<span class="radio-custom"></span>
-<span>Pending</span>
-</label>
-</div>
-</div>
-</div>
-<div class="form-section">
-<h3 class="section-title">Verification Status</h3>
-<div class="form-group">
-<div class="radio-group">
-<label class="radio-label">
-<input name="verification_status" type="radio" value="verified"/>
-<span class="radio-custom"></span>
-<span>Verified</span>
-</label>
-<label class="radio-label">
-<input name="verification_status" type="radio" value="pending"/>
-<span class="radio-custom"></span>
-<span>Pending</span>
-</label>
-<label class="radio-label"> <input name="verification_status" type="radio" value="unverified"/>
-<span class="radio-custom"></span>
-<span>Unverified</span>
-</label>
-</div>
-</div>
-</div>
-<div class="form-actions">
-<button class="btn btn-primary" type="submit">
-<i class="fas fa-save"></i> Save Changes
+    <div class="admin-dashboard">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="logo-area">
+                    <div class="logo">
+                        <i class="fas fa-car-side"></i>
+                        <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas "></i>
                     </button>
-<a class="btn btn-outline" href="admin_user_view.html?id=">
+                    <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
+                                                <img src="https://avatar.iran.liara.run/public/boy?username=Admin" alt="Admin">
+                                                <span>Admin</span>
+                    </div>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <aside class="admin-sidebar">
+                <div class="sidebar-nav">
+                    <div class="sidebar-header">MAIN MENU</div>
+                    <a href="admin_dashboard.html" class="sidebar-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="manage_users.html" class="sidebar-item active">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                    <a href="admin_vehicles.html" class="sidebar-item">
+                        <i class="fas fa-car"></i>
+                        <span>Vehicles</span>
+                    </a>
+                    <a href="admin_bookings.html" class="sidebar-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Bookings</span>
+                    </a>
+                    <a href="admin_reports.html" class="sidebar-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </a>
+                    <div class="sidebar-header">SYSTEM</div>
+                    <a href="../auth/logout.html" class="sidebar-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </aside>
+
+        <main class="main-content">
+            <div class="section-header">
+                <div class="section-title">Edit User</div>
+                <div class="action-buttons">
+                    <a href="admin_user_view.html?id=" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to View
+                    </a>
+                </div>
+            </div>
+
+            <form method="POST" class="user-edit-form">
+                <div class="form-section">
+                    <h3 class="section-title">Account Status</h3>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="is_active" >
+                            <span class="checkbox-custom"></span>
+                            <span>Active Account</span>
+                        </label>
+                        <p class="form-help">Uncheck to deactivate this user's account</p>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <h3 class="section-title">Verification Status</h3>
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="verification_status" value="approved" 
+                                    >
+                                <span class="radio-custom"></span>
+                                <span>Approved</span>
+                            </label>                            <label class="radio-label">
+                                <input type="radio" name="verification_status" value="pending" 
+                                    >
+                                <span class="radio-custom"></span>
+                                <span>Pending</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+<div class="form-section">
+    <h3 class="section-title">Verification Status</h3>
+    <div class="form-group">
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="verification_status" value="verified" 
+                    >
+                <span class="radio-custom"></span>
+                <span>Verified</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="verification_status" value="pending" 
+                    >
+                <span class="radio-custom"></span>
+                <span>Pending</span>
+            </label>
+            <label class="radio-label">                <input type="radio" name="verification_status" value="unverified" 
+                    >
+                <span class="radio-custom"></span>
+                <span>Unverified</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a href="admin_user_view.html?id=" class="btn btn-outline">
                         Cancel
                     </a>
-</div>
-</form>
-</main> </div> 
-
-</div><script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
+                </div>
+            </form>
+        </main>    </div>    <script src="../public/assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeThemeToggle();
+            initializeHeaderFunctionality();
+        });
+    </script>
+</body>
 </html>

@@ -1,15 +1,15 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-<title>TourGo - Admin Dashboard</title><link href="/Tour-GO/public/assets/images/tourgo-favicon.svg" rel="icon" type="image/svg+xml"/><link href="/Tour-GO/public/assets/images/tourgo-favicon.png" rel="icon" sizes="64x64" type="image/png"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css" rel="stylesheet"/>
-<link href="../public/assets/css/admin-dashboard.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TourGo - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/assets/css/admin-dashboard.css">
+    <style>
         
     /* Data Table Dark Theme Enhancements */
     [data-theme="dark"] .data-table {
@@ -252,305 +252,595 @@
 }
 
     </style>
+    <link rel="icon" type="image/svg+xml" href="../public/assets/images/tourgo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="../public/assets/images/tourgo-favicon.png">
 </head>
 <body>
-<div class="admin-dashboard">
-<header class="admin-header">
-<div class="admin-header-content">
-<div class="logo-area">
-<div class="logo">
-<a href="admin_dashboard.html">
-<i class="fas fa-car-side"></i>
-<span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
-</a>
-</div>
-</div>
-<div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
-<i class="fas fa-moon"></i>
-</button>
-<div class="profile-dropdown">
-<div class="profile-toggle">
-<img alt="Admin" src="https://avatar.iran.liara.run/public/boy?username=Admin"/>
-<span>Admin</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="profile-menu">
-<a class="profile-menu-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</div>
-<div class="menu-toggle">
-<i class="fas fa-bars"></i>
-</div>
-</div>
-</div>
-</header>
-<div class="dashboard-content">
-<!-- Sidebar -->
-<aside class="admin-sidebar">
-<div class="sidebar-nav">
-<div class="sidebar-header">MAIN MENU</div>
-<a class="sidebar-item active" href="admin_dashboard.html">
-<i class="fas fa-tachometer-alt"></i>
-<span>Dashboard</span>
-</a>
-<a class="sidebar-item" href="manage_users.html">
-<i class="fas fa-users"></i>
-<span>Users</span>
-</a>
-<a class="sidebar-item" href="admin_vehicles.html">
-<i class="fas fa-car"></i>
-<span>Vehicles</span>
-</a>
-<a class="sidebar-item" href="admin_bookings.html">
-<i class="fas fa-calendar-alt"></i>
-<span>Bookings</span>
-</a>
-<a class="sidebar-item" href="reports.html">
-<i class="fas fa-chart-line"></i>
-<span>Reports</span>
-</a>
-<div class="sidebar-header">SYSTEM</div>
-<a class="sidebar-item" href="../auth/logout.html">
-<i class="fas fa-sign-out-alt"></i>
-<span>Logout</span>
-</a>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="main-content">
-<!-- Dashboard Header -->
-<div class="section-title-wrapper">
-<span class="section-subtitle">Dashboard Overview</span>
-<h1 class="section-title">Admin Dashboard</h1>
-<p class="section-description">Welcome to the TourGo administration panel. Monitor system statistics and manage platform activities.</p>
-</div>
-<!-- Dashboard Stats -->
-<div class="dashboard-stats">
-<div class="stat-card">
-<div class="stat-card-icon">
-<i class="fas fa-users"></i>
-</div>
-<div class="stat-card-title">Total Users</div>
-<div class="stat-card-value"></div>
-<div class="stat-card-trend">
-<i class="fas fa-arrow-"></i>
+    <div class="admin-dashboard">
+        <header class="admin-header">
+        <div class="admin-header-content">
+            <div class="logo-area">
+                <div class="logo">
+                    <a href="admin_dashboard.html">
+                    <i class="fas fa-car-side"></i>
+                    <span><span style="color: var(--text-dark);">Tour</span><span style="color: var(--text-light);">Go</span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="profile-toggle admin-profile-static" aria-label="Admin account" tabindex="-1">
+                                        <img src="https://avatar.iran.liara.run/public/boy?username=Admin" alt="Admin">
+                                        <span>Admin</span>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <div class="dashboard-content">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="sidebar-nav">
+                    <div class="sidebar-header">MAIN MENU</div>
+                    <a href="admin_dashboard.html" class="sidebar-item active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="manage_users.html" class="sidebar-item">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                    <a href="admin_vehicles.html" class="sidebar-item">
+                        <i class="fas fa-car"></i>
+                        <span>Vehicles</span>
+                    </a>
+                    <a href="admin_bookings.html" class="sidebar-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Bookings</span>
+                    </a>
+                    <a href="reports.html" class="sidebar-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </a>
+                    <div class="sidebar-header">SYSTEM</div>
+                    <a href="../auth/logout.html" class="sidebar-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Header -->
+                <div class="section-title-wrapper">
+                    <span class="section-subtitle">Dashboard Overview</span>
+                    <h1 class="section-title">Admin Dashboard</h1>
+                    <p class="section-description">Welcome to the TourGo administration panel. Monitor system statistics and manage platform activities.</p>
+                </div>
+
+                <!-- Dashboard Stats -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-card-title">Total Users</div>
+                        <div class="stat-card-value"></div>
+                        <div class="stat-card-trend ">
+                            <i class="fas fa-arrow-"></i>
                             % this month
                         </div>
-</div>
-<div class="stat-card">
-<div class="stat-card-icon">
-<i class="fas fa-user"></i>
-</div>
-<div class="stat-card-title">Customers</div>
-<div class="stat-card-value"></div>
-<div class="stat-card-trend">
-<i class="fas fa-arrow-"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="stat-card-title">Customers</div>
+                        <div class="stat-card-value"></div>
+                        <div class="stat-card-trend ">
+                            <i class="fas fa-arrow-"></i>
                             % this month
                         </div>
-</div>
-<div class="stat-card">
-<div class="stat-card-icon">
-<i class="fas fa-building"></i>
-</div>
-<div class="stat-card-title">Agencies</div>
-<div class="stat-card-value"></div>
-<div class="stat-card-trend">
-<i class="fas fa-arrow-"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-card-title">Agencies</div>
+                        <div class="stat-card-value"></div>
+                        <div class="stat-card-trend ">
+                            <i class="fas fa-arrow-"></i>
                             % this month
                         </div>
-</div>
-<div class="stat-card">
-<div class="stat-card-icon">
-<i class="fas fa-calendar-check"></i>
-</div>
-<div class="stat-card-title">Bookings</div>
-<div class="stat-card-value"></div>
-<div class="stat-card-trend">
-<i class="fas fa-arrow-"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-card-title">Bookings</div>
+                        <div class="stat-card-value"></div>
+                        <div class="stat-card-trend ">
+                            <i class="fas fa-arrow-"></i>
                             % this month
                         </div>
-</div>
-</div>
-<!-- Replace the Recent Users Section with this All Users Section -->
+                    </div>
+                </div>
+
+                 <!-- Replace the Recent Users Section with this All Users Section -->
 <div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">All Users</div>
-</div>
-<table class="data-table">
-<thead>
+    <div class="section-header">
+        <div class="section-title">All Users</div>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            
 <tr>
-<th>User</th>
-<th>Email</th>
-<th>Type</th>
-<th>Joined</th>
-<th>Status</th>
-<th>Actions</th>
+    <td>
+        <div class="user-info">
+            <img src="" 
+                 alt="User Avatar" 
+                 class="user-avatar"
+                 onerror="this.src='https://avatar.iran.liara.run/public/?username='">
+            <div></div>
+        </div>
+    </td>
+    <td></td>
+    <td>
+        <span class="badge badge-">
+            
+        </span>
+    </td>
+    <td></td>
+    <td>
+        <span class="status-badge ">
+            
+        </span>
+        
+        <span class="status-badge ">
+            
+        </span>
+        
+    </td>
+    <td>
+        <div class="actions">
+            <a href="admin_user_view.html?id=" class="btn btn-sm btn-view">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="admin_user_edit.html?id=" class="btn btn-sm btn-edit">
+                <i class="fas fa-edit"></i>
+            </a>
+            
+            <a href="delete_user.html?id=" class="btn btn-sm btn-delete" 
+               onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+                <i class="fas fa-trash"></i>
+            </a>
+            
+        </div>
+    </td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="user-info">
-<img alt="User Avatar" class="user-avatar" onerror="this.src='https://avatar.iran.liara.run/public/?username='" src="../public/assets/images/guest-avatar.svg"/>
-<div></div>
+
+        </tbody>
+    </table>
 </div>
-</td>
-<td></td>
-<td>
-<span class="badge badge-">
-</span>
-</td>
-<td></td>
-<td>
-<span class="status-badge">
-</span>
-<span class="status-badge">
-</span>
-</td>
-<td>
-<div class="actions">
-<a class="btn btn-sm btn-view" href="admin_user_view.html?id=">
-<i class="fas fa-eye"></i>
-</a>
-<a class="btn btn-sm btn-edit" href="admin_user_edit.html?id=">
-<i class="fas fa-edit"></i>
-</a>
-<a class="btn btn-sm btn-delete" href="#">
-<i class="fas fa-trash"></i>
-</a>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Recent Vehicles Section -->
+
+                <!-- Recent Vehicles Section -->
 <div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">Recent Vehicles</div>
-<a class="btn btn-primary" href="admin_vehicles.html">
-<i class="fas fa-eye"></i> View All Vehicles
+    <div class="section-header">
+        <div class="section-title">Recent Vehicles</div>
+        <a href="admin_vehicles.html" class="btn btn-primary">
+            <i class="fas fa-eye"></i> View All Vehicles
         </a>
+    </div>
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Type</th>
+                    <th>Agency</th>
+                    <th>Status</th>
+                    <th>Added Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>
+                        <div class="vehicle-info">
+                            
+                            <img src="" alt="Vehicle" class="vehicle-thumbnail">
+                            <span></span>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="status-badge ">
+                            
+                        </span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="actions">
+                            <a href="view_vehicle.html?id=" class="btn btn-sm btn-view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="table-responsive">
-<table class="data-table">
-<thead>
-<tr>
-<th>Vehicle</th>
-<th>Type</th>
-<th>Agency</th>
-<th>Status</th>
-<th>Added Date</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="vehicle-info">
-<img alt="Vehicle" class="vehicle-thumbnail" src="../public/assets/images/guest-avatar.svg"/>
-<span></span>
-</div>
-</td>
-<td></td>
-<td></td>
-<td>
-<span class="status-badge">
-</span>
-</td>
-<td></td>
-<td>
-<div class="actions">
-<a class="btn btn-sm btn-view" href="view_vehicle.html?id=">
-<i class="fas fa-eye"></i>
-</a>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+
 <!-- Recent Bookings Section -->
 <div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">Recent Bookings</div>
-<a class="btn btn-primary" href="admin_bookings.html">
-<i class="fas fa-eye"></i> View All Bookings
+    <div class="section-header">
+        <div class="section-title">Recent Bookings</div>
+        <a href="admin_bookings.html" class="btn btn-primary">
+            <i class="fas fa-eye"></i> View All Bookings
         </a>
+    </div>
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Customer</th>
+                    <th>Vehicle</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>#</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="status-badge ">
+                            
+                        </span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="actions">
+                            <a href="view_booking.html?id=" class="btn btn-sm btn-view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="table-responsive">
-<table class="data-table">
-<thead>
-<tr>
-<th>Booking ID</th>
-<th>Customer</th>
-<th>Vehicle</th>
-<th>Status</th>
-<th>Date</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>#</td>
-<td></td>
-<td></td>
-<td>
-<span class="status-badge">
-</span>
-</td>
-<td></td>
-<td>
-<div class="actions">
-<a class="btn btn-sm btn-view" href="view_booking.html?id=">
-<i class="fas fa-eye"></i>
-</a>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Analytics Section -->
-<div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">Booking Analytics</div>
-<div class="btn btn-outline">Last 30 Days</div>
-</div>
-<div class="chart-container">
-<canvas id="bookingsChart"></canvas>
-</div>
-</div>
-<!-- Two Column Analytics -->
-<div class="analytics-grid">
-<div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">User Distribution</div>
-</div>
-<div class="chart-container">
-<canvas id="userDistributionChart"></canvas>
-</div>
-</div>
-<div class="dashboard-section">
-<div class="section-header">
-<div class="section-title">Top Vehicle Categories</div>
-</div>
-<div class="chart-container">
-<canvas id="vehicleCategoriesChart"></canvas>
-</div>
-</div>
-</div>
-</main>
-</div>
-</div>
-<!-- Scripts -->
+                <!-- Analytics Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <div class="section-title">Booking Analytics</div>
+                        <div class="btn btn-outline">Last 30 Days</div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="bookingsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Two Column Analytics -->
+                <div class="analytics-grid">
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <div class="section-title">User Distribution</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="userDistributionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <div class="section-title">Top Vehicle Categories</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="vehicleCategoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        // Bookings Chart Data from PHP
+        const bookingsData = ;
+        const userDistributionData = ;
+        // Vehicle Categories Data from PHP
+        const vehicleCategoryLabels = ;
+        const vehicleCategoryCounts = ;
+
+        // Bookings Chart
+        const bookingsCtx = document.getElementById('bookingsChart').getContext('2d');
+        const bookingsChart = new Chart(bookingsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Bookings',
+                    data: bookingsData,
+                    fill: true,
+                    backgroundColor: 'rgba(77, 148, 255, 0.2)',
+                    borderColor: 'rgba(77, 148, 255, 1)',
+                    tension: 0.4,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: 'rgba(77, 148, 255, 1)',
+                    pointBorderWidth: 2,
+                    pointHoverBackgroundColor: 'rgba(77, 148, 255, 1)',
+                    pointHoverBorderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // User Distribution Chart
+        const userDistributionCtx = document.getElementById('userDistributionChart').getContext('2d');
+        const userDistributionChart = new Chart(userDistributionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Customers', 'Agencies'],
+                datasets: [{
+                    data: userDistributionData,
+                    backgroundColor: [
+                        'rgba(77, 148, 255, 0.8)',
+                        'rgba(40, 167, 69, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(77, 148, 255, 1)',
+                        'rgba(40, 167, 69, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Vehicle Categories Chart
+        const vehicleCategoriesCtx = document.getElementById('vehicleCategoriesChart').getContext('2d');
+        const vehicleCategoriesChart = new Chart(vehicleCategoriesCtx, {
+            type: 'bar',
+            data: {
+                labels: vehicleCategoryLabels,
+                datasets: [{
+                    label: 'Vehicles',
+                    data: vehicleCategoryCounts,
+                    backgroundColor: [
+                        'rgba(77, 148, 255, 0.8)',
+                        'rgba(255, 193, 7, 0.8)',
+                        'rgba(220, 53, 69, 0.8)',
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(108, 117, 125, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(77, 148, 255, 1)',
+                        'rgba(255, 193, 7, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(108, 117, 125, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-collapsed');
+            
+            // For mobile view
+            document.querySelector('.admin-sidebar').classList.toggle('active');
+            
+            // Create or toggle backdrop for mobile
+            let backdrop = document.querySelector('.sidebar-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'sidebar-backdrop';
+                document.body.appendChild(backdrop);
+            }
+            backdrop.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.admin-sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const backdrop = document.querySelector('.sidebar-backdrop');
+            
+            if (sidebar && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
+            }
+        });
+      // Toggle Theme (Dark/Light)
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            const themeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', themeMode);
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (themeMode === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            localStorage.setItem('theme', themeMode);
+        });
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script><script src="../public/assets/js/demo-fleet.js"></script><script src="../public/assets/js/admin-demo.js"></script></body>
+    function updateThemeIcon(isDark) {
+        const themeIcon = document.querySelector('.theme-toggle i');
+        if (themeIcon) {
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+
+    // Set initial theme from local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggleIcon = document.querySelector('.theme-toggle i');
+            if (savedTheme === 'dark') {
+                themeToggleIcon.classList.remove('fa-moon');
+                themeToggleIcon.classList.add('fa-sun');
+            }
+        }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.admin-sidebar');
+    let backdrop = document.querySelector('.sidebar-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    // Open sidebar
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sidebar.classList.add('active');
+        backdrop.classList.add('active');
+        document.body.classList.add('sidebar-open');
+    });
+
+    // Close sidebar when clicking backdrop
+    backdrop.addEventListener('click', function() {
+        sidebar.classList.remove('active');
+        backdrop.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+    });
+
+    // Close sidebar on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+    });
+
+    // Touch swipe support (right to open, left to close)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        const SWIPE_THRESHOLD = 100;
+        if (swipeDistance < -SWIPE_THRESHOLD && sidebar.classList.contains('active')) {
+            // Swipe left to close
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+        if (swipeDistance > SWIPE_THRESHOLD && !sidebar.classList.contains('active')) {
+            // Swipe right to open
+            sidebar.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.classList.add('sidebar-open');
+        }
+    });
+
+    // Hide sidebar on resize if desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992) {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+    });
+});
+    </script>
+</body>
 </html>
