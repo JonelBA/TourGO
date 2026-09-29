@@ -1002,11 +1002,12 @@
             
             // Initialize Revenue Chart
             const revenueChartCanvas = document.getElementById('revenueChart');
-            if (revenueChartCanvas) {
+            if (revenueChartCanvas && typeof Chart !== 'undefined') {
                 const ctx = revenueChartCanvas.getContext('2d');
                 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 
-                const revenueData = ;
+                // Static frontend fallback: PHP revenue data is not available in the demo build.
+                const revenueData = new Array(12).fill(0);
                 
                 const revenueChart = new Chart(ctx, {
                     type: 'bar',

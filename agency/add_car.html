@@ -760,7 +760,7 @@
         // More advanced tagging libraries could be used if needed.
 
         // --- Additional Services Logic ---
-        let serviceCounter = ; // Initialize counter based on POST data
+        let serviceCounter = document.querySelectorAll('#additional-services-container .additional-service-item').length; // Safe static-demo counter
         $('#addServiceBtn').click(function() {
             serviceCounter++; // Use a unique counter for new items
             const serviceHtml = `
