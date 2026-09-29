@@ -37,17 +37,28 @@
   function setText(selector, value) { document.querySelectorAll(selector).forEach(el => { el.textContent = value; }); }
 
   function setupTheme() {
+    // responsive-menu-fix.js is the single shared theme controller.
+    // Keep this legacy function as a compatibility no-op when that
+    // controller is present so the theme cannot toggle twice.
+    const buttons = document.querySelectorAll('.theme-toggle');
+    if (!buttons.length) return;
+
+    if (buttons[0].dataset.tourgoThemeReady === 'true') return;
+
     const apply = theme => {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.querySelectorAll('.theme-toggle').forEach(btn => {
+      const normalized = theme === 'dark' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', normalized);
+      try { localStorage.setItem('theme', normalized); } catch (_) {}
+      buttons.forEach(btn => {
         const icon = btn.querySelector('i');
-        if (icon) icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        if (icon) icon.className = normalized === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
       });
     };
+
     apply(localStorage.getItem('theme') || 'light');
-    document.querySelectorAll('.theme-toggle').forEach(btn => btn.addEventListener('click', () => {
+    buttons.forEach(btn => btn.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next); apply(next);
+      apply(next);
     }));
   }
 
@@ -61,9 +72,20 @@
     }
     const menuBtn = document.getElementById('menuToggleBtn');
     const nav = document.getElementById('mainNavMenu');
-    if (menuBtn && nav) {
-      menuBtn.addEventListener('click', e => { e.stopPropagation(); nav.classList.toggle('active'); menuBtn.classList.toggle('active'); });
-      document.addEventListener('click', e => { if (!nav.contains(e.target) && !menuBtn.contains(e.target)) { nav.classList.remove('active'); menuBtn.classList.remove('active'); } });
+    if (menuBtn && nav && menuBtn.dataset.tourgoMenuReady !== 'true') {
+      // Only attach the legacy fallback if the shared controller has not
+      // initialized this menu.
+      menuBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+      });
+      document.addEventListener('click', e => {
+        if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+          nav.classList.remove('active');
+          menuBtn.classList.remove('active');
+        }
+      });
     }
   }
 

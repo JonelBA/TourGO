@@ -20,19 +20,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append('pickup_date', pickupDate);
                 formData.append('return_date', returnDate);
 
-                const response = await fetch('../ajax/check_availability.php', {
-                    method: 'POST',
-                    body: formData
+                // Static frontend demo: check dates against localStorage bookings
+                // instead of calling the original PHP/AJAX endpoint.
+                let bookings = [];
+                try {
+                    bookings = JSON.parse(localStorage.getItem('tourgo_demo_bookings') || '[]');
+                    if (!Array.isArray(bookings)) bookings = [];
+                } catch (error) {
+                    bookings = [];
+                }
+
+                const requestedStart = new Date(pickupDate + 'T00:00:00');
+                const requestedEnd = new Date(returnDate + 'T00:00:00');
+
+                const overlaps = bookings.some(function (booking) {
+                    if (String(booking.vehicleId) !== String(vehicleId)) return false;
+                    if (!booking.pickupDate || !booking.returnDate) return false;
+
+                    const existingStart = new Date(booking.pickupDate + 'T00:00:00');
+                    const existingEnd = new Date(booking.returnDate + 'T00:00:00');
+
+                    return requestedStart <= existingEnd && requestedEnd >= existingStart;
                 });
 
-                const data = await response.json();
-
-                if (data.error) {
-                    showToast('Error checking availability. Please try again.', 'error');
-                } else if (!data.available) {
-                    showToast(data.message || 'Vehicle is not available for selected dates', 'error');
+                if (overlaps) {
+                    showToast('Vehicle is not available for the selected dates.', 'error');
                 } else {
-                    // If available, submit the form
                     this.submit();
                 }
             } catch (error) {
