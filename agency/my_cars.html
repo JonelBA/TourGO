@@ -890,7 +890,7 @@
                     <li><a href="contact_support.html" class="nav-link">Support</a></li>
                 </ul>
                 <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <button type="button" class="theme-toggle" aria-label="Toggle Dark Mode">
                         <i class="fas fa-moon"></i>
                     </button>
                     <div class="profile-dropdown">
@@ -927,7 +927,7 @@
                             Add New Vehicle
                         </a>
                     
-                        <button class="btn btn-primary" disabled>
+                        <button type="button" class="btn btn-primary" disabled>
                             <i class="fas fa-plus" style="margin-right: 10px;"></i>
                             Add New Vehicle
                         </button>
@@ -947,14 +947,14 @@
 
             <div class="content-card">
                 <div class="tab-controls">
-                    <button class="tab-btn active" data-tab="grid-view">Grid View</button>
-                    <button class="tab-btn" data-tab="list-view">List View</button>
+                    <button type="button" class="tab-btn active" data-tab="grid-view">Grid View</button>
+                    <button type="button" class="tab-btn" data-tab="list-view">List View</button>
                     </div>
 
                 <div class="section-header" style="margin-top: 20px;"> <div class="section-controls">
                         <form action="my_cars.html" method="GET" id="searchFilterSortForm" style="display: flex; gap: 15px; align-items: center;">
                             <div class="search-container">
-                                <input type="text" name="search" class="search-input" placeholder="Search make, model, year..." value="">
+                                <input aria-label="Search" type="text" name="search" class="search-input" placeholder="Search make, model, year..." value="">
                                 <i class="fas fa-search search-icon"></i>
                             </div>
                             <div class="filter-dropdown">
@@ -1053,7 +1053,7 @@
                         
         <a href="add_car.html" class="btn btn-primary">Add Your First Vehicle</a>
     
-        <button class="btn btn-primary" disabled>Add Your First Vehicle</button>
+        <button type="button" class="btn btn-primary" disabled>Add Your First Vehicle</button>
         <p class="mt-2 text-muted" style="font-size: 20px;">
             
                 <small><i class="fas fa-info-circle" style="font-size: 15px;"></i> Your account is pending verification</small>
@@ -1106,7 +1106,7 @@
                                 <td> <i class="fas fa-star" style="color: #fdcc0d; font-size:0.9em;"></i></td>
                                 <td>
                                     <div class="action-menu">
-                                        <button class="action-btn">
+                                        <button type="button" class="action-btn" aria-label="More actions">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="action-dropdown">
@@ -1192,7 +1192,7 @@
                     <h4 class="footer-title">Newsletter</h4>
                     <p class="footer-text">Subscribe to get special offers and updates</p>
                     <form class="newsletter-form" action="#" method="post">
-                        <input type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
+                        <input aria-label="Email address for newsletter" type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
                         <button type="submit" class="newsletter-btn">Subscribe</button>
                     </form>
                 </div>
@@ -1339,7 +1339,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h3>Account Verification Required</h3>
-            <button class="close-modal">&times;</button>
+            <button type="button" class="close-modal">&times;</button>
         </div>
         <div class="modal-body">
             
@@ -1373,7 +1373,7 @@
             
                 <a href="contact_support.html" class="btn btn-outline">Contact Support</a>
             
-            <button class="btn btn-secondary close-modal">Close</button>
+            <button type="button" class="btn btn-secondary close-modal">Close</button>
         </div>
     </div>
 </div>

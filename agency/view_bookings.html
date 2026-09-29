@@ -435,7 +435,7 @@
                     </div>
                 </div>
 
-                <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Toggle Menu">
+                <button aria-expanded="false" class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Toggle Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -458,7 +458,7 @@
         <div class="card p-4">
             <div class="booking-tools mb-4">
                 <div class="booking-tools-left">
-                    <input id="bookingSearch" class="agency-input booking-search" type="search" placeholder="Search booking, customer, vehicle, or email..." autocomplete="off">
+                    <input aria-label="Search" id="bookingSearch" class="agency-input booking-search" type="search" placeholder="Search booking, customer, vehicle, or email..." autocomplete="off">
                     <select id="bookingFilter" class="agency-select booking-filter" aria-label="Filter bookings by status">
                         <option value="all">All Statuses</option>
                         <option value="pending">Pending</option>
@@ -509,7 +509,7 @@
                 <h4 class="footer-title">Newsletter</h4>
                 <p class="footer-text">Subscribe to get special offers and updates</p>
                 <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
+                    <input aria-label="Email address for newsletter" type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
                     <button type="submit" class="newsletter-btn">Subscribe</button>
                 </form>
             </div>

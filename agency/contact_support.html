@@ -108,7 +108,7 @@
                         <a href="../auth/logout.html" class="profile-menu-item"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                     </div>
                 </div>
-                <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+                <button aria-expanded="false" class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </div>
@@ -132,13 +132,13 @@
                 <h3 class="section-title" style="margin-bottom:30px;">Agency Support Request</h3>
                 <form id="agencyContactForm" class="contact-form" novalidate>
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" value="DriveHub Rentals" placeholder="Agency Name" required>
+                        <input type="text" name="name" class="form-control" value="DriveHub Rentals" placeholder="Agency Name" required aria-label="Name">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" value="agency@tourgo.demo" placeholder="Contact Email" required>
+                        <input aria-label="Email address" type="email" name="email" class="form-control" value="agency@tourgo.demo" placeholder="Contact Email" required>
                     </div>
                     <div class="form-group">
-                        <select name="subject" class="form-control" required>
+                        <select aria-label="Subject" name="subject" class="form-control" required>
                             <option value="" disabled selected>Select Support Type</option>
                             <option value="Fleet Management">Fleet Management</option>
                             <option value="Payment Issues">Payment Issues</option>
@@ -148,7 +148,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" class="form-control" rows="5" placeholder="Describe your issue in detail" required></textarea>
+                        <textarea aria-label="Message" name="message" class="form-control" rows="5" placeholder="Describe your issue in detail" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Request</button>
                 </form>
@@ -285,7 +285,7 @@
                 <h4 class="footer-title">Newsletter</h4>
                 <p class="footer-text">Subscribe to get special offers and updates</p>
                 <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
+                    <input aria-label="Email address for newsletter" type="email" name="newsletter_email" class="newsletter-input" placeholder="Enter your email" required>
                     <button type="submit" class="newsletter-btn">Subscribe</button>
                 </form>
             </div>
