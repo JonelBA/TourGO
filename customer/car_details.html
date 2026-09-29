@@ -459,12 +459,12 @@
     <script src="../public/assets/js/script.js"></script>
     <script>
         let currentImageIdxGlobal = 0;
-        let vehicleImagesData = ; // Full data for images (path, is_primary)
-        let dailyRate = ;
-        let minRentalDays = ;
-        let maxRentalDays = ;
-        let availableFromDate = ;
-        let availableUntilDate = ;
+        let vehicleImagesData = []; // Static frontend fallback when server image data is unavailable
+        let dailyRate = 0;
+        let minRentalDays = 1;
+        let maxRentalDays = null;
+        let availableFromDate = null;
+        let availableUntilDate = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeImageGallery();
@@ -830,10 +830,17 @@ function styleUnavailableDates(bookedDates, calendar) {
 
         document.querySelector('.add-to-wishlist')?.addEventListener('click', function() {
             const btn = this, icon = btn.querySelector('i'), vehId = btn.dataset.vehicleId;
-             
-                window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search); 
-                return; 
-            
+            let loggedIn = false;
+            try {
+                const session = JSON.parse(localStorage.getItem('tourgo_demo_session') || 'null');
+                loggedIn = !!(session && session.role === 'customer');
+            } catch (error) {
+                loggedIn = false;
+            }
+            if (!loggedIn) {
+                window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+                return;
+            }
             if (!vehId) { window.showToast('error', 'Error: Vehicle ID missing.'); return; } // Use window.showToast
             const isActive = icon.classList.contains('fas'), action = isActive ? 'remove' : 'add';
             fetch('../ajax/wishlist.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `action=${action}&vehicle_id=${vehId}`})
@@ -881,7 +888,14 @@ function styleUnavailableDates(bookedDates, calendar) {
             const btn = document.getElementById('bookNowBtn'), section = document.getElementById('booking-form-section'), modal = document.getElementById('verifyModal');
             btn?.addEventListener('click', function(e) {
                 e.preventDefault();
-                const verified = this.getAttribute('data-verified') !== '0', loggedIn = ;
+                const verified = this.getAttribute('data-verified') !== '0';
+                let loggedIn = false;
+                try {
+                    const session = JSON.parse(localStorage.getItem('tourgo_demo_session') || 'null');
+                    loggedIn = !!(session && session.role === 'customer');
+                } catch (error) {
+                    loggedIn = false;
+                }
                 if (!loggedIn) { window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search + '#booking-form-section'); return; }
                 if (!verified) { if(modal) modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; } 
                 else { if(section) { section.style.display = ''; section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}

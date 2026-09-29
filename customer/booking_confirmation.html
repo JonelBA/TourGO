@@ -398,7 +398,7 @@
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
             const themeToggleIcon = document.querySelector('.theme-toggle i');
-            if themeToggleIcon) {
+            if (themeToggleIcon) {
                 if (savedTheme === 'dark') {
                     themeToggleIcon.classList.remove('fa-moon');
                     themeToggleIcon.classList.add('fa-sun');

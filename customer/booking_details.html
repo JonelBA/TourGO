@@ -813,7 +813,7 @@
         }
 
 let currentImageIndex = 0;
-let vehicleImages = ;
+let vehicleImages = [];
 
 // Function to change gallery image
 function changeGalleryImage(direction) {
@@ -828,6 +828,7 @@ function changeGalleryImage(direction) {
     }
     
     const mainImage = document.getElementById('mainImage');
+    if (!mainImage) return;
     mainImage.src = '../uploads/vehicles/' + vehicleImages[currentImageIndex].image_path;
     
     // Update thumbnail active state
@@ -856,6 +857,7 @@ function updateImageCounter() {
 // Function to change main image when clicking thumbnails
 function changeMainImage(imagePath, thumbnailElement) {
     const mainImage = document.getElementById('mainImage');
+    if (!mainImage || !imagePath) return;
     mainImage.src = '../uploads/vehicles/' + imagePath;
     
     // Update active thumbnail
@@ -871,8 +873,12 @@ function changeMainImage(imagePath, thumbnailElement) {
 
 // Initialize gallery on page load
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize image counter
+    // Initialize image counter and provide a local fallback image for the static frontend.
     updateImageCounter();
+    if (vehicleImages.length === 0) {
+        const fallbackImage = document.getElementById('mainImage');
+        if (fallbackImage) fallbackImage.src = '../public/assets/images/car.png';
+    }
 
     // Add keyboard navigation
     document.addEventListener('keydown', function(e) {

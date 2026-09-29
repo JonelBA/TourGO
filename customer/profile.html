@@ -295,9 +295,9 @@
                                 <span> Account</span>
                             </div>
                             <div class="completion-progress">
-                                <div class="completion-text">Profile Completion: %</div>
+                                <div class="completion-text">Profile Completion: 0%</div>
                                 <div class="progress-bar">
-                                    <div class="progress-fill" style="width: %"></div>
+                                    <div class="progress-fill" style="width: 0%"></div>
                                 </div>
                             </div>
                         </div>
@@ -794,22 +794,22 @@
         }
 
         const progressFill = document.querySelector('.progress-fill');
-        if (progressFill) { setTimeout(() => { progressFill.style.width = '%'; }, 300); }    
+        if (progressFill) { setTimeout(() => { progressFill.style.width = completionPercentage + '%'; }, 300); }    
 
         const termsCheckbox = document.getElementById('terms_agreement');
         const requestVerificationBtn = document.getElementById('requestVerificationBtn');
         const verificationBlockerMsg = document.getElementById('verificationBlockerMsg');
-        const completionPercentage = ;
-        const verificationStatus = '';
+        const completionPercentage = 0;
+        const verificationStatus = 'unverified';
 
         function updateReviewTabDocumentStatus() {
             const profileImgStatusEl = document.getElementById('review_profile_image_status');
             const licenseFrontStatusEl = document.getElementById('review_license_front_status');
             const licenseBackStatusEl = document.getElementById('review_license_back_status');
 
-            const profileImgUploaded = ;
-            const licenseFrontUploaded = ;
-            const licenseBackUploaded = ;
+            const profileImgUploaded = !!document.getElementById('profile_image')?.files?.length;
+            const licenseFrontUploaded = !!document.getElementById('license_front_image')?.files?.length;
+            const licenseBackUploaded = !!document.getElementById('license_back_image')?.files?.length;
 
             if(profileImgStatusEl){
                 profileImgStatusEl.textContent = profileImgUploaded ? 'Uploaded' : 'Missing';

@@ -757,6 +757,16 @@
             }
         });
 
+        // Keep date selection valid in the static frontend.
+        const pickupDateInput = document.getElementById('pickup_date');
+        const returnDateInput = document.getElementById('return_date');
+        if (pickupDateInput && returnDateInput) {
+            const today = new Date();
+            const todayIso = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString().split('T')[0];
+            pickupDateInput.min = pickupDateInput.min || todayIso;
+            returnDateInput.min = returnDateInput.min || todayIso;
+        }
+
         // Form validation
         document.getElementById('modifyForm').addEventListener('submit', function(e) {
             const pickup = new Date(document.getElementById('pickup_date').value);
@@ -772,7 +782,18 @@
             }
         });
 
-        function calculateTotal() {
+        function getBaseRate() {
+    const candidates = document.querySelectorAll('.booking-details .detail-value');
+    for (const element of candidates) {
+        const match = element.textContent.replace(/,/g, '').match(/(?:₱|PHP\s*)\s*(\d+(?:\.\d+)?)/);
+        if (match) return Number(match[1]);
+    }
+    return 0;
+}
+
+const BASE_RATE = getBaseRate();
+
+function calculateTotal() {
     const pickupDate = document.getElementById('pickup_date').value;
     const returnDate = document.getElementById('return_date').value;
     
@@ -790,8 +811,7 @@
         return;
     }
 
-    const baseRate = ;
-    const baseTotal = baseRate * days;
+    const baseTotal = BASE_RATE * days;
     let extrasTotal = 0;
 
     // Calculate extras
@@ -811,10 +831,9 @@
 }
 
 function updateSummary(days, extrasTotal, total) {
-    const baseRate = ;
     document.getElementById('days_count').textContent = days;
     document.getElementById('base_rate').textContent = 
-        '₱' + baseRate.toFixed(2) + ' x ' + days + ' days';
+        '₱' + BASE_RATE.toFixed(2) + ' x ' + days + ' days';
     document.getElementById('options_total').textContent = 
         '₱' + extrasTotal.toFixed(2);
     document.getElementById('total_amount').textContent = 
