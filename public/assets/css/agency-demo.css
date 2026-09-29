@@ -46,3 +46,95 @@
 [data-theme="dark"] .agency-car-image{background:linear-gradient(135deg,#2c3344,#232a3a)}
 [data-theme="dark"] .agency-card{border-color:rgba(255,255,255,.06)}
 @media(max-width:768px){.agency-form-grid{grid-template-columns:1fr}.agency-form-grid .full{grid-column:auto}.agency-toolbar{align-items:stretch}.agency-toolbar .group{width:100%}.agency-toolbar .group>*{flex:1}}
+
+/* =========================================================
+   TourGo Phase 6 — Agency Static Demo Mobile Enhancement
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .agency-grid,
+    .agency-car-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .agency-card,
+    .agency-stat-card {
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .agency-stat-card {
+        padding: 18px;
+    }
+
+    .agency-stat-card .stat-value {
+        font-size: clamp(24px, 7vw, 30px);
+        overflow-wrap: anywhere;
+    }
+
+    .agency-table-wrap {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .agency-table {
+        min-width: 620px;
+    }
+
+    .agency-toolbar {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .agency-toolbar .group {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .agency-toolbar .group > * {
+        min-width: 0;
+    }
+
+    .agency-input,
+    .agency-select {
+        width: 100%;
+        min-height: 46px;
+        font-size: 16px;
+    }
+
+    .agency-car-image {
+        height: clamp(170px, 48vw, 210px);
+    }
+
+    .agency-car-meta {
+        flex-wrap: wrap;
+    }
+
+    .agency-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .agency-actions .btn {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+    }
+
+    .agency-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .agency-field input,
+    .agency-field select,
+    .agency-field textarea {
+        font-size: 16px;
+        min-height: 46px;
+    }
+}

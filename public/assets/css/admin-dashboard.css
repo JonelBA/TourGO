@@ -1837,3 +1837,140 @@ footer::before {
 .dark-theme .theme-toggle:hover {
     background: #343c52 !important;
 }
+
+/* =========================================================
+   TourGo Phase 6 — Admin Mobile Content Enhancement
+   Keeps the existing admin header/sidebar behavior intact.
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .admin-dashboard,
+    .dashboard-content,
+    .main-content {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .main-content {
+        box-sizing: border-box;
+    }
+
+    .admin-header-content {
+        min-width: 0;
+    }
+
+    .logo-area,
+    .logo-area .logo,
+    .logo-area .logo a {
+        min-width: 0;
+    }
+
+    .logo-area .logo > a > span {
+        display: none !important;
+    }
+
+    .logo-area .logo i {
+        margin-right: 0 !important;
+    }
+
+    .dashboard-stats,
+    .analytics-grid,
+    .cards-grid,
+    .admin-grid {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .stat-card,
+    .dashboard-section,
+    .chart-container,
+    .section-header,
+    .data-table-wrap,
+    .table-responsive,
+    .table-container {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .section-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .section-title,
+    .section-description,
+    .stat-card-title,
+    .stat-card-value,
+    .detail-value,
+    .info-value {
+        overflow-wrap: anywhere;
+    }
+
+    .section-description {
+        line-height: 1.55;
+    }
+
+    .chart-container {
+        overflow: hidden;
+    }
+
+    .data-table,
+    .table-responsive table {
+        max-width: 100%;
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .actions .btn,
+    .btn-action,
+    .btn-admin,
+    .btn-sm {
+        min-height: 40px;
+    }
+
+    .booking-content,
+    .vehicle-details,
+    .detail-layout,
+    .info-group,
+    .details-grid {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .vehicle-image,
+    .car-gallery img,
+    .agency-logo,
+    .customer-avatar {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .actions {
+        width: 100%;
+    }
+
+    .actions .btn,
+    .btn-action,
+    .btn-admin,
+    .btn-sm {
+        flex: 1 1 auto;
+    }
+
+    .info-group,
+    .detail-group {
+        min-width: 0;
+    }
+
+    .form-control,
+    .filter-select,
+    .filter-input,
+    .form-select {
+        min-height: 44px;
+        font-size: 16px;
+    }
+}

@@ -1068,3 +1068,174 @@ footer::before {
         font-size: 20px;
     }
 }
+
+/* =========================================================
+   TourGo Phase 6 — Fleet / Listed Cars Mobile Enhancement
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .page-title {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .page-title h1 {
+        font-size: clamp(28px, 8vw, 34px);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+    }
+
+    .page-title p {
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .search-filter {
+        margin-top: -20px;
+        margin-bottom: 30px;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .search-box {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-input,
+    .filter-select,
+    .sort-select {
+        min-height: 46px;
+        font-size: 16px;
+    }
+
+    .filter-options {
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .filter-group {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .filter-actions {
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .filter-actions .btn {
+        min-height: 46px;
+    }
+
+    .cars-header {
+        gap: 12px;
+    }
+
+    .cars-count,
+    .sort-options {
+        width: 100%;
+    }
+
+    .sort-options {
+        gap: 8px;
+    }
+
+    .sort-select {
+        min-width: 0;
+    }
+
+    .cars-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .car-card {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .car-image {
+        height: clamp(170px, 50vw, 220px);
+    }
+
+    .car-details {
+        padding: 17px;
+    }
+
+    .car-title {
+        font-size: 20px;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    .car-features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 10px;
+    }
+
+    .car-feature {
+        min-width: 0;
+        font-size: 13.5px;
+    }
+
+    .car-price-row {
+        gap: 12px;
+    }
+
+    .car-price {
+        min-width: 0;
+        font-size: 21px;
+    }
+
+    .car-price-row .btn {
+        min-height: 44px;
+        min-width: 0;
+        flex: 1 1 140px;
+    }
+
+    .pagination-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .page-title {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .search-filter {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .car-features {
+        grid-template-columns: 1fr;
+    }
+
+    .car-price-row {
+        align-items: stretch;
+    }
+
+    .car-price {
+        flex-basis: 100%;
+    }
+
+    .car-price-row .btn {
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .page-item {
+        min-width: 34px;
+        height: 34px;
+    }
+}

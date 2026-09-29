@@ -977,3 +977,90 @@
             top: 0;
             z-index: 1000;
         }
+/* =========================================================
+   TourGo Phase 6 — Customer Profile Mobile Enhancement
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .profile-section {
+        padding: 28px 0 42px;
+    }
+
+    .profile-container {
+        grid-template-columns: minmax(0, 1fr);
+        display: grid;
+        gap: 16px;
+    }
+
+    .profile-sidebar,
+    .profile-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        border-radius: 14px;
+    }
+
+    .profile-sidebar {
+        padding: 22px 16px 18px;
+    }
+
+    .profile-content {
+        padding: 22px 16px 20px;
+    }
+
+    .profile-content .form-grid,
+    .profile-content .form-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-content .form-group,
+    .profile-content .document-item,
+    .profile-content .review-item,
+    .profile-content .doc-status-item {
+        min-width: 0;
+    }
+
+    .profile-content .form-control,
+    .profile-content input[type="file"],
+    .profile-content select,
+    .profile-content textarea {
+        width: 100%;
+        min-height: 46px;
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .profile-content textarea {
+        min-height: 120px;
+    }
+
+    .profile-content .form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .profile-content .form-actions .btn,
+    .profile-content .edit-btn,
+    .profile-content .cancel-btn {
+        width: 100%;
+        min-width: 0;
+        margin-right: 0;
+        min-height: 44px;
+    }
+
+    .tab-button {
+        min-width: 0;
+        white-space: normal;
+    }
+}
+
+@media (max-width: 420px) {
+    .profile-sidebar,
+    .profile-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
