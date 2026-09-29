@@ -65,10 +65,10 @@
   function setupMenus() {
     const toggle = document.getElementById('profileToggleBtn');
     const menu = document.getElementById('profileMenu');
-    if (toggle && menu) {
+    if (toggle && menu && toggle.dataset.tourgoProfileReady !== 'true') {
       toggle.addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('active'); toggle.classList.toggle('active'); });
       menu.addEventListener('click', e => e.stopPropagation());
-      document.addEventListener('click', () => { menu.classList.remove('active'); toggle.classList.remove('active'); });
+      document.addEventListener('click', () => { menu.classList.remove('active'); toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); });
     }
     const menuBtn = document.getElementById('menuToggleBtn');
     const nav = document.getElementById('mainNavMenu');
@@ -95,9 +95,11 @@
     document.querySelectorAll('.profile-name').forEach(el => el.textContent = displayName);
     document.querySelectorAll('.profile-toggle img').forEach(img => { img.src = '../public/assets/images/guest-avatar.svg'; img.alt = displayName + ' Logo'; });
     document.querySelectorAll('#agencyNameGreeting').forEach(el => el.textContent = displayName);
-    setText('#headerCompanyName', displayName);
+    setText('#headerCompanyName, #navCompanyName', displayName);
     const logo = document.getElementById('headerAgencyLogo');
     if (logo) { logo.src = '../public/assets/images/guest-avatar.svg'; logo.alt = displayName + ' Logo'; }
+    const navLogo = document.getElementById('navAgencyLogo');
+    if (navLogo) { navLogo.src = '../public/assets/images/guest-avatar.svg'; navLogo.alt = displayName + ' Logo'; }
     setText('#currentYear', new Date().getFullYear());
   }
 
