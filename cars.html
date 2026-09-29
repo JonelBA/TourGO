@@ -125,9 +125,9 @@
                 <button class="theme-toggle" id="themeToggleBtnHeader" type="button" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="btn btn-outline"><a href="auth/login.html" class="">Sign In</a></button>
-                <button class="btn btn-primary"><a href="auth/register.html" class="">Register</a></button>
-                <button class="menu-toggle" id="menuToggleBtnCarsPage" type="button" aria-label="Open navigation menu">
+                <a class="btn btn-outline" href="auth/login.html">Sign In</a>
+                <a class="btn btn-primary" href="auth/register.html">Register</a>
+                <button aria-expanded="false" class="menu-toggle" id="menuToggleBtnCarsPage" type="button" aria-label="Open navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -151,7 +151,7 @@
     <div class="search-filter" data-aos="fade-up">
         <form id="filter-form" novalidate>
             <div class="search-box">
-                <input type="text" name="search" id="search_input" class="search-input" value="" placeholder="Search by make, model, or features...">
+                <input aria-label="Search" type="text" name="search" id="search_input" class="search-input" value="" placeholder="Search by make, model, or features...">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-search" style="margin-right: 5px;"></i>Search</button>
             </div>
             <div class="filter-options">
@@ -245,7 +245,7 @@
             <div class="footer-about">
                 <div class="footer-logo"> <i class="fas fa-car-side"></i> <span><span style="color: #fff;">Tour</span><span style="color: #aaa;">Go</span></span> </div>
                 <p class="footer-text">TourGo offers a premium car rental experience with a diverse fleet of high-quality vehicles. We are dedicated to providing exceptional service and making your journey unforgettable.</p>
-                <div class="social-links"> <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a> <a href="#" class="social-link"><i class="fab fa-twitter"></i></a> <a href="#" class="social-link"><i class="fab fa-instagram"></i></a> <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a> </div>
+                <div class="social-links"> <a aria-label="Facebook" href="#" class="social-link"><i class="fab fa-facebook-f"></i></a> <a aria-label="Twitter" href="#" class="social-link"><i class="fab fa-twitter"></i></a> <a aria-label="Instagram" href="#" class="social-link"><i class="fab fa-instagram"></i></a> <a aria-label="LinkedIn" href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a> </div>
             </div>
             <div class="footer-links">
                 <h4 class="footer-title">Quick Links</h4>
@@ -254,7 +254,7 @@
             <div class="footer-newsletter">
                 <h4 class="footer-title">Stay Updated</h4>
                 <p class="footer-text">Subscribe to our newsletter for the latest deals, news, and travel tips.</p>
-                <form class="newsletter-form"> <input type="email" class="newsletter-input" placeholder="Enter your email"> <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button> </form>
+                <form class="newsletter-form"> <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address for newsletter"> <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button> </form>
             </div>
         </div>
         <div class="footer-bottom"> <p>&copy; <span id="currentYearFooter"></span> TourGo Premium Car Rental. All Rights Reserved.</p> </div>
