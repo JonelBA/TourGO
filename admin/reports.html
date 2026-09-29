@@ -333,7 +333,7 @@
 </div>
 </div>
 <div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<button type="button" aria-label="Toggle Dark Mode" class="theme-toggle">
 <i class="fas"></i>
 </button>
 <div class="profile-dropdown">
@@ -390,7 +390,7 @@
 <div class="section-header">
 <div class="section-title">User Complaints &amp; Reports</div>
 <div class="action-buttons">
-<button class="btn btn-outline" onclick="exportToCSV()">
+<button type="button" class="btn btn-outline" onclick="exportToCSV()">
 <i class="fas fa-file-export"></i> Export CSV
                         </button>
 </div>
@@ -423,12 +423,12 @@
 </div>
 <div class="filter-controls">
 <div class="search-container">
-<input class="search-input" id="searchInput" placeholder="Search complaints..." type="text"/>
+<input aria-label="Search" class="search-input" id="searchInput" placeholder="Search complaints..." type="text"/>
 <i class="fas fa-search search-icon"></i>
 </div>
 <div class="status-filter">
 <span>Filter by status:</span>
-<select class="form-control" id="statusFilter">
+<select class="form-control" id="statusFilter" aria-label="Filter by status">
 <option value="all">All</option>
 <option value="pending">Pending</option>
 <option value="in_progress">In Progress</option>
@@ -437,7 +437,7 @@
 </div>
 <div class="user-type-filter">
 <span>Filter by user type:</span>
-<select class="form-control" id="userTypeFilter">
+<select class="form-control" id="userTypeFilter" aria-label="Filter by user type">
 <option value="all">All</option>
 <option value="customer">Customer</option>
 <option value="agency">Agency</option>
@@ -502,13 +502,13 @@
 <div class="modal-content">
 <div class="modal-header">
 <h3>User Details</h3>
-<button class="close-modal" onclick="closeModal()">×</button>
+<button type="button" class="close-modal" onclick="closeModal()">×</button>
 </div>
 <div class="modal-body" id="userModalBody">
 <!-- User details will be loaded here via AJAX -->
 </div>
 <div class="modal-footer">
-<button class="btn btn-outline" onclick="closeModal()">Close</button>
+<button type="button" class="btn btn-outline" onclick="closeModal()">Close</button>
 </div>
 </div>
 </div>

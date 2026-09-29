@@ -733,7 +733,7 @@
 </div>
 </div>
 <div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<button type="button" aria-label="Toggle Dark Mode" class="theme-toggle">
 <i class="fas"></i>
 </button>
 <div class="profile-dropdown">
@@ -839,7 +839,7 @@
 </div>
 </div>
 <div class="view-all-photos">
-<button class="view-all-btn" onclick="openGalleryLightbox()">
+<button type="button" class="view-all-btn" onclick="openGalleryLightbox()">
 <i class="fas fa-images"></i> View All Photos ()
                                     </button>
 </div>
@@ -1044,10 +1044,10 @@
 </div>
 <!-- Lightbox Gallery -->
 <div class="lightbox" id="galleryLightbox">
-<button class="lightbox-close" onclick="closeLightbox()">
+<button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Close image viewer">
 <i class="fas fa-times"></i>
 </button>
-<button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">
+<button type="button" class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)" aria-label="Previous image">
 <i class="fas fa-chevron-left"></i>
 </button>
 <div class="lightbox-content">
@@ -1056,7 +1056,7 @@
 <span id="lightboxCurrentImage">1</span> / <span id="lightboxTotalImages">1</span>
 </div>
 </div>
-<button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">
+<button type="button" class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)" aria-label="Next image">
 <i class="fas fa-chevron-right"></i>
 </button>
 </div>

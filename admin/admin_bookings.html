@@ -416,7 +416,7 @@
 </div>
 </div>
 <div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<button type="button" aria-label="Toggle Dark Mode" class="theme-toggle">
 <i class="fas fa-moon"></i>
 </button>
 <div class="profile-dropdown">
@@ -477,11 +477,11 @@
 <div class="filters">
 <div class="search-container">
 <i class="fas fa-search search-icon"></i>
-<input class="search-input" id="searchInput" placeholder="Search bookings..." type="text"/>
+<input aria-label="Search" class="search-input" id="searchInput" placeholder="Search bookings..." type="text"/>
 </div>
 <div class="filter-group">
 <label for="statusFilter">Status:</label>
-<select class="filter-select" id="statusFilter">
+<select class="filter-select" id="statusFilter" aria-label="Filter by status">
 <option value="">All Status</option>
 <option value="pending">Pending</option>
 <option value="confirmed">Confirmed</option>
@@ -493,7 +493,7 @@
 <label for="dateFrom">Date Range:</label>
 <input class="filter-select" id="dateFrom" type="date"/>
 <span>to</span>
-<input class="filter-select" id="dateTo" type="date"/>
+<input class="filter-select" id="dateTo" type="date"/ aria-label="End date">
 </div>
 </div>
 <div class="bookings-container">

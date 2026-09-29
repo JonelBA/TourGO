@@ -643,7 +643,7 @@ body.sidebar-open {
 </div>
 </div>
 <div class="header-actions">
-<button aria-label="Toggle Dark Mode" class="theme-toggle">
+<button type="button" aria-label="Toggle Dark Mode" class="theme-toggle">
 <i class="fas fa-moon"></i>
 </button>
 <div class="profile-dropdown">
@@ -882,13 +882,13 @@ body.sidebar-open {
 </div>
 </div>
 <div class="admin-actions">
-<button class="btn-admin btn-confirm" onclick="updateBookingStatus('confirmed')">
+<button type="button" class="btn-admin btn-confirm" onclick="updateBookingStatus('confirmed')">
 <i class="fas fa-check-circle"></i> Confirm Booking
                     </button>
-<button class="btn-admin btn-complete" onclick="updateBookingStatus('completed')">
+<button type="button" class="btn-admin btn-complete" onclick="updateBookingStatus('completed')">
 <i class="fas fa-flag-checkered"></i> Mark as Completed
                     </button>
-<button class="btn-admin btn-cancel" onclick="updateBookingStatus('cancelled')">
+<button type="button" class="btn-admin btn-cancel" onclick="updateBookingStatus('cancelled')">
 <i class="fas fa-times-circle"></i> Cancel Booking
                     </button>
 <a class="btn btn-outline" href="admin_bookings.html">
