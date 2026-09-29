@@ -2594,3 +2594,30 @@ footer {
         display: none !important;
     }
 }
+
+/* Customer and agency pages use the profile dropdown as their navigation on all screen sizes.
+   The hamburger control is intentionally hidden and removed from keyboard interaction. */
+body[data-tourgo-section="customer"] .menu-toggle,
+body[data-tourgo-section="agency"] .menu-toggle {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+body[data-tourgo-section="customer"] .profile-menu,
+body[data-tourgo-section="agency"] .profile-menu {
+    z-index: 10060;
+}
+
+body[data-tourgo-section="customer"] .tourgo-profile-nav,
+body[data-tourgo-section="agency"] .tourgo-profile-nav {
+    display: contents;
+}
