@@ -51,7 +51,7 @@
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="header-actions">
-                <button class="theme-toggle" aria-label="Toggle Dark Mode" id="themeToggleBtnFavorites"> <i class="fas fa-moon"></i> </button>
+                <button type="button" class="theme-toggle" aria-label="Toggle Dark Mode" id="themeToggleBtnFavorites"> <i class="fas fa-moon"></i> </button>
                 <div class="profile-dropdown">
                     <button class="profile-toggle" id="profileToggleBtnFavorites" type="button"> <img src="../public/assets/images/guest-avatar.svg" alt="Guest Profile">
                         <span>Guest</span> <i class="fas fa-chevron-down"></i>
@@ -63,7 +63,7 @@
                         <a href="../auth/logout.html" class="profile-menu-item"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                     </div>
                 </div>
-                <button class="menu-toggle" aria-label="Toggle Menu" id="mainMenuToggleBtnFavorites"> <i class="fas fa-bars"></i> </button>
+                <button aria-expanded="false" type="button" class="menu-toggle" aria-label="Toggle Menu" id="mainMenuToggleBtnFavorites"> <i class="fas fa-bars"></i> </button>
             </div>
         </div>
     </div>
@@ -87,14 +87,14 @@
                 <p>You haven't added any cars to your favorites. Start exploring our fleet!</p>
                 <a href="cars.html" class="btn btn-primary">Explore Cars</a>
             </div>
-            <div class="cars-grid" data-aos="fade-up" id="favoritesGrid"> </div>
+            <div class="cars-grid" data-aos="fade-up" id="favoritesGridPlaceholder"> </div>
         
             <div class="cars-grid" data-aos="fade-up" id="favoritesGrid">
                 
                 <div class="car-card" data-vehicle-id="">
                     <div class="car-image">
                         <span class="car-type"></span>
-                        <button class="car-wishlist active" title="Remove from Favorites"> <i class="fas fa-heart"></i> </button>
+                        <button type="button" class="car-wishlist active" title="Remove from Favorites"> <i class="fas fa-heart"></i> </button>
                         
                         <img src="" alt=" ">
                     </div>
@@ -135,9 +135,9 @@
 
 <footer> <div class="container">
         <div class="footer-content">
-            <div class="footer-about"> <div class="footer-logo"> <i class="fas fa-car-side"></i> <span><span style="color: #fff;">Tour</span><span style="color: #aaa;">Go</span></span> </div> <p class="footer-text">TourGo offers a premium car rental experience...</p> <div class="social-links"> <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a> <a href="#" class="social-link"><i class="fab fa-twitter"></i></a> <a href="#" class="social-link"><i class="fab fa-instagram"></i></a> <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a> </div> </div>
+            <div class="footer-about"> <div class="footer-logo"> <i class="fas fa-car-side"></i> <span><span style="color: #fff;">Tour</span><span style="color: #aaa;">Go</span></span> </div> <p class="footer-text">TourGo offers a premium car rental experience...</p> <div class="social-links"> <a aria-label="Facebook" href="#" class="social-link"><i class="fab fa-facebook-f"></i></a> <a aria-label="Twitter" href="#" class="social-link"><i class="fab fa-twitter"></i></a> <a aria-label="Instagram" href="#" class="social-link"><i class="fab fa-instagram"></i></a> <a aria-label="LinkedIn" href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a> </div> </div>
             <div class="footer-links"> <h4 class="footer-title">Quick Links</h4> <ul class="footer-menu"> <li><a href="../index.html">Home</a></li> <li><a href="cars.html">Our Fleet</a></li> <li><a href="about.html">About Us</a></li> <li><a href="contact.html">Contact Us</a></li> <li><a href="contact.html#faq">FAQs</a></li> <li><a href="../terms.html">Terms & Conditions</a></li> </ul> </div>
-            <div class="footer-newsletter"> <h4 class="footer-title">Stay Updated</h4> <p class="footer-text">Subscribe to our newsletter...</p> <form class="newsletter-form"> <input type="email" class="newsletter-input" placeholder="Enter your email"> <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button> </form> </div>
+            <div class="footer-newsletter"> <h4 class="footer-title">Stay Updated</h4> <p class="footer-text">Subscribe to our newsletter...</p> <form class="newsletter-form"> <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address for newsletter"> <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button> </form> </div>
         </div>
         <div class="footer-bottom"> <p>&copy; <span id="currentYearFooterFavorites"></span> TourGo Premium Car Rental. All Rights Reserved.</p> </div>
     </div>

@@ -275,7 +275,7 @@
                     <li><a href="contact.html" class="nav-link active">Contact</a></li>
                 </ul>
                 <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle Dark Mode" id="themeToggleBtn">
+                    <button type="button" class="theme-toggle" aria-label="Toggle Dark Mode" id="themeToggleBtn">
                         <i class="fas fa-moon"></i>
                     </button>
                     <div class="profile-dropdown">
@@ -338,13 +338,13 @@
                     <h3 class="section-title" style="margin-bottom: 30px;">Send Us a Message</h3>
                     <form id="contactForm" class="contact-form" method="post" action="contact.html">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Your Name" value="" readonly required>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" value="" readonly required aria-label="Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="Your Email" value="" readonly required>
+                            <input aria-label="Email address" type="email" name="email" class="form-control" placeholder="Your Email" value="" readonly required>
                         </div>
                         <div class="form-group">
-                            <select name="subject" class="form-control" required>
+                            <select aria-label="Subject" name="subject" class="form-control" required>
                                 <option value="" disabled selected>Select Subject</option>
                                 <option value="booking">Booking Inquiry</option>
                                 <option value="support">Technical Support</option>
@@ -354,7 +354,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea aria-label="Message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary pulse">Send Message</button>
                     </form>
@@ -416,21 +416,21 @@
                     <div class="service-icon"><i class="fas fa-road"></i></div>
                     <h3 class="step-title">Roadside Assistance</h3>
                     <p class="step-description">24/7 support for emergencies, breakdowns, flat tires, and more while on the road.</p>
-                    <button class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
+                    <button type="button" class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
                 </div>
                 
                 <div class="service-card fade-in" style="animation-delay: 0.4s;">
                     <div class="service-icon"><i class="fas fa-exchange-alt"></i></div>
                     <h3 class="step-title">Vehicle Exchange</h3>
                     <p class="step-description">Need a different vehicle during your rental? We can arrange a quick exchange.</p>
-                    <button class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
+                    <button type="button" class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
                 </div>
                 
                 <div class="service-card fade-in" style="animation-delay: 0.6s;">
                     <div class="service-icon"><i class="fas fa-calendar-plus"></i></div>
                     <h3 class="step-title">Extend Rental</h3>
                     <p class="step-description">Need more time with your vehicle? Easily extend your current rental period.</p>
-                    <button class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
+                    <button type="button" class="btn btn-outline" style="margin-top: 15px;">Learn More</button>
                 </div>
             </div>
         </div>
@@ -461,7 +461,7 @@
                             <p class="office-contact"><i class="fas fa-clock"></i> Sat-Sun: 9am - 6pm</p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" id="getDirectionsBtn" style="margin-top: 20px;">
+                    <button type="button" class="btn btn-primary" id="getDirectionsBtn" style="margin-top: 20px;">
                         <i class="fas fa-map-marker-alt"></i> Get Directions
                     </button>
                 </div>
@@ -530,10 +530,10 @@
                     </div>
                     <p class="footer-text">Your trusted partner in premium car rentals. Experience the freedom of the road with our exceptional service and curated fleet of vehicles.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a aria-label="Facebook" href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a aria-label="Twitter" href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a aria-label="Instagram" href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a aria-label="LinkedIn" href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -550,7 +550,7 @@
                     <h4 class="footer-title">Newsletter</h4>
                     <p class="footer-text">Subscribe to get special offers and updates</p>
                     <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Enter your email">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address for newsletter">
                         <button type="submit" class="newsletter-btn">Subscribe</button>
                     </form>
                 </div>

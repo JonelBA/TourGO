@@ -235,7 +235,7 @@
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <button type="button" class="theme-toggle" aria-label="Toggle Dark Mode">
                         <i class="fas fa-moon"></i>
                     </button>
                     <div class="profile-dropdown">
@@ -282,7 +282,7 @@
                     <div class="profile-header-content">
                         <div class="profile-avatar-container">
                             <img src="../public/assets/images/guest-avatar.svg" alt="Guest Profile" class="profile-avatar" id="headerAvatar">
-                            <button class="avatar-upload-btn" onclick="document.getElementById('profile_image_trigger').click()" title="Change Profile Picture">
+                            <button type="button" class="avatar-upload-btn" onclick="document.getElementById('profile_image_trigger').click()" title="Change Profile Picture">
                                 <i class="fas fa-camera"></i>
                             </button>
                         </div>
@@ -304,13 +304,13 @@
                 </div>
 
                 <div class="tab-navigation">
-                    <button class="tab-button " data-tab="personal"><i class="fas fa-user"></i> Personal Info</button>
-                    <button class="tab-button " data-tab="address"><i class="fas fa-map-marker-alt"></i> Address</button>
-                    <button class="tab-button " data-tab="license"><i class="fas fa-id-card"></i> License</button>
-                    <button class="tab-button " data-tab="documents"><i class="fas fa-file-upload"></i> Documents</button>
-                    <button class="tab-button " data-tab="security"><i class="fas fa-shield-alt"></i> Security</button>
-                    <button class="tab-button " data-tab="review"><i class="fas fa-clipboard-check"></i> Review & Submit</button>
-                    <button class="tab-button" onclick="window.location.href='profile.html?tab=support'">
+                    <button type="button" class="tab-button " data-tab="personal"><i class="fas fa-user"></i> Personal Info</button>
+                    <button type="button" class="tab-button " data-tab="address"><i class="fas fa-map-marker-alt"></i> Address</button>
+                    <button type="button" class="tab-button " data-tab="license"><i class="fas fa-id-card"></i> License</button>
+                    <button type="button" class="tab-button " data-tab="documents"><i class="fas fa-file-upload"></i> Documents</button>
+                    <button type="button" class="tab-button " data-tab="security"><i class="fas fa-shield-alt"></i> Security</button>
+                    <button type="button" class="tab-button " data-tab="review"><i class="fas fa-clipboard-check"></i> Review & Submit</button>
+                    <button type="button" class="tab-button" onclick="window.location.href='profile.html?tab=support'">
                         <i class="fas fa-headset"></i> Support
                     </button>
                 </div>
@@ -579,10 +579,10 @@
                     </div>
                     <p class="footer-text">TourGo offers a premium car rental experience with a diverse fleet of high-quality vehicles. We are dedicated to providing exceptional service and making your journey unforgettable.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a aria-label="Facebook" href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a aria-label="Twitter" href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a aria-label="Instagram" href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a aria-label="LinkedIn" href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -600,7 +600,7 @@
                     <h4 class="footer-title">Stay Updated</h4>
                     <p class="footer-text">Subscribe to our newsletter for the latest deals, news, and travel tips.</p>
                     <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Enter your email">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address for newsletter">
                         <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>

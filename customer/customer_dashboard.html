@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TourGo - Welcome Back, <span id="customerNameGreeting">Guest</span>!</title>
+    <title>TourGo - Welcome Back, Guest!</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../public/assets/css/styles.css" rel="stylesheet">
@@ -256,7 +256,7 @@
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <button type="button" class="theme-toggle" aria-label="Toggle Dark Mode">
                         <i class="fas fa-moon"></i>
                     </button>
                     <div class="profile-dropdown">
@@ -492,10 +492,10 @@
                     </div>
                     <p class="footer-text">TourGo offers a premium car rental experience with a diverse fleet of high-quality vehicles. We are dedicated to providing exceptional service and making your journey unforgettable.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a aria-label="Facebook" href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a aria-label="Twitter" href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a aria-label="Instagram" href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a aria-label="LinkedIn" href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -513,7 +513,7 @@
                     <h4 class="footer-title">Stay Updated</h4>
                     <p class="footer-text">Subscribe to our newsletter for the latest deals, news, and travel tips.</p>
                     <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Enter your email">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address for newsletter">
                         <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
@@ -614,6 +614,11 @@
     <script src="../public/assets/js/demo-fleet.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const titleGreeting = document.getElementById('customerNameGreeting');
+        if (titleGreeting) {
+            document.title = `TourGo - Welcome Back, ${titleGreeting.textContent.trim() || 'Guest'}!`;
+        }
+
         const favorites = JSON.parse(localStorage.getItem('tourgo_favorites') || '[]');
         document.querySelectorAll('#dashboardFeaturedCars .car-wishlist').forEach(function (button) {
             const card = button.closest('.car-card');
