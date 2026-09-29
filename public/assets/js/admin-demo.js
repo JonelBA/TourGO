@@ -216,7 +216,7 @@
         document.querySelectorAll('a[href="admin_profile.html"]').forEach(function (a) { a.href = 'admin_dashboard.html'; });
         document.querySelectorAll('a[href="delete_vehicle.html"]').forEach(function (a) { a.href = '#'; });
         document.querySelectorAll('a[href*="delete_user.html"]').forEach(function (a) { a.href = '#'; a.removeAttribute('onclick'); });
-        document.querySelectorAll('a[href="/admin/view_booking.html?id="]').forEach(function (a) { a.href = 'view_booking.html'; });
+        document.querySelectorAll('a[href*="view_booking.html?id="]').forEach(function (a) { a.href = 'view_booking.html' + (a.href.includes('id=') ? a.href.substring(a.href.indexOf('id=')) : ''); });
     }
 
     function initCommon() {
