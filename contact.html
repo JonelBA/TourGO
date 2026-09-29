@@ -254,6 +254,63 @@
     background-color: rgba(77, 148, 255, 0.08) !important;
 }
 /* --- END CONTACT PAGE DARK MODE IMPROVEMENTS --- */
+
+/* Contact page: mobile navigation and theme controls */
+.theme-toggle,
+.menu-toggle {
+    position: relative;
+    z-index: 10060;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle i,
+.menu-toggle i {
+    pointer-events: none;
+}
+
+@media (max-width: 991px) {
+    .nav-menu {
+        z-index: 10030 !important;
+        top: 80px !important;
+        background-color: var(--white) !important;
+        border: 1px solid rgba(77, 148, 255, 0.12);
+        border-radius: 0 0 14px 14px;
+    }
+
+    .nav-menu .nav-link {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        width: 100%;
+        color: var(--text-dark) !important;
+    }
+
+    [data-theme="dark"] .nav-menu {
+        background-color: #283046 !important;
+        border-color: rgba(77, 148, 255, 0.20);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    [data-theme="dark"] .nav-menu .nav-link {
+        color: #e1e1e1 !important;
+    }
+
+    [data-theme="dark"] .nav-menu .nav-link:hover,
+    [data-theme="dark"] .nav-menu .nav-link.active {
+        color: var(--primary) !important;
+        background-color: rgba(77, 148, 255, 0.12) !important;
+    }
+}
+
+/* Keep the contact map visible and responsive. */
+.office-image img[src*="tourgo-map"] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
     
 /* Reliable FAQ touch/click behavior */
 .faq-container, .faq-item, .faq-question {
@@ -560,61 +617,7 @@
     <script src="public/assets/js/script.js"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // --- DARK THEME TOGGLE ---
-    const themeToggleButton = document.getElementById('themeToggleBtn');
-    if (themeToggleButton) {
-        const themeToggleIcon = themeToggleButton.querySelector('i');
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            if (theme === 'dark') {
-                themeToggleIcon.classList.remove('fa-moon');
-                themeToggleIcon.classList.add('fa-sun');
-            } else {
-                themeToggleIcon.classList.remove('fa-sun');
-                themeToggleIcon.classList.add('fa-moon');
-            }
-        }
-        let savedTheme = localStorage.getItem('theme');
-        if (!savedTheme) {
-            savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        setTheme(savedTheme);
-        themeToggleButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-    }
-
-    // --- MOBILE MENU TOGGLE ---
-    const menuToggle = document.getElementById('menuToggleBtn');
-    const navMenu = document.querySelector('.nav-menu');
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-            // Toggle icon between bars and times
-            const icon = menuToggle.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
-        // Close menu when clicking outside (mobile)
-        document.addEventListener('click', function(e) {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                // Reset icon to bars
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-    }
+    // Theme and mobile navigation are handled by public/assets/js/script.js.
 
     // FAQ Accordion — delegated handler for reliable mobile touch/click behavior
     document.querySelectorAll('.faq-question').forEach(function(question) {
