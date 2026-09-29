@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  - TourGo Car Rental</title>
+    <title>TourGo - Car Details</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../public/assets/css/details.css" rel="stylesheet">
@@ -477,9 +477,18 @@
         });
 
         function getImagePath(relativePath) {
-            // This function assumes your script is effectively running from 'customer' directory context
-            // and image paths in vehicleImagesData are relative to 'uploads/vehicles/'
-            return '../uploads/vehicles/' + relativePath;
+            // GitHub Pages/static-demo safe image resolver.
+            // Server upload paths from the original PHP version are intentionally
+            // replaced with the bundled TourGo demo vehicle image.
+            if (!relativePath) return '../public/assets/images/car.png';
+
+            const value = String(relativePath).trim();
+            if (/^(https?:|data:|\.\.\/public\/assets\/|public\/assets\/|\/Tour-GO\/public\/assets\/)/i.test(value)) {
+                return value;
+            }
+
+            // Legacy PHP upload paths are not available in the static frontend.
+            return '../public/assets/images/car.png';
         }
 
         function initializeImageGallery() {
@@ -569,16 +578,32 @@
         });
 
         async function fetchBookedDates(vehicleId) {
+            // Static frontend demo: booked dates are stored locally.
+            // No PHP/AJAX endpoint is required on GitHub Pages.
             try {
-                const res = await fetch(`../ajax/get_booked_dates.html?vehicle_id=${vehicleId}`);
-                const data = await res.json();
-                if (data.success && Array.isArray(data.booked_dates)) {
-                    return data.booked_dates;
-                } else {
-                    return [];
-                }
-            } catch (err) {
-                console.error('Error fetching booked dates:', err);
+                const raw = localStorage.getItem('tourgo_demo_bookings');
+                const bookings = raw ? JSON.parse(raw) : [];
+                if (!Array.isArray(bookings)) return [];
+
+                const booked = new Set();
+                bookings.forEach(function (booking) {
+                    if (String(booking.vehicleId) !== String(vehicleId)) return;
+                    if (!booking.pickupDate || !booking.returnDate) return;
+
+                    const start = new Date(booking.pickupDate + 'T00:00:00');
+                    const end = new Date(booking.returnDate + 'T00:00:00');
+                    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return;
+
+                    const cursor = new Date(start);
+                    while (cursor <= end) {
+                        booked.add(cursor.toISOString().slice(0, 10));
+                        cursor.setDate(cursor.getDate() + 1);
+                    }
+                });
+
+                return Array.from(booked);
+            } catch (error) {
+                console.warn('Unable to read local demo booking dates:', error);
                 return [];
             }
         }
@@ -840,20 +865,25 @@ function styleUnavailableDates(bookedDates, calendar) {
                 return;
             }
             if (!vehId) { window.showToast('error', 'Error: Vehicle ID missing.'); return; } // Use window.showToast
-            const isActive = icon.classList.contains('fas'), action = isActive ? 'remove' : 'add';
-            fetch('../ajax/wishlist.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `action=${action}&vehicle_id=${vehId}`})
-            .then(res => res.json()).then(data => {
-                if (data.success) {
-                    const nowActive = (data.action_taken === 'added' || (action === 'add' && data.action_taken === 'already_added'));
-                    icon.className = nowActive ? 'fas fa-heart' : 'far fa-heart';
-                    btn.innerHTML = `<i class="${icon.className}"></i> ${nowActive ? 'Added to Favorites' : 'Add to Favorites'}`;
-                    btn.classList.toggle('added', nowActive);
-                    window.showToast('success', data.message || 'Wishlist updated!'); // Use window.showToast
-                } else { 
-                    if (data.redirect) window.location.href = data.redirect; 
-                    else window.showToast('error', data.message || 'Update failed.'); // Use window.showToast
-                }
-            }).catch(err => { console.error('Wishlist Error:', err); window.showToast('error', 'Error updating wishlist.'); }); // Use window.showToast
+            const favorites = JSON.parse(localStorage.getItem('tourgo_favorites') || '[]');
+            const numericId = Number(vehId);
+            const index = favorites.indexOf(numericId);
+            const nowActive = index === -1;
+
+            if (nowActive) {
+                favorites.push(numericId);
+            } else {
+                favorites.splice(index, 1);
+            }
+
+            localStorage.setItem('tourgo_favorites', JSON.stringify(favorites));
+            if (icon) icon.className = nowActive ? 'fas fa-heart' : 'far fa-heart';
+            btn.classList.toggle('added', nowActive);
+            btn.setAttribute('aria-pressed', nowActive ? 'true' : 'false');
+            btn.innerHTML = `<i class="${nowActive ? 'fas fa-heart' : 'far fa-heart'}"></i> ${nowActive ? 'Added to Favorites' : 'Add to Favorites'}`;
+            if (typeof window.showToast === 'function') {
+                window.showToast('success', nowActive ? 'Added to favorites!' : 'Removed from favorites!');
+            }
         });
 
         // General showToast function (can be overridden by the one at the end if that's intended for specific use)

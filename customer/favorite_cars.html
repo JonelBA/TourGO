@@ -215,49 +215,32 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!vehicleId) return;
             const action = 'remove'; // Always remove on this page
 
-            fetch('../ajax/wishlist.html', { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `action=${action}&vehicle_id=${vehicleId}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showToast(data.message || 'Removed from favorites!', true);
-                    carCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    carCard.style.opacity = '0';
-                    carCard.style.transform = 'scale(0.9)';
-                    setTimeout(() => { 
-                        carCard.remove(); 
-                        const favoritesGrid = document.getElementById('favoritesGrid');
-                        const noFavoritesMessageDiv = document.getElementById('noFavoritesMessage');
-                        const paginationWrapper = document.querySelector('.pagination-wrapper');
+            // Static frontend demo: favorites are stored in localStorage.
+            try {
+                const favorites = JSON.parse(localStorage.getItem('tourgo_favorites') || '[]');
+                const numericId = Number(vehicleId);
+                const index = favorites.indexOf(numericId);
+                if (index !== -1) favorites.splice(index, 1);
+                localStorage.setItem('tourgo_favorites', JSON.stringify(favorites));
 
-                        if (favoritesGrid && favoritesGrid.children.length === 0) {
-                            if(noFavoritesMessageDiv) noFavoritesMessageDiv.style.display = 'block'; // Show message
-                            if(paginationWrapper) paginationWrapper.style.display = 'none'; // Hide pagination
-                             // If current page > 1 and becomes empty, could redirect to page 1 or just show message
-                            const urlParams = new URLSearchParams(window.location.search);
-                            const currentPageNum = parseInt(urlParams.get('page')) || 1;
-                            if (currentPageNum > 1) {
-                                window.location.href = 'favorite_cars.html'; // Redirect to first page
-                            }
-                        }
-                        // Optionally, update pagination info if not reloading fully
-                        // For simplicity, a reload on empty page or redirect to page 1 is often easiest.
-                    }, 500);
-                } else {
-                     if(data.redirect) { 
-                        window.location.href = data.redirect;
-                    } else {
-                        showToast(data.message || 'Could not remove from wishlist.', false);
+                showToast('Removed from favorites!', true);
+                carCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                carCard.style.opacity = '0';
+                carCard.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    carCard.remove();
+                    const favoritesGrid = document.getElementById('favoritesGrid');
+                    const noFavoritesMessageDiv = document.getElementById('noFavoritesMessage');
+                    const paginationWrapper = document.querySelector('.pagination-wrapper');
+                    if (favoritesGrid && favoritesGrid.children.length === 0) {
+                        if (noFavoritesMessageDiv) noFavoritesMessageDiv.style.display = 'block';
+                        if (paginationWrapper) paginationWrapper.style.display = 'none';
                     }
-                }
-            })
-            .catch(error => {
-                console.error('Wishlist Error:', error);
-                showToast('An error occurred. Please try again.', false);
-            });
+                }, 500);
+            } catch (error) {
+                console.error('Favorites Error:', error);
+                showToast('An error occurred while updating favorites.', false);
+            }
         });
     });
 
