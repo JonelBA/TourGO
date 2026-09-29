@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button class="car-wishlist ${isFavorite ? 'active' : ''}" type="button" title="${isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}" aria-label="${isFavorite ? 'Remove' : 'Add'} ${escapeHtml(vehicle.make + ' ' + vehicle.model)} ${isFavorite ? 'from' : 'to'} favorites">
                             <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
                         </button>
-                        <img src="${vehicle.image}" alt="${escapeHtml(vehicle.make + ' ' + vehicle.model)}" loading="lazy" onerror="this.src='../public/assets/images/car.png'">
+                        <img src="${String(vehicle.image || "car.png").startsWith("../") ? vehicle.image : "../public/assets/images/" + String(vehicle.image || "car.png")}" alt="${escapeHtml(vehicle.make + ' ' + vehicle.model)}" loading="lazy" onerror="this.src='../public/assets/images/car.png'">
                     </div>
                     <div class="car-details">
                         <h3 class="car-title">${escapeHtml(vehicle.make + ' ' + vehicle.model)}</h3>

@@ -347,7 +347,7 @@
             <h2 class="section-title">Book Your Ride</h2>
             <p class="section-description">Complete the form below to reserve this vehicle.</p>
         </div>
-        <form class="booking-form actual-booking-form" action="process_booking.html" method="post">
+        <form class="booking-form actual-booking-form" action="#" method="post">
           <input type="hidden" name="vehicle_id" value="">
           <input type="hidden" name="csrf_token" value="">
           <div class="availability-legend">
@@ -937,79 +937,34 @@ function styleUnavailableDates(bookedDates, calendar) {
 
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const bookingForm = document.querySelector('.actual-booking-form');
-            if (bookingForm) {
-                bookingForm.addEventListener('submit', async function(e) {
-                    e.preventDefault(); // Stop default submission, we'll handle it via AJAX then programmatically
-                    
-                    // First, run synchronous validation
-                    if (!validateBookingForm()) { // validateBookingForm shows its own toasts
-                        return; // Stop if basic validation fails
-                    }
-
-                    const pickupDate = document.getElementById('pickup_date').value;
-                    const returnDate = document.getElementById('return_date').value;
-                    const vehicleId = document.querySelector('input[name="vehicle_id"]').value;
-                    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-
-
-                    // Show loading state on submit button
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalBtnText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking availability...';
-                    submitBtn.disabled = true;
-                    let isSubmitting = false; // Flag to prevent double restoration of button
-
-                    try {
-                        const ajaxFormData = new FormData(); // Use a new FormData for AJAX
-                        ajaxFormData.append('vehicle_id', vehicleId);
-                        ajaxFormData.append('pickup_date', pickupDate);
-                        ajaxFormData.append('return_date', returnDate);
-                        ajaxFormData.append('csrf_token', csrfToken); // Send CSRF token
-
-                        const response = await fetch('../ajax/check_availability.html', {
-                            method: 'POST',
-                            body: ajaxFormData
-                        });
-
-                        console.log('Raw response from check_availability.php:', response);
-
-                        if (!response.ok) {
-                            const errorText = await response.text();
-                            console.error('Server error from check_availability.php:', response.status, errorText);
-                            window.showToast('error', `Server error (${response.status}) while checking availability. Please try again.`);
-                            throw new Error(`Server error: ${response.status}`); // Throw to go to catch
-                        }
-
-                        const data = await response.json();
-                        console.log('Parsed JSON data from check_availability.php:', data);
-
-                        if (data.error) {
-                            window.showToast('error', data.message || 'Error during availability check.');
-                        } else if (!data.available) {
-                            window.showToast('error', data.message || 'Vehicle is not available for the selected dates.');
-                        } else {
-                            // If available, submit the original form to process_booking.php
-                            console.log('Vehicle available. Submitting form to process_booking.php...');
-                            isSubmitting = true; 
-                            this.submit(); // This submits the original HTML form to process_booking.php
-                        }
-                    } catch (error) {
-                        console.error('JavaScript error during availability check or form processing:', error);
-                        // Avoid showing generic error if a specific one was already shown by response.ok check
-                        if (!isSubmitting && error.message.indexOf('Server error:') === -1) {
-                           window.showToast('error', 'An unexpected error occurred. Please check the console and try again.');
-                        }
-                    } finally {
-                        // Restore button state only if not successfully submitting
-                        if (!isSubmitting) {
-                            submitBtn.innerHTML = originalBtnText;
-                            submitBtn.disabled = false;
-                        }
-                    }
-                });
-            }
+            if (!bookingForm) return;
+            bookingForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (typeof validateBookingForm === 'function' && !validateBookingForm()) return;
+                const form = new FormData(bookingForm);
+                const vehicleId = form.get('vehicle_id') || new URLSearchParams(window.location.search).get('id') || 'demo-vehicle';
+                const pickupDate = form.get('pickup_date') || '';
+                const returnDate = form.get('return_date') || '';
+                const days = Math.max(1, Math.ceil((new Date(returnDate) - new Date(pickupDate)) / 86400000) || 1);
+                const vehicleName = document.querySelector('.car-title')?.textContent?.trim() || 'Selected Vehicle';
+                const rateText = document.querySelector('.price-value')?.textContent?.replace(/[^0-9.]/g, '') || '0';
+                const rate = Number(rateText) || 0;
+                const bookingId = 'DEMO-' + Date.now();
+                const booking = {
+                    bookingId: bookingId, vehicleId: vehicleId, vehicleName: vehicleName,
+                    pickupDate: pickupDate, returnDate: returnDate, days: days,
+                    dailyRate: rate, totalAmount: rate * days, status: 'pending',
+                    customerName: localStorage.getItem('tourgo_customer_name') || 'Guest',
+                    createdAt: new Date().toISOString(), imagePath: '../public/assets/images/car.png'
+                };
+                const bookings = JSON.parse(localStorage.getItem('tourgo_demo_bookings') || '[]');
+                bookings.push(booking);
+                localStorage.setItem('tourgo_demo_bookings', JSON.stringify(bookings));
+                window.location.href = 'booking_confirmation.html?id=' + encodeURIComponent(bookingId);
+            });
+        });
 
             // Toast notification function (ensure this is the one used)
             // This definition will overwrite any previous 'showToast' if not namespaced.
@@ -1041,7 +996,6 @@ function styleUnavailableDates(bookedDates, calendar) {
                     }, 3000); // Toast visibility duration
                 }
             }
-        });
     </script>
     <script src="../public/assets/js/demo-session.js"></script>
     <script src="/Tour-GO/public/assets/js/responsive-menu-fix.js"></script>

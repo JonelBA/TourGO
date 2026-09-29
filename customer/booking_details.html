@@ -471,10 +471,10 @@
 <div class="car-gallery">
     <div class="gallery-main">
         
-            <img id="mainImage" src="../uploads/vehicles/" 
+            <img id="mainImage" src="../public/assets/images/car.png" 
                  alt="">
         
-            <img id="mainImage" src="../public/assets/images/default-car.jpg" 
+            <img id="mainImage" src="../public/assets/images/car.png" 
                  alt="Default vehicle image">
         
         
@@ -498,7 +498,7 @@
                 <div class="gallery-thumbnail " 
                      onclick="changeImage('', this)"
                      data-index="">
-                    <img src="../uploads/vehicles/" 
+                    <img src="../public/assets/images/car.png" 
                          alt="Vehicle view ">
                 </div>
             
@@ -632,7 +632,7 @@
             <div class="agency-info">
                 <div class="agency-header">
                     
-                        <img src="../uploads/" 
+                        <img src="../public/assets/images/guest-avatar.svg" 
                              alt="" 
                              class="agency-logo">
                     
@@ -701,7 +701,7 @@
                 <div class="footer-links">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-menu">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="customer_dashboard.html">Home</a></li>
                         <li><a href="cars.html">Our Fleet</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
@@ -829,7 +829,7 @@ function changeGalleryImage(direction) {
     
     const mainImage = document.getElementById('mainImage');
     if (!mainImage) return;
-    mainImage.src = '../uploads/vehicles/' + vehicleImages[currentImageIndex].image_path;
+    mainImage.src = '../public/assets/images/car.png' + vehicleImages[currentImageIndex].image_path;
     
     // Update thumbnail active state
     document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
@@ -858,7 +858,7 @@ function updateImageCounter() {
 function changeMainImage(imagePath, thumbnailElement) {
     const mainImage = document.getElementById('mainImage');
     if (!mainImage || !imagePath) return;
-    mainImage.src = '../uploads/vehicles/' + imagePath;
+    mainImage.src = '../public/assets/images/car.png' + imagePath;
     
     // Update active thumbnail
     document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
