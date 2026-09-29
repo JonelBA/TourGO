@@ -239,21 +239,6 @@
             });
         }
 
-        const profileToggle = document.querySelector('.profile-toggle');
-        const profileMenu = document.querySelector('.profile-menu');
-        if (profileToggle && profileMenu && profileToggle.dataset.bound !== '1') {
-            profileToggle.dataset.bound = '1';
-            profileToggle.addEventListener('click', function (event) {
-                event.stopPropagation();
-                profileMenu.classList.toggle('active');
-            });
-            document.addEventListener('click', function (event) {
-                if (!profileMenu.contains(event.target) && !profileToggle.contains(event.target)) {
-                    profileMenu.classList.remove('active');
-                }
-            });
-        }
-
         const menuToggle = document.querySelector('.menu-toggle');
         const sidebar = document.querySelector('.admin-sidebar');
         if (menuToggle && sidebar && menuToggle.dataset.bound !== '1') {
